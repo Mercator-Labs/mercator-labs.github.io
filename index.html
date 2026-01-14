@@ -1,397 +1,85 @@
 <!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <title>Mercator Labs: Affordable geospatial foundation models</title>
-        <meta
-            name="description"
-            content="Mercator Labs builds affordable geospatial foundation models for satellite imagery and location intelligence."
-        />
-        <style>
-            body {
-                font-family: "Lucida Console", monospace;
-                font-size: 18px;
-                color: #111;
-                background-color: white;
-                margin: 0;
-                padding: 0;
-                box-sizing: border-box;
-            }
-            .content {
-                max-width: 1280px;
-                margin: 0 auto;
-                padding: 0 50px;
-            }
-            .landing {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                min-height: 100vh;
-                min-height: 100dvh;
-                text-align: center;
-                width: 100%;
-                padding: 0 50px;
-                box-sizing: border-box;
-                position: relative;
-            }
-            .landing::before {
-                content: "";
-                position: absolute;
-                top: 0;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                background-image: url("bg.webp");
-                background-size: cover;
-                background-position: center;
-                background-repeat: no-repeat;
-                filter: blur(3px);
-                z-index: -1;
-            }
-            h1 {
-                font-size: 72px;
-                margin: 0 0 20px 0;
-                font-weight: normal;
-                color: white;
-                text-shadow:
-                    3px 3px 12px rgba(0, 0, 0, 1),
-                    0px 0px 20px rgba(0, 0, 0, 0.9);
-            }
-            .tagline {
-                font-size: 20px;
-                margin-bottom: 40px;
-                color: white;
-                text-shadow:
-                    2px 2px 10px rgba(0, 0, 0, 1),
-                    0px 0px 15px rgba(0, 0, 0, 0.9);
-            }
-            .separator {
-                letter-spacing: -9px;
-            }
-            hr {
-                border: none;
-                height: 2px;
-                background-color: lightgrey;
-                width: 100%;
-                margin: 30px auto;
-            }
-            .links-container {
-                font-size: 24px;
-                margin: 20px;
-                color: white;
-                text-shadow:
-                    2px 2px 10px rgba(0, 0, 0, 1),
-                    0px 0px 15px rgba(0, 0, 0, 0.9);
-            }
-            .links-container a {
-                text-decoration: none;
-                color: white;
-                margin: 0 10px;
-            }
-            .quiet {
-                color: inherit;
-            }
-            .faqtable dt {
-                margin-bottom: 0.75em;
-                font-style: italic;
-            }
-            .faqtable dd {
-                margin-left: 0;
-                margin-bottom: 2em;
-            }
-            a {
-                color: #0066cc;
-            }
-            .highlight {
-                color: #cc6600;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="landing">
-            <h1>Mercator Labs</h1>
-            <div class="tagline">affordable geospatial foundation models</div>
-            <div class="links-container">
-                <a href="#about">about</a><span class="separator">|</span>
-                <a href="#platform">platform</a
-                ><span class="separator">|</span> <a href="#examples">examples</a
-                ><span class="separator">|</span> <a href="#team">team</a
-                ><span class="separator">|</span> <a href="#pricing">pricing</a
-                ><span class="separator">|</span>
-                <a href="#faq">FAQ</a>
+<head>
+    <meta charset="UTF-8" />
+    <title>Mercator Labs</title>
+    <meta name="description" content="Understand the Earth with AI. Affordable geospatial intelligence for everyone." />
+    <style>
+        body { font-family: "Lucida Console", monospace; font-size: 18px; color: #111; background: white; margin: 0; padding: 0; }
+        .content { max-width: 900px; margin: 0 auto; padding: 0 40px; }
+        .landing { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; text-align: center; position: relative; }
+        .landing::before { content: ""; position: absolute; inset: 0; background: url("bg.webp") center/cover no-repeat; filter: blur(3px); z-index: -1; }
+        h1 { font-size: 72px; margin: 0 0 20px; font-weight: normal; color: white; text-shadow: 3px 3px 12px rgba(0,0,0,1); }
+        .tagline { font-size: 22px; margin-bottom: 40px; color: white; text-shadow: 2px 2px 10px rgba(0,0,0,1); }
+        .links-container { font-size: 22px; color: white; text-shadow: 2px 2px 10px rgba(0,0,0,1); }
+        .links-container a { color: white; margin: 0 15px; }
+        hr { border: none; height: 2px; background: lightgrey; margin: 40px 0; }
+        a { color: #0066cc; }
+        .use-cases { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; margin: 30px 0; }
+        .use-case { background: #f8f8f8; padding: 20px; border-left: 4px solid #0066cc; }
+        .use-case h3 { margin: 0 0 10px; font-size: 18px; }
+        .use-case p { margin: 0; font-size: 15px; color: #444; }
+        .demo-box { background: #f0f7ff; padding: 25px; text-align: center; margin: 30px 0; }
+        .cta { background: #111; color: white; padding: 12px 30px; text-decoration: none; display: inline-block; margin-top: 15px; }
+        .cta:hover { background: #333; }
+    </style>
+</head>
+<body>
+    <div class="landing">
+        <h1>Mercator Labs</h1>
+        <div class="tagline">AI that understands the Earth</div>
+        <div class="links-container">
+            <a href="#what">what you can do</a> |
+            <a href="#demo">try it</a> |
+            <a href="#contact">contact</a>
+        </div>
+    </div>
+
+    <div class="content">
+        <hr />
+        <h2 id="what">What can you do with geospatial AI?</h2>
+        <p>Ask questions about satellite imagery in plain language. Get answers at scale.</p>
+
+        <div class="use-cases">
+            <div class="use-case">
+                <h3>Disaster Response</h3>
+                <p>Identify damaged buildings, flooded areas, and blocked roads. Prioritize relief efforts based on real imagery.</p>
+            </div>
+            <div class="use-case">
+                <h3>Agriculture</h3>
+                <p>Monitor crop health, predict yields, and detect changes across growing seasons.</p>
+            </div>
+            <div class="use-case">
+                <h3>Urban Planning</h3>
+                <p>Map buildings, track development, and analyze infrastructure across entire cities.</p>
+            </div>
+            <div class="use-case">
+                <h3>Climate & Environment</h3>
+                <p>Track deforestation, monitor coastlines, and assess environmental risks over time.</p>
+            </div>
+            <div class="use-case">
+                <h3>Location Intelligence</h3>
+                <p>Find patterns in geographic data. Search for "buildings with solar panels" or "unpaved roads" across regions.</p>
+            </div>
+            <div class="use-case">
+                <h3>Change Detection</h3>
+                <p>Compare imagery across time to spot what changed: new construction, land use shifts, or damage.</p>
             </div>
         </div>
 
-        <div class="content">
-            <hr />
-            <h2 id="about">About Mercator Labs</h2>
-            <p>
-                <b>Who we are:</b> A tech startup building affordable geospatial
-                AI infrastructure.
-            </p>
-
-            <p>
-                <b>What we do:</b> We develop
-                <b>geospatial foundation models</b> that understand satellite
-                imagery and location data—similar to AlphaEarth and Prithvi, but
-                <span class="highlight">dramatically cheaper</span>.
-            </p>
-
-            <p>
-                <b>Problems we solve:</b> Advanced Earth observation AI is
-                expensive and inaccessible. Researchers, startups, and
-                organizations working on climate monitoring, agriculture,
-                disaster response, and urban planning can't afford
-                enterprise-scale geospatial AI.
-            </p>
-
-            <p>
-                <b>Target audience:</b> Research institutions, climate tech
-                startups, agricultural technology companies, disaster response
-                organizations, and government agencies needing cost-effective
-                geospatial intelligence.
-            </p>
-
-            <p><b>Our technology:</b></p>
-            <b>Satellite Imagery</b><br />
-            Multi-spectral data from Landsat, Sentinel, and other sources.<br />
-            Pre-trained on petabytes of global imagery.<br /><br />
-
-            <b>Location Embeddings</b><br />
-            Geographic coordinates encoded as dense vectors.<br />
-            Captures spatial relationships and context.<br /><br />
-
-            <b>Self-Supervised Learning</b><br />
-            Masked autoencoders for efficient pre-training.<br />
-            No labeled data required for foundation training.<br />
-
-            <p>
-                Fine-tune for your specific task with 10-100x less labeled data
-                than training from scratch.
-            </p>
-
-            <hr />
-            <h2 id="platform">Mercator Platform</h2>
-            <p>
-                <b>What we're building:</b> An API platform for deploying and
-                fine-tuning geospatial foundation models on custom data.
-            </p>
-
-            <p><b>Current stage:</b> Private Beta</p>
-
-            <p><b>Key features:</b></p>
-            <ul style="list-style-position: inside; padding-left: 0">
-                <li>
-                    <b>Pre-trained Models API:</b> Access foundation models via
-                    REST API for inference and embedding generation
-                </li>
-                <li>
-                    <b>Easy Fine-tuning:</b> Upload your custom data and
-                    fine-tune models with minimal code
-                </li>
-                <li>
-                    <b>One-Click Deployment:</b> Deploy fine-tuned models as
-                    scalable API endpoints
-                </li>
-                <li>
-                    <b>Python SDK & Notebooks:</b> Libraries and examples for
-                    rapid prototyping
-                </li>
-            </ul>
-
-            <p>
-                <b>Tech Stack:</b> JAX, TPUs, optimized for cost-efficient
-                training and inference
-            </p>
-
-            <p>
-                <b>Get access:</b> Email
-                <a href="mailto:pinak@mercatorlabs.xyz"
-                    >pinak@mercatorlabs.xyz</a
-                >
-                to join the private beta and receive API credentials,
-                documentation, and example code.
-            </p>
-
-            <hr />
-            <h2 id="team">Team</h2>
-            <p>
-                <b>Pinak Paliwal</b> - Founder<br />
-                Current student at UC Berkeley MET. Has worked on geospatial
-                foundation models for the past year, focusing on cost-efficient
-                architectures for satellite imagery analysis.
-            </p>
-
-            <p>Based in Berkeley, California.</p>
-
-            <hr />
-            <h2 id="models">What can you do?</h2>
-            <p>Our foundation models can be adapted for:</p>
-            <ul style="list-style-position: inside; padding-left: 0">
-                <li>Land cover classification and semantic segmentation</li>
-                <li>Change detection and temporal analysis</li>
-                <li>Crop monitoring and yield prediction</li>
-                <li>
-                    Disaster response (floods, fires, infrastructure damage)
-                </li>
-                <li>Urban planning and development tracking</li>
-                <li>Environmental monitoring and conservation</li>
-                <li>Geospatial similarity search</li>
-                <li>Location-based intelligence and forecasting</li>
-            </ul>
-
-            <p>
-                Higher accuracy than AlphaEarth/OlmoEarth/similar models on
-                geospatial tasks.<br />
-                Less training data required. Faster convergence.
-            </p>
-
-            <hr />
-            <h2 id="examples">Examples</h2>
-            <p>
-                <b>GeoGuessr Demo:</b><br />
-                We've fine-tuned our foundation model to predict geographic locations
-                from street view imagery. Try it out at
-                <a href="https://geoguessr.mercatorlabs.xyz" target="_blank"
-                    >geoguessr.mercatorlabs.xyz</a
-                >.
-            </p>
-            <p>
-                This demonstrates how our base geospatial model can be adapted for
-                location intelligence tasks with minimal fine-tuning data.
-            </p>
-
-            <hr />
-            <h2 id="pricing">Pricing & Access</h2>
-            <p>We're currently in private beta.</p>
-
-            <p>
-                <b
-                    >Email
-                    <a href="mailto:pinak@mercatorlabs.xyz"
-                        >pinak@mercatorlabs.xyz</a
-                    >
-                    to get access.</b
-                >
-            </p>
-
-            <p>
-                We offer flexible pricing based on your use case:<br />
-                Research? Commercial deployment? Custom fine-tuning?<br />
-                Let's talk.
-            </p>
-
-            <hr />
-            <h2 id="faq">FAQ</h2>
-            <dl class="faqtable">
-                <dt>What is a geospatial foundation model?</dt>
-                <dd>
-                    A geospatial foundation model is a large neural network
-                    pre-trained on massive amounts of satellite imagery and
-                    location data. Similar to how GPT understands language, our
-                    models understand Earth observation data. We pre-train on
-                    unlabeled data from across the globe, which means you can
-                    fine-tune for your specific task with 10-100x less labeled
-                    data than training from scratch.
-                </dd>
-
-                <dt>How is this different from AlphaEarth or other models?</dt>
-                <dd>
-                    We optimize for cost efficiency. Models like AlphaEarth
-                    demonstrate incredible capabilities, but require significant
-                    compute resources that most researchers and small companies
-                    cannot access. We focus on maximizing performance per dollar
-                    to make geospatial AI genuinely accessible.
-                </dd>
-
-                <dt>What kind of data do your models work with?</dt>
-                <dd>
-                    Any georeferenced raster data. This includes multi-spectral
-                    satellite imagery (Landsat, Sentinel-2), SAR data, elevation
-                    models, and more. Our location embeddings can encode any
-                    latitude/longitude coordinate into a dense vector
-                    representation.
-                </dd>
-
-                <dt>Do I need labeled data to use your models?</dt>
-                <dd>
-                    Not for the foundation model itself, which comes
-                    pre-trained. For fine-tuning to your specific application,
-                    you will need some labeled examples, but typically 10-100x
-                    fewer than training from scratch. This is the core value
-                    proposition of foundation models.
-                </dd>
-
-                <dt>What tasks can I fine-tune for?</dt>
-                <dd>
-                    Any geospatial analysis task. Classification, semantic
-                    segmentation, object detection, temporal change detection,
-                    regression tasks like crop yield prediction. You can also
-                    use the embeddings directly for similarity search and
-                    clustering applications.
-                </dd>
-
-                <dt>How do I get started?</dt>
-                <dd>
-                    Email pinak@mercatorlabs.xyz with a description of your use
-                    case. We will provide API access or model weights, along
-                    with documentation and example notebooks to help you get
-                    started quickly.
-                </dd>
-
-                <dt>Can I use this for commercial applications?</dt>
-                <dd>
-                    Yes. We offer commercial licensing with pricing based on
-                    your deployment scale and requirements. Contact us to
-                    discuss your specific needs.
-                </dd>
-
-                <dt>Do you offer custom model training?</dt>
-                <dd>
-                    Yes. If you have specific requirements like custom
-                    geographic regions, different spectral bands, or specific
-                    temporal resolutions, we can train custom models. Get in
-                    touch to discuss.
-                </dd>
-
-                <dt>What about inference speed and deployment?</dt>
-                <dd>
-                    Our models are optimized for efficient inference on standard
-                    GPU infrastructure and major cloud platforms (AWS, GCP,
-                    Azure). If you have specific hardware constraints, we can
-                    help with optimization.
-                </dd>
-
-                <dt>Is this research-friendly?</dt>
-                <dd>
-                    Absolutely. We offer academic pricing and actively support
-                    research projects. Many critical problems in climate
-                    science, agriculture, and disaster response require
-                    accessible tools. Enabling that research is part of our
-                    mission.
-                </dd>
-
-                <dt>What is your goal?</dt>
-                <dd>
-                    To democratize geospatial AI. Currently, advanced Earth
-                    observation capabilities are limited to organizations with
-                    large compute budgets. But researchers working on climate
-                    change, sustainable agriculture, and disaster response need
-                    these tools too. We are working to close that gap.
-                </dd>
-            </dl>
-
-            <br /><br />
-            <center>
-                <p>
-                    Questions? Reach out:
-                    <a href="mailto:pinak@mercatorlabs.xyz"
-                        >pinak@mercatorlabs.xyz</a
-                    >
-                </p>
-            </center>
-            <br /><br />
+        <hr />
+        <h2 id="demo">Try It</h2>
+        <div class="demo-box">
+            <p><b>GeoGuessr Demo</b></p>
+            <p>Our model predicts geographic locations from street view images.</p>
+            <a class="cta" href="https://geoguessr.mercatorlabs.xyz" target="_blank">Try the demo</a>
         </div>
-    </body>
+
+        <hr />
+        <h2 id="contact">Get Access</h2>
+        <p>We're in private beta. Research, commercial, and custom deployments available.</p>
+        <p><b>Email <a href="mailto:pinak@mercatorlabs.xyz">pinak@mercatorlabs.xyz</a></b></p>
+        <p style="margin-top: 40px; color: #666; font-size: 14px;">Pinak Paliwal, Founder | UC Berkeley | Berkeley, CA</p>
+    </div>
+</body>
 </html>
