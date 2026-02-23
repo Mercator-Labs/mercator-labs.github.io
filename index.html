@@ -199,68 +199,197 @@
             margin-bottom: 56px;
         }
 
-        /* ── CAPABILITIES GRID ── */
-        .capabilities-grid {
+        .tabs-layout {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            border-top: 1px solid rgba(255,255,255,0.07);
-            border-left: 1px solid rgba(255,255,255,0.07);
+            grid-template-columns: 280px 1fr;
+            gap: 0;
+            border: 1px solid rgba(255,255,255,0.07);
+            min-height: 360px;
         }
 
-        .cap-card {
+        .tab-list {
             border-right: 1px solid rgba(255,255,255,0.07);
+        }
+
+        .tab-btn {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            width: 100%;
+            padding: 18px 24px;
+            background: none;
+            border: none;
             border-bottom: 1px solid rgba(255,255,255,0.07);
-            padding: 36px 30px;
-            transition: background 0.2s;
-        }
-
-        .cap-card:hover { background: rgba(255,255,255,0.025); }
-
-        .cap-num {
-            font-size: 11px;
-            letter-spacing: 0.12em;
-            color: #666;
-            margin-bottom: 22px;
-        }
-
-        .cap-card h3 {
-            font-size: 16px;
-            font-weight: normal;
-            color: #ddd;
-            margin: 0 0 10px;
-        }
-
-        .cap-card p {
+            color: #555;
+            font-family: "Alliance No. 2", sans-serif;
             font-size: 14px;
-            color: #888;
+            text-align: left;
+            cursor: pointer;
+            transition: background 0.15s, color 0.15s;
+        }
+
+        .tab-btn:last-child { border-bottom: none; }
+        .tab-btn:hover { background: rgba(255,255,255,0.03); color: #aaa; }
+
+        .tab-btn.active {
+            background: rgba(77,168,255,0.07);
+            color: #fff;
+            border-left: 2px solid #4da8ff;
+            padding-left: 22px;
+        }
+
+        .tab-btn .tab-num {
+            font-size: 11px;
+            color: #333;
+            letter-spacing: 0.1em;
+            flex-shrink: 0;
+        }
+
+        .tab-btn.active .tab-num { color: #4da8ff; }
+
+        .tab-panels { padding: 0; overflow: hidden; }
+
+        .tab-panel { display: none; }
+        .tab-panel.active {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 380px;
+        }
+
+        .tab-panel-text {
+            padding: 44px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 14px;
+        }
+
+        .tab-panel-text h3 {
+            font-size: 24px;
+            font-weight: normal;
+            color: #fff;
+            margin: 0;
+        }
+
+        .tab-panel-text p {
+            font-size: 15px;
+            color: #777;
             line-height: 1.7;
             margin: 0;
         }
 
-        /* ── DEMO PANEL ── */
-        .demo-panel {
-            border: 1px solid rgba(255,255,255,0.09);
-            padding: 56px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 48px;
-            background: rgba(255,255,255,0.015);
+        .tab-panel-text ul {
+            margin: 8px 0 0;
+            padding: 0;
+            list-style: none;
         }
 
-        .demo-panel h3 {
+        .tab-panel-text ul li {
+            font-size: 14px;
+            color: #666;
+            padding: 7px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+
+        .tab-panel-text ul li:first-child { border-top: 1px solid rgba(255,255,255,0.06); }
+
+        .tab-panel-img {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tab-panel-img img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.55) saturate(0.75);
+        }
+
+        /* ── DEMO PANEL ── */
+        .feature-band {
+            position: relative;
+            height: 420px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            padding: 0 60px;
+        }
+
+        .feature-band img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.3) saturate(0.7);
+        }
+
+        .feature-band-text {
+            position: relative;
+            z-index: 1;
+            max-width: 640px;
+        }
+
+        .feature-band-text p {
+            font-size: 28px;
+            color: #fff;
+            line-height: 1.45;
+            margin: 0;
+            letter-spacing: -0.01em;
+        }
+
+        .feature-band-text span { color: #4da8ff; }
+
+        .demo-split {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+            border: 1px solid rgba(255,255,255,0.09);
+            overflow: hidden;
+        }
+
+        .demo-split-text {
+            padding: 56px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 16px;
+        }
+
+        .demo-split-text h3 {
             font-size: 26px;
             font-weight: normal;
             color: #fff;
-            margin: 0 0 10px;
+            margin: 0;
         }
 
-        .demo-panel p {
+        .demo-split-text p {
             font-size: 15px;
             color: #888;
             line-height: 1.65;
             margin: 0;
-            max-width: 460px;
+        }
+
+        .demo-split-img {
+            position: relative;
+            min-height: 320px;
+        }
+
+        .demo-split-img img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.6) saturate(0.8);
+        }
+
+        .market-sub {
+            font-size: 13px;
+            color: #4da8ff;
+            margin: 4px 0 0;
         }
 
         /* ── CONTACT ── */
@@ -310,6 +439,7 @@
         <a class="nav-logo" href="#">Locamage</a>
         <ul class="nav-links">
             <li><a href="#capabilities">Capabilities</a></li>
+            <li><a href="#markets">Markets</a></li>
             <li><a href="#demo">Demo</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
@@ -340,36 +470,131 @@
             <h2>What can you do<br>with geospatial AI?</h2>
             <p class="section-intro">Affordable intelligence for any team working with satellite or aerial imagery — no GIS expertise required.</p>
 
-            <div class="capabilities-grid">
-                <div class="cap-card">
-                    <div class="cap-num">01</div>
-                    <h3>Disaster Response</h3>
-                    <p>Identify damaged buildings, flooded areas, and blocked roads. Prioritize relief based on real imagery.</p>
+            <div class="tabs-layout">
+                <div class="tab-list">
+                    <button class="tab-btn active" onclick="switchTab(this,0)"><span class="tab-num">01</span> Disaster Response</button>
+                    <button class="tab-btn" onclick="switchTab(this,1)"><span class="tab-num">02</span> Agriculture</button>
+                    <button class="tab-btn" onclick="switchTab(this,2)"><span class="tab-num">03</span> Urban Planning</button>
+                    <button class="tab-btn" onclick="switchTab(this,3)"><span class="tab-num">04</span> Climate &amp; Environment</button>
+                    <button class="tab-btn" onclick="switchTab(this,4)"><span class="tab-num">05</span> Location Intelligence</button>
+                    <button class="tab-btn" onclick="switchTab(this,5)"><span class="tab-num">06</span> Change Detection</button>
                 </div>
-                <div class="cap-card">
-                    <div class="cap-num">02</div>
-                    <h3>Agriculture</h3>
-                    <p>Monitor crop health, predict yields, and detect changes across growing seasons.</p>
+                <div class="tab-panels">
+                    <div class="tab-panel active">
+                        <div class="tab-panel-text">
+                            <h3>Disaster Response</h3>
+                            <p>Identify damaged buildings, flooded areas, and blocked roads. Prioritize relief based on real imagery.</p>
+                        </div>
+                        <div class="tab-panel-img"><img src="img/disaster.webp" alt="Flood aerial view" /></div>
+                    </div>
+                    <div class="tab-panel">
+                        <div class="tab-panel-text">
+                            <h3>Agriculture</h3>
+                            <p>Monitor crop health, predict yields, and detect changes across growing seasons.</p>
+                        </div>
+                        <div class="tab-panel-img"><img src="img/agriculture.webp" alt="Aerial farm fields" /></div>
+                    </div>
+                    <div class="tab-panel">
+                        <div class="tab-panel-text">
+                            <h3>Urban Planning</h3>
+                            <p>Map buildings, track development, and analyze infrastructure across entire cities.</p>
+                        </div>
+                        <div class="tab-panel-img"><img src="img/urban.webp" alt="Aerial city view" /></div>
+                    </div>
+                    <div class="tab-panel">
+                        <div class="tab-panel-text">
+                            <h3>Climate &amp; Environment</h3>
+                            <p>Track deforestation, monitor coastlines, and assess environmental risks over time.</p>
+                        </div>
+                        <div class="tab-panel-img"><img src="img/climate_cap.webp" alt="Aerial forest" /></div>
+                    </div>
+                    <div class="tab-panel">
+                        <div class="tab-panel-text">
+                            <h3>Location Intelligence</h3>
+                            <p>Search for "buildings with solar panels" or "unpaved roads" across entire regions.</p>
+                        </div>
+                        <div class="tab-panel-img"><img src="img/location.webp" alt="City map" /></div>
+                    </div>
+                    <div class="tab-panel">
+                        <div class="tab-panel-text">
+                            <h3>Change Detection</h3>
+                            <p>Compare imagery across time to spot what changed: new construction, land use shifts, or damage.</p>
+                        </div>
+                        <div class="tab-panel-img"><img src="img/change.webp" alt="Satellite Earth view" /></div>
+                    </div>
                 </div>
-                <div class="cap-card">
-                    <div class="cap-num">03</div>
-                    <h3>Urban Planning</h3>
-                    <p>Map buildings, track development, and analyze infrastructure across entire cities.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="feature-band">
+        <img src="img/feature.webp" alt="Satellite view of Earth" />
+        <div class="feature-band-text">
+            <p>Any sensor. Any resolution.<br><span>Any question.</span></p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="section" id="markets">
+            <div class="section-label">Markets</div>
+            <h2>Built for operators<br>who can't wait.</h2>
+            <p class="section-intro">High-stakes decisions need answers in hours, not weeks.</p>
+            <div class="tabs-layout">
+                <div class="tab-list">
+                    <button class="tab-btn active" onclick="switchTab(this,0)"><span class="tab-num">01</span> Defense &amp; Intel</button>
+                    <button class="tab-btn" onclick="switchTab(this,1)"><span class="tab-num">02</span> Insurance &amp; Risk</button>
+                    <button class="tab-btn" onclick="switchTab(this,2)"><span class="tab-num">03</span> Agriculture</button>
+                    <button class="tab-btn" onclick="switchTab(this,3)"><span class="tab-num">04</span> Climate &amp; ESG</button>
                 </div>
-                <div class="cap-card">
-                    <div class="cap-num">04</div>
-                    <h3>Climate &amp; Environment</h3>
-                    <p>Track deforestation, monitor coastlines, and assess environmental risks over time.</p>
-                </div>
-                <div class="cap-card">
-                    <div class="cap-num">05</div>
-                    <h3>Location Intelligence</h3>
-                    <p>Search for "buildings with solar panels" or "unpaved roads" across entire regions.</p>
-                </div>
-                <div class="cap-card">
-                    <div class="cap-num">06</div>
-                    <h3>Change Detection</h3>
-                    <p>Compare imagery across time to spot what changed: new construction, land use shifts, or damage.</p>
+                <div class="tab-panels">
+                    <div class="tab-panel active">
+                        <div class="tab-panel-text">
+                            <h3>Defense &amp; Intelligence</h3>
+                            <p class="market-sub">Persistent monitoring. Rapid exploitation.</p>
+                            <ul>
+                                <li>Pattern-of-life analysis</li>
+                                <li>Infrastructure assessment</li>
+                                <li>Denied-area imaging</li>
+                            </ul>
+                        </div>
+                        <div class="tab-panel-img"><img src="img/defense.webp" alt="Earth from orbit" /></div>
+                    </div>
+                    <div class="tab-panel">
+                        <div class="tab-panel-text">
+                            <h3>Insurance &amp; Risk</h3>
+                            <p class="market-sub">Underwrite faster. Price more accurately.</p>
+                            <ul>
+                                <li>Wildfire exposure modeling</li>
+                                <li>Flood damage assessment</li>
+                                <li>Property condition scoring</li>
+                            </ul>
+                        </div>
+                        <div class="tab-panel-img"><img src="img/flood.webp" alt="Aerial flood damage" /></div>
+                    </div>
+                    <div class="tab-panel">
+                        <div class="tab-panel-text">
+                            <h3>Agriculture</h3>
+                            <p class="market-sub">Field-level intelligence at scale.</p>
+                            <ul>
+                                <li>Crop health monitoring</li>
+                                <li>Yield forecasting</li>
+                                <li>Seasonal change detection</li>
+                            </ul>
+                        </div>
+                        <div class="tab-panel-img"><img src="img/agriculture.webp" alt="Aerial farm fields" /></div>
+                    </div>
+                    <div class="tab-panel">
+                        <div class="tab-panel-text">
+                            <h3>Climate &amp; ESG</h3>
+                            <p class="market-sub">Measure what matters.</p>
+                            <ul>
+                                <li>Deforestation tracking</li>
+                                <li>Carbon stock estimation</li>
+                                <li>Coastal &amp; wetland monitoring</li>
+                            </ul>
+                        </div>
+                        <div class="tab-panel-img"><img src="img/climate_esg.webp" alt="Aerial forest" /></div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -382,12 +607,15 @@
         <div class="section" id="demo">
             <div class="section-label">Demo</div>
             <h2>See it in action.</h2>
-            <div class="demo-panel">
-                <div>
+            <div class="demo-split">
+                <div class="demo-split-text">
                     <h3>GeoGuessr Benchmark</h3>
                     <p>Our model predicts geographic locations from street view images, demonstrating spatial reasoning at a global scale.</p>
+                    <div><a class="btn-primary" href="https://geoguessr.locamage.com" target="_blank">Try the demo &rarr;</a></div>
                 </div>
-                <a class="btn-primary" href="https://geoguessr.locamage.com" target="_blank">Try the demo &rarr;</a>
+                <div class="demo-split-img">
+                    <img src="img/urban.webp" alt="Aerial city view" />
+                </div>
             </div>
         </div>
     </div>
@@ -415,5 +643,12 @@
         <span>Pinak Paliwal &mdash; UC Berkeley &mdash; Berkeley, CA</span>
     </footer>
 
+    <script>
+        function switchTab(btn, i) {
+            const layout = btn.closest('.tabs-layout');
+            layout.querySelectorAll('.tab-btn').forEach((b,j) => b.classList.toggle('active', i===j));
+            layout.querySelectorAll('.tab-panel').forEach((p,j) => p.classList.toggle('active', i===j));
+        }
+    </script>
 </body>
 </html>
