@@ -18,10 +18,19 @@
         body {
             font-family: "Alliance No. 2", sans-serif;
             font-size: 17px;
-            color: #aaa;
-            background: #0b0d12;
+            color: #9aaab8;
+            background: #0D1117;
             margin: 0;
             padding: 0;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cline x1='0' y1='40' x2='40' y2='0' stroke='%23F2F6FA' stroke-width='0.6' stroke-opacity='0.05'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 0;
         }
 
         a { text-decoration: none; }
@@ -30,14 +39,14 @@
         nav {
             position: fixed;
             top: 0; left: 0; right: 0;
-            z-index: 100;
-            padding: 22px 60px;
+            z-index: 101;
+            padding: 22px clamp(24px, 5vw, 100px);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: rgba(11, 13, 18, 0.88);
+            background: rgba(5, 8, 11, 0.92);
             backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(255,255,255,0.06);
+            border-bottom: 1px solid rgba(242,246,250,0.1);
         }
 
         .nav-logo {
@@ -48,7 +57,7 @@
 
         .nav-links {
             display: flex;
-            gap: 40px;
+            gap: 32px;
             list-style: none;
             margin: 0; padding: 0;
         }
@@ -70,7 +79,7 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            padding: 140px 60px 100px;
+            padding: 140px clamp(24px, 5vw, 100px) 100px;
             overflow: hidden;
         }
 
@@ -84,7 +93,7 @@
         .hero-dots {
             position: absolute;
             inset: 0;
-            background-image: radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px);
+            background-image: radial-gradient(circle, rgba(242,246,250,0.1) 1px, transparent 1px);
             background-size: 28px 28px;
         }
 
@@ -92,13 +101,38 @@
             position: absolute;
             bottom: 0; left: 0; right: 0;
             height: 200px;
-            background: linear-gradient(to bottom, transparent, #0b0d12);
+            background: linear-gradient(to bottom, transparent, #0D1117);
+        }
+
+        @keyframes ring-pulse {
+            0%, 100% { opacity: 0.8; }
+            50% { opacity: 1; }
+        }
+
+        .hero-rings {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            border: 1px solid rgba(77,168,255,0.15);
+            box-shadow:
+                0 0 0 80px rgba(77,168,255,0.06),
+                0 0 0 160px rgba(77,168,255,0.05),
+                0 0 0 240px rgba(77,168,255,0.04),
+                0 0 0 320px rgba(77,168,255,0.025),
+                0 0 0 400px rgba(77,168,255,0.015);
+            z-index: 1;
+            pointer-events: none;
+            animation: ring-pulse 4s ease-in-out infinite;
         }
 
         .hero-content {
             position: relative;
             z-index: 2;
-            max-width: 820px;
+            max-width: 1000px;
         }
 
         .eyebrow {
@@ -110,7 +144,7 @@
         }
 
         h1 {
-            font-size: 70px;
+            font-size: 88px;
             font-weight: normal;
             color: #fff;
             margin: 0 0 30px;
@@ -131,7 +165,7 @@
             align-items: center;
             gap: 8px;
             background: #4da8ff;
-            color: #0b0d12;
+            color: #0F161C;
             padding: 13px 30px;
             font-family: "Alliance No. 2", sans-serif;
             font-size: 13px;
@@ -161,21 +195,23 @@
 
         /* ── LAYOUT ── */
         .container {
-            max-width: 1160px;
+            max-width: 1600px;
             margin: 0 auto;
-            padding: 0 60px;
+            padding: 0 clamp(24px, 5vw, 100px);
+            position: relative;
+            z-index: 1;
         }
 
-        .section { padding: 100px 0; }
+        .section { padding: 80px 0; }
 
         .rule {
             height: 1px;
-            background: rgba(255,255,255,0.07);
-            margin: 0 60px;
+            background: rgba(242,246,250,0.12);
+            margin: 0 clamp(24px, 5vw, 100px);
         }
 
         .section-label {
-            font-size: 11px;
+            font-size: 12px;
             letter-spacing: 0.18em;
             text-transform: uppercase;
             color: #4da8ff;
@@ -194,7 +230,7 @@
         .section-intro {
             font-size: 17px;
             color: #888;
-            max-width: 560px;
+            max-width: 720px;
             line-height: 1.7;
             margin-bottom: 56px;
         }
@@ -203,12 +239,15 @@
             display: grid;
             grid-template-columns: 280px 1fr;
             gap: 0;
-            border: 1px solid rgba(255,255,255,0.07);
+            background: #131B27;
+            border: 1px solid rgba(242,246,250,0.18);
+            box-shadow: 0 4px 32px rgba(0,0,0,0.5);
             min-height: 360px;
         }
 
         .tab-list {
-            border-right: 1px solid rgba(255,255,255,0.07);
+            background: #0F1620;
+            border-right: 1px solid rgba(242,246,250,0.18);
         }
 
         .tab-btn {
@@ -219,8 +258,8 @@
             padding: 18px 24px;
             background: none;
             border: none;
-            border-bottom: 1px solid rgba(255,255,255,0.07);
-            color: #555;
+            border-bottom: 1px solid rgba(242,246,250,0.14);
+            color: #6a8095;
             font-family: "Alliance No. 2", sans-serif;
             font-size: 14px;
             text-align: left;
@@ -240,7 +279,7 @@
 
         .tab-btn .tab-num {
             font-size: 11px;
-            color: #333;
+            color: #3d5570;
             letter-spacing: 0.1em;
             flex-shrink: 0;
         }
@@ -253,7 +292,7 @@
         .tab-panel.active {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            min-height: 380px;
+            min-height: 320px;
         }
 
         .tab-panel-text {
@@ -288,10 +327,10 @@
             font-size: 14px;
             color: #666;
             padding: 7px 0;
-            border-bottom: 1px solid rgba(255,255,255,0.06);
+            border-bottom: 1px solid rgba(242,246,250,0.1);
         }
 
-        .tab-panel-text ul li:first-child { border-top: 1px solid rgba(255,255,255,0.06); }
+        .tab-panel-text ul li:first-child { border-top: 1px solid rgba(242,246,250,0.1); }
 
         .tab-panel-img {
             position: relative;
@@ -314,7 +353,8 @@
             overflow: hidden;
             display: flex;
             align-items: center;
-            padding: 0 60px;
+            padding: 0 clamp(24px, 5vw, 100px);
+            z-index: 1;
         }
 
         .feature-band img {
@@ -326,6 +366,14 @@
             filter: brightness(0.3) saturate(0.7);
         }
 
+        .feature-band::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to right, rgba(27,39,51,0.85) 0%, rgba(27,39,51,0.4) 50%, transparent 100%);
+            pointer-events: none;
+        }
+
         .feature-band-text {
             position: relative;
             z-index: 1;
@@ -333,11 +381,11 @@
         }
 
         .feature-band-text p {
-            font-size: 28px;
+            font-size: 40px;
             color: #fff;
-            line-height: 1.45;
+            line-height: 1.35;
             margin: 0;
-            letter-spacing: -0.01em;
+            letter-spacing: -0.02em;
         }
 
         .feature-band-text span { color: #4da8ff; }
@@ -346,7 +394,9 @@
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 0;
-            border: 1px solid rgba(255,255,255,0.09);
+            background: #131B27;
+            border: 1px solid rgba(242,246,250,0.18);
+            box-shadow: 0 4px 32px rgba(0,0,0,0.5);
             overflow: hidden;
         }
 
@@ -394,8 +444,10 @@
 
         /* ── CONTACT ── */
         .contact-wrap {
-            background: #090b0f;
-            border-top: 1px solid rgba(255,255,255,0.07);
+            background: #070A0E;
+            border-top: 1px solid rgba(242,246,250,0.12);
+            position: relative;
+            z-index: 1;
         }
 
         .contact-inner {
@@ -423,14 +475,64 @@
 
         /* ── FOOTER ── */
         footer {
-            padding: 26px 60px;
-            border-top: 1px solid rgba(255,255,255,0.05);
+            padding: 60px clamp(24px, 5vw, 100px) 32px;
+            border-top: 1px solid rgba(242,246,250,0.12);
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            padding-bottom: 48px;
+            border-bottom: 1px solid rgba(242,246,250,0.08);
+            margin-bottom: 28px;
+        }
+
+        .footer-logo {
+            font-size: 18px;
+            color: #fff;
+            margin-bottom: 12px;
+            letter-spacing: 0.02em;
+        }
+
+        .footer-brand p {
+            font-size: 13px;
+            color: #4a6070;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .footer-col {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .footer-col-label {
+            font-size: 11px;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: #9aaab8;
+            margin-bottom: 4px;
+        }
+
+        .footer-col a, .footer-col span {
+            font-size: 14px;
+            color: #4a6070;
+            transition: color 0.2s;
+        }
+
+        .footer-col a:hover { color: #9aaab8; }
+
+        .footer-bottom {
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            font-size: 13px;
-            color: #666;
+            font-size: 12px;
+            color: #3a5060;
         }
+
     </style>
 </head>
 <body>
@@ -449,6 +551,7 @@
     <div class="hero">
         <div class="hero-bg"></div>
         <div class="hero-dots"></div>
+        <div class="hero-rings"></div>
         <div class="hero-fade"></div>
         <div class="hero-content">
             <div class="eyebrow">Geospatial Intelligence</div>
@@ -472,12 +575,12 @@
 
             <div class="tabs-layout">
                 <div class="tab-list">
-                    <button class="tab-btn active" onclick="switchTab(this,0)"><span class="tab-num">01</span> Disaster Response</button>
-                    <button class="tab-btn" onclick="switchTab(this,1)"><span class="tab-num">02</span> Agriculture</button>
-                    <button class="tab-btn" onclick="switchTab(this,2)"><span class="tab-num">03</span> Urban Planning</button>
-                    <button class="tab-btn" onclick="switchTab(this,3)"><span class="tab-num">04</span> Climate &amp; Environment</button>
-                    <button class="tab-btn" onclick="switchTab(this,4)"><span class="tab-num">05</span> Location Intelligence</button>
-                    <button class="tab-btn" onclick="switchTab(this,5)"><span class="tab-num">06</span> Change Detection</button>
+                    <button class="tab-btn active" onclick="switchTab(this,0)"><span class="tab-num">001</span> Disaster Response</button>
+                    <button class="tab-btn" onclick="switchTab(this,1)"><span class="tab-num">002</span> Agriculture</button>
+                    <button class="tab-btn" onclick="switchTab(this,2)"><span class="tab-num">003</span> Urban Planning</button>
+                    <button class="tab-btn" onclick="switchTab(this,3)"><span class="tab-num">004</span> Climate &amp; Environment</button>
+                    <button class="tab-btn" onclick="switchTab(this,4)"><span class="tab-num">005</span> Location Intelligence</button>
+                    <button class="tab-btn" onclick="switchTab(this,5)"><span class="tab-num">006</span> Change Detection</button>
                 </div>
                 <div class="tab-panels">
                     <div class="tab-panel active">
@@ -541,10 +644,10 @@
             <p class="section-intro">High-stakes decisions need answers in hours, not weeks.</p>
             <div class="tabs-layout">
                 <div class="tab-list">
-                    <button class="tab-btn active" onclick="switchTab(this,0)"><span class="tab-num">01</span> Defense &amp; Intel</button>
-                    <button class="tab-btn" onclick="switchTab(this,1)"><span class="tab-num">02</span> Insurance &amp; Risk</button>
-                    <button class="tab-btn" onclick="switchTab(this,2)"><span class="tab-num">03</span> Agriculture</button>
-                    <button class="tab-btn" onclick="switchTab(this,3)"><span class="tab-num">04</span> Climate &amp; ESG</button>
+                    <button class="tab-btn active" onclick="switchTab(this,0)"><span class="tab-num">001</span> Defense &amp; Intel</button>
+                    <button class="tab-btn" onclick="switchTab(this,1)"><span class="tab-num">002</span> Insurance &amp; Risk</button>
+                    <button class="tab-btn" onclick="switchTab(this,2)"><span class="tab-num">003</span> Agriculture</button>
+                    <button class="tab-btn" onclick="switchTab(this,3)"><span class="tab-num">004</span> Climate &amp; ESG</button>
                 </div>
                 <div class="tab-panels">
                     <div class="tab-panel active">
@@ -639,8 +742,32 @@
     </div>
 
     <footer>
-        <span>Locamage</span>
-        <span>Pinak Paliwal &mdash; UC Berkeley &mdash; Berkeley, CA</span>
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <div class="footer-logo">Locamage</div>
+                <p>Geospatial intelligence<br>for everyone.</p>
+            </div>
+            <div class="footer-col">
+                <div class="footer-col-label">Product</div>
+                <a href="#capabilities">Capabilities</a>
+                <a href="#markets">Markets</a>
+                <a href="#demo">Demo</a>
+            </div>
+            <div class="footer-col">
+                <div class="footer-col-label">Company</div>
+                <a href="#contact">Contact</a>
+                <a href="mailto:pinak@locamage.com">pinak@locamage.com</a>
+            </div>
+            <div class="footer-col">
+                <div class="footer-col-label">Location</div>
+                <span>UC Berkeley</span>
+                <span>Berkeley, CA</span>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>&copy; 2026 Locamage</span>
+            <span>Built in Berkeley, CA</span>
+        </div>
     </footer>
 
     <script>
@@ -649,6 +776,7 @@
             layout.querySelectorAll('.tab-btn').forEach((b,j) => b.classList.toggle('active', i===j));
             layout.querySelectorAll('.tab-panel').forEach((p,j) => p.classList.toggle('active', i===j));
         }
+
     </script>
 </body>
 </html>
