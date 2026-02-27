@@ -4,100 +4,191 @@
     <meta charset="UTF-8" />
     <title>Locamage</title>
     <meta name="description" content="AI for satellite imagery." />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
     <style>
-        @font-face {
-            font-family: "Alliance No. 2";
-            src: url("AllianceNo2-Regular.woff2") format("woff2");
-            font-weight: normal; font-style: normal; font-display: swap;
+        :root {
+            --bg:        #141413;
+            --light:     #faf9f5;
+            --mid-gray:  #b0aea5;
+            --lt-gray:   #e8e6dc;
+            --orange:    #6a9bcc;
+            --blue:      #6a9bcc;
+            --green:     #788c5d;
+            --border:    rgba(176,174,165,0.14);
+            --surface:   #1a1917;
         }
+
         *, *::before, *::after { box-sizing: border-box; }
-        body { font-family: "Alliance No. 2", sans-serif; background: #080B0F; color: #666; margin: 0; font-size: 16px; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Lora', Georgia, serif; background: var(--bg); color: var(--mid-gray); margin: 0; font-size: 16px; }
         a { text-decoration: none; }
 
         nav {
             position: fixed; top: 0; left: 0; right: 0; z-index: 100;
             padding: 22px clamp(24px, 5vw, 80px);
             display: flex; justify-content: space-between; align-items: center;
-            background: rgba(8,11,15,0.88); backdrop-filter: blur(12px);
+            background: rgba(20,20,19,0.88); backdrop-filter: blur(18px);
+            border-bottom: 1px solid var(--border);
         }
-        .nav-logo { color: #fff; font-size: 17px; letter-spacing: 0.02em; }
+        .nav-logo { font-family: 'Poppins', Arial, sans-serif; font-weight: 500; color: var(--light); font-size: 18px; letter-spacing: 0.01em; }
         .nav-links { display: flex; gap: 36px; list-style: none; margin: 0; padding: 0; }
-        .nav-links a { color: #555; font-size: 13px; transition: color 0.2s; }
-        .nav-links a:hover { color: #ccc; }
+        .nav-links a { font-family: 'Poppins', Arial, sans-serif; font-size: 12px; font-weight: 400; letter-spacing: 0.06em; color: #8a8880; transition: color 0.25s; }
+        .nav-links a:hover { color: var(--light); }
 
         .hero {
             position: relative; min-height: 100vh;
             display: flex; align-items: flex-end;
-            padding: 0 clamp(24px, 5vw, 80px) 90px; overflow: hidden;
+            padding: 0 clamp(24px, 5vw, 80px) 88px; overflow: hidden;
         }
-        .hero-img { position: absolute; inset: 0; background: url("bg.webp") center/cover; filter: brightness(0.3) saturate(0.5); }
-        .hero-fade { position: absolute; bottom: 0; left: 0; right: 0; height: 55%; background: linear-gradient(transparent, #080B0F); }
-        .hero-fade-side { position: absolute; top: 0; bottom: 0; left: 0; width: 60%; background: linear-gradient(to right, rgba(8,11,15,0.7), transparent); }
-        .hero-content { position: relative; z-index: 1; max-width: 780px; }
+        .hero-img {
+            position: absolute; inset: 0;
+            background: url("bg.webp") center/cover;
+            filter: brightness(0.28) saturate(0.4);
+            animation: drift 28s ease-in-out alternate infinite;
+        }
+        @keyframes drift { from { transform: scale(1.06); } to { transform: scale(1.0); } }
+        .hero-vignette {
+            position: absolute; inset: 0;
+            background:
+                linear-gradient(to top, var(--bg) 0%, rgba(20,20,19,0.35) 48%, transparent 75%),
+                linear-gradient(to right, rgba(20,20,19,0.6) 0%, transparent 65%);
+        }
+        .hero-coords {
+            position: absolute; top: 96px; right: clamp(24px, 5vw, 80px);
+            font-family: 'Poppins', Arial, sans-serif; font-size: 10px; font-weight: 300;
+            color: rgba(250,249,245,0.14); letter-spacing: 0.12em;
+            line-height: 2.4; text-align: right;
+            animation: fadein 2s ease 0.8s both;
+        }
+        @keyframes fadein { from { opacity: 0; } to { opacity: 1; } }
+        .hero-content { position: relative; z-index: 1; max-width: 820px; }
 
-        .label { font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: #4da8ff; margin-bottom: 20px; }
-        h1 { font-size: clamp(48px, 6.5vw, 88px); font-weight: normal; color: #fff; margin: 0 0 24px; line-height: 1.05; letter-spacing: -0.03em; }
-        h2 { font-size: clamp(26px, 3vw, 40px); font-weight: normal; color: #fff; margin: 0 0 12px; letter-spacing: -0.02em; line-height: 1.2; }
-        h3 { font-size: 18px; font-weight: normal; color: #e0e8f0; margin: 0 0 10px; }
+        .label {
+            font-family: 'Poppins', Arial, sans-serif; font-size: 10px; font-weight: 500;
+            letter-spacing: 0.22em; text-transform: uppercase; color: var(--orange); margin-bottom: 20px;
+        }
 
-        .hero-sub { font-size: 17px; color: #7a8a96; max-width: 460px; line-height: 1.65; margin-bottom: 44px; }
+        h1 {
+            font-family: 'Poppins', Arial, sans-serif; font-weight: 300;
+            font-size: clamp(52px, 7.5vw, 100px);
+            color: var(--light); margin: 0 0 26px; line-height: 1.08; letter-spacing: -0.02em;
+        }
+        h2 {
+            font-family: 'Poppins', Arial, sans-serif; font-weight: 300;
+            font-size: clamp(30px, 3.5vw, 48px);
+            color: var(--light); margin: 0 0 14px; letter-spacing: -0.02em; line-height: 1.15;
+        }
+        h3 { font-family: 'Poppins', Arial, sans-serif; font-size: 15px; font-weight: 500; color: var(--light); margin: 0 0 10px; letter-spacing: 0.01em; }
 
-        .btn { display: inline-flex; align-items: center; gap: 8px; padding: 13px 28px; font-family: inherit; font-size: 13px; letter-spacing: 0.06em; transition: background 0.2s, color 0.2s, border-color 0.2s; }
-        .btn-primary { background: #4da8ff; color: #000; }
-        .btn-primary:hover { background: #7bc5ff; }
-        .btn-ghost { border: 1px solid rgba(255,255,255,0.15); color: #aaa; margin-left: 14px; }
-        .btn-ghost:hover { border-color: rgba(255,255,255,0.35); color: #fff; }
+        .hero-sub { font-size: 17px; color: #8a8880; max-width: 440px; line-height: 1.8; margin-bottom: 48px; }
 
-        .wrap { max-width: 1400px; margin: 0 auto; padding: 0 clamp(24px, 5vw, 80px); }
-        .section { padding: 96px 0; }
-        .rule { height: 1px; background: rgba(255,255,255,0.06); margin: 0 clamp(24px, 5vw, 80px); }
-        .section-sub { font-size: 16px; color: #556070; max-width: 480px; line-height: 1.7; margin-bottom: 52px; }
+        .btn {
+            display: inline-flex; align-items: center; gap: 8px; padding: 13px 28px;
+            font-family: 'Poppins', Arial, sans-serif; font-size: 11px; font-weight: 500;
+            letter-spacing: 0.1em; text-transform: uppercase;
+            transition: background 0.2s, color 0.2s, border-color 0.2s;
+        }
+        .btn-primary { background: var(--orange); color: var(--light); }
+        .btn-primary:hover { background: #e08a6a; }
+        .btn-ghost { border: 1px solid rgba(176,174,165,0.22); color: var(--mid-gray); margin-left: 12px; }
+        .btn-ghost:hover { border-color: rgba(176,174,165,0.5); color: var(--light); }
 
-        .cap-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: rgba(255,255,255,0.05); }
-        .cap-card { background: #080B0F; display: flex; flex-direction: column; }
-        .cap-img { position: relative; height: 200px; overflow: hidden; flex-shrink: 0; }
-        .cap-img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: brightness(0.45) saturate(0.65); transition: filter 0.4s; }
-        .cap-card:hover .cap-img img { filter: brightness(0.6) saturate(0.8); }
-        .cap-body { padding: 30px; flex: 1; }
-        .cap-num { font-size: 11px; letter-spacing: 0.14em; color: #253040; margin-bottom: 14px; }
-        .cap-card h3 { font-size: 17px; margin-bottom: 10px; }
-        .cap-card p { font-size: 14px; color: #556; line-height: 1.65; margin: 0; }
+        .wrap { max-width: 1440px; margin: 0 auto; padding: 0 clamp(24px, 5vw, 80px); }
+        .section { padding: 100px 0; }
+        .rule { height: 1px; background: var(--border); margin: 0 clamp(24px, 5vw, 80px); }
+        .section-sub { font-size: 16px; color: #7a7870; max-width: 420px; line-height: 1.85; margin-bottom: 56px; font-style: italic; }
 
-        .band { position: relative; height: 400px; overflow: hidden; display: flex; align-items: center; padding: 0 clamp(24px, 5vw, 80px); }
-        .band img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: brightness(0.22) saturate(0.5); }
-        .band::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to right, rgba(8,11,15,0.88) 0%, rgba(8,11,15,0.5) 55%, transparent 100%); }
-        .band-text { position: relative; z-index: 1; max-width: 600px; }
-        .band-text p { font-size: clamp(28px, 3.5vw, 44px); color: #fff; margin: 0; letter-spacing: -0.025em; line-height: 1.25; }
-        .band-text span { color: #4da8ff; }
+        .ticker { overflow: hidden; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 14px 0; }
+        .ticker-track { display: inline-flex; animation: tick 38s linear infinite; white-space: nowrap; }
+        .ticker-track span {
+            font-family: 'Poppins', Arial, sans-serif; font-size: 10px; font-weight: 400;
+            letter-spacing: 0.18em; text-transform: uppercase; color: #686460; padding: 0 28px;
+        }
+        .ticker-track .sep { color: var(--orange); padding: 0 4px; letter-spacing: 0; }
+        @keyframes tick { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
-        .market-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px; background: rgba(255,255,255,0.05); }
-        .market-card { background: #080B0F; padding: 44px; }
-        .market-tag { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: #4da8ff; margin-bottom: 18px; }
-        .market-card h3 { font-size: 22px; line-height: 1.3; margin-bottom: 24px; }
+        .cap-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: var(--border); }
+        .cap-card {
+            position: relative; background: var(--bg);
+            display: flex; flex-direction: column; overflow: hidden;
+        }
+        .cap-card::after {
+            content: ""; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+            background: var(--orange); transform: scaleX(0); transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+        .cap-card:hover::after { transform: scaleX(1); }
+        .cap-img { position: relative; height: 220px; overflow: hidden; flex-shrink: 0; }
+        .cap-img img {
+            position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+            filter: brightness(0.42) saturate(0.55);
+            transition: filter 0.5s ease, transform 0.6s ease;
+        }
+        .cap-card:hover .cap-img img { filter: brightness(0.6) saturate(0.72); transform: scale(1.04); }
+        .cap-body { padding: 28px 32px 36px; flex: 1; }
+        .cap-num { font-family: 'Poppins', Arial, sans-serif; font-size: 10px; font-weight: 400; letter-spacing: 0.16em; color: #686460; margin-bottom: 14px; }
+        .cap-card h3 { font-size: 14px; margin-bottom: 10px; }
+        .cap-card p { font-size: 14px; color: #8a8880; line-height: 1.75; margin: 0; }
+
+        .band {
+            position: relative; height: 440px; overflow: hidden;
+            display: flex; align-items: center; padding: 0 clamp(24px, 5vw, 80px);
+        }
+        .band img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: brightness(0.18) saturate(0.4); }
+        .band::after {
+            content: ""; position: absolute; inset: 0;
+            background: linear-gradient(to right, rgba(20,20,19,0.94) 0%, rgba(20,20,19,0.55) 52%, transparent 100%);
+        }
+        .band-text { position: relative; z-index: 1; max-width: 680px; }
+        .band-text p {
+            font-family: 'Lora', Georgia, serif; font-weight: 400; font-style: italic;
+            font-size: clamp(30px, 4vw, 50px);
+            color: var(--light); margin: 0; letter-spacing: -0.01em; line-height: 1.25;
+        }
+        .band-text span { color: var(--orange); font-style: normal; font-weight: 500; }
+
+        .market-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px; background: var(--border); }
+        .market-card { background: var(--bg); padding: 52px; }
+        .market-tag { font-family: 'Poppins', Arial, sans-serif; font-size: 10px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--blue); margin-bottom: 22px; }
+        .market-card h3 { font-family: 'Poppins', Arial, sans-serif; font-size: 22px; font-weight: 300; color: var(--light); margin: 0 0 28px; line-height: 1.35; }
         .market-card ul { margin: 0; padding: 0; list-style: none; }
-        .market-card ul li { font-size: 14px; color: #4a5a68; padding: 9px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
-        .market-card ul li:first-child { border-top: 1px solid rgba(255,255,255,0.05); }
+        .market-card ul li { font-size: 14px; color: #706e68; padding: 9px 0; border-bottom: 1px solid var(--border); }
+        .market-card ul li:first-child { border-top: 1px solid var(--border); }
 
-        .demo-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: rgba(255,255,255,0.05); overflow: hidden; }
-        .demo-text { background: #080B0F; padding: 60px; display: flex; flex-direction: column; justify-content: center; gap: 16px; }
-        .demo-text p { font-size: 15px; color: #556070; line-height: 1.7; margin: 0; }
-        .demo-img { position: relative; min-height: 320px; background: #0a0d11; }
-        .demo-img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: brightness(0.5) saturate(0.7); }
+        .demo-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: var(--border); overflow: hidden; }
+        .demo-text { background: var(--bg); padding: 64px; display: flex; flex-direction: column; justify-content: center; gap: 18px; }
+        .demo-text p { font-size: 15px; color: #8a8880; line-height: 1.85; margin: 0; }
+        .demo-img { position: relative; min-height: 360px; background: var(--surface); }
+        .demo-img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: brightness(0.5) saturate(0.6); }
 
-        .contact-wrap { background: #060810; border-top: 1px solid rgba(255,255,255,0.06); }
-        .contact-wrap p { color: #556; font-size: 15px; margin: 10px 0 32px; }
-        .contact-email { color: #4da8ff; font-size: 22px; border-bottom: 1px solid rgba(77,168,255,0.2); padding-bottom: 3px; transition: border-color 0.2s; }
-        .contact-email:hover { border-color: #4da8ff; }
+        .contact-wrap { background: #0f0f0e; border-top: 1px solid var(--border); }
+        .contact-wrap p { font-size: 16px; color: #8a8880; margin: 12px 0 38px; line-height: 1.8; font-style: italic; }
+        .contact-email {
+            font-family: 'Poppins', Arial, sans-serif; font-weight: 300; font-size: 26px;
+            color: var(--orange); letter-spacing: 0.01em;
+            border-bottom: 1px solid rgba(106,155,204,0.22); padding-bottom: 3px;
+            transition: border-color 0.25s;
+        }
+        .contact-email:hover { border-color: var(--orange); }
 
-        footer { padding: 52px clamp(24px, 5vw, 80px) 32px; border-top: 1px solid rgba(255,255,255,0.06); }
-        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; padding-bottom: 44px; border-bottom: 1px solid rgba(255,255,255,0.05); margin-bottom: 24px; }
-        .footer-logo { font-size: 16px; color: #fff; margin-bottom: 10px; }
-        .footer-brand p { font-size: 13px; color: #2e3d4a; line-height: 1.65; margin: 0; }
+        footer { padding: 56px clamp(24px, 5vw, 80px) 32px; border-top: 1px solid var(--border); }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; padding-bottom: 44px; border-bottom: 1px solid rgba(176,174,165,0.08); margin-bottom: 24px; }
+        .footer-logo { font-family: 'Poppins', Arial, sans-serif; font-weight: 500; font-size: 17px; color: var(--light); margin-bottom: 10px; }
+        .footer-brand p { font-size: 13px; color: #686460; line-height: 1.65; margin: 0; }
         .footer-col { display: flex; flex-direction: column; gap: 10px; }
-        .footer-col-label { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #445566; margin-bottom: 4px; }
-        .footer-col a, .footer-col span { font-size: 13px; color: #2e3d4a; transition: color 0.2s; }
-        .footer-col a:hover { color: #667788; }
-        .footer-bottom { display: flex; justify-content: space-between; font-size: 12px; color: #1e2d38; }
+        .footer-col-label { font-family: 'Poppins', Arial, sans-serif; font-size: 9px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: #686460; margin-bottom: 4px; }
+        .footer-col a, .footer-col span { font-size: 13px; color: #686460; transition: color 0.2s; }
+        .footer-col a:hover { color: var(--mid-gray); }
+        .footer-bottom { display: flex; justify-content: space-between; font-family: 'Poppins', Arial, sans-serif; font-size: 11px; font-weight: 300; letter-spacing: 0.06em; color: #504e4a; }
+
+        .reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.8s ease, transform 0.8s ease; }
+        .reveal.visible { opacity: 1; transform: none; }
+        .d1 { transition-delay: 0.1s; }
+        .d2 { transition-delay: 0.22s; }
+        .d3 { transition-delay: 0.36s; }
+        .d4 { transition-delay: 0.5s; }
     </style>
 </head>
 <body>
@@ -114,28 +205,52 @@
 
     <div class="hero">
         <div class="hero-img"></div>
-        <div class="hero-fade"></div>
-        <div class="hero-fade-side"></div>
+        <div class="hero-vignette"></div>
+        <div class="hero-coords">
+            <div>38°52′ N</div>
+            <div>121°01′ W</div>
+            <div>ALT 482 KM</div>
+            <div>MULTISPECTRAL</div>
+        </div>
         <div class="hero-content">
             <div class="label">Geospatial Intelligence</div>
-            <h1>AI that reads<br>the Earth.</h1>
-            <p class="hero-sub">Ask questions about satellite imagery in plain English. Get answers in minutes, not months.</p>
+            <h1>See everything.<br>Know anything.</h1>
+            <p class="hero-sub">Ask questions about satellite imagery in plain English. Get answers in seconds, not minutes.</p>
             <div>
-                <a class="btn btn-primary" href="#demo">Try the demo &rarr;</a>
+                <a class="btn btn-primary" href="#demo">Try the demo →</a>
                 <a class="btn btn-ghost" href="#contact">Request access</a>
             </div>
         </div>
     </div>
 
-    <div class="rule"></div>
+    <div class="ticker">
+        <div class="ticker-track">
+            <span>Satellite Imagery</span><span class="sep">·</span>
+            <span>AI Analysis</span><span class="sep">·</span>
+            <span>Geospatial Intelligence</span><span class="sep">·</span>
+            <span>Any Sensor</span><span class="sep">·</span>
+            <span>Any Resolution</span><span class="sep">·</span>
+            <span>Change Detection</span><span class="sep">·</span>
+            <span>Pattern Recognition</span><span class="sep">·</span>
+            <span>Earth Observation</span><span class="sep">·</span>
+            <span>Satellite Imagery</span><span class="sep">·</span>
+            <span>AI Analysis</span><span class="sep">·</span>
+            <span>Geospatial Intelligence</span><span class="sep">·</span>
+            <span>Any Sensor</span><span class="sep">·</span>
+            <span>Any Resolution</span><span class="sep">·</span>
+            <span>Change Detection</span><span class="sep">·</span>
+            <span>Pattern Recognition</span><span class="sep">·</span>
+            <span>Earth Observation</span><span class="sep">·</span>
+        </div>
+    </div>
 
     <div class="wrap">
         <div class="section" id="capabilities">
-            <div class="label">Capabilities</div>
-            <h2>What it does.</h2>
-            <p class="section-sub">No GIS background required. Point it at any satellite or aerial imagery and start asking questions.</p>
+            <div class="label reveal">Capabilities</div>
+            <h2 class="reveal d1">What it does.</h2>
+            <p class="section-sub reveal d2">No GIS background required. Point it at any satellite or aerial imagery and start asking questions.</p>
             <div class="cap-grid">
-                <div class="cap-card">
+                <div class="cap-card reveal d1">
                     <div class="cap-img"><img src="img/disaster.webp" alt="" /></div>
                     <div class="cap-body">
                         <div class="cap-num">001</div>
@@ -143,7 +258,7 @@
                         <p>Find damaged buildings and blocked roads before boots hit the ground.</p>
                     </div>
                 </div>
-                <div class="cap-card">
+                <div class="cap-card reveal d2">
                     <div class="cap-img"><img src="img/agriculture.webp" alt="" /></div>
                     <div class="cap-body">
                         <div class="cap-num">002</div>
@@ -151,7 +266,7 @@
                         <p>Monitor crop health across entire regions without a single field visit.</p>
                     </div>
                 </div>
-                <div class="cap-card">
+                <div class="cap-card reveal d3">
                     <div class="cap-img"><img src="img/urban.webp" alt="" /></div>
                     <div class="cap-body">
                         <div class="cap-num">003</div>
@@ -159,7 +274,7 @@
                         <p>Map every building and road in a city in hours, not months.</p>
                     </div>
                 </div>
-                <div class="cap-card">
+                <div class="cap-card reveal d2">
                     <div class="cap-img"><img src="img/climate_cap.webp" alt="" /></div>
                     <div class="cap-body">
                         <div class="cap-num">004</div>
@@ -167,15 +282,15 @@
                         <p>Track deforestation, coastal erosion, and wildfire exposure over any time range.</p>
                     </div>
                 </div>
-                <div class="cap-card">
+                <div class="cap-card reveal d3">
                     <div class="cap-img"><img src="img/location.webp" alt="" /></div>
                     <div class="cap-body">
                         <div class="cap-num">005</div>
                         <h3>Location Intelligence</h3>
-                        <p>Search for specific features — solar panels, unpaved roads, water bodies — across any region.</p>
+                        <p>Search for features — solar panels, unpaved roads, water bodies — across any region.</p>
                     </div>
                 </div>
-                <div class="cap-card">
+                <div class="cap-card reveal d4">
                     <div class="cap-img"><img src="img/change.webp" alt="" /></div>
                     <div class="cap-body">
                         <div class="cap-num">006</div>
@@ -196,11 +311,11 @@
 
     <div class="wrap">
         <div class="section" id="markets">
-            <div class="label">Markets</div>
-            <h2>Who uses it.</h2>
-            <p class="section-sub">Built for teams that need answers fast and can't wait weeks for a GIS report.</p>
+            <div class="label reveal">Markets</div>
+            <h2 class="reveal d1">Who uses it.</h2>
+            <p class="section-sub reveal d2">Built for teams that need answers fast and can't wait weeks for a GIS report.</p>
             <div class="market-grid">
-                <div class="market-card">
+                <div class="market-card reveal d1">
                     <div class="market-tag">Defense & Intelligence</div>
                     <h3>Persistent monitoring.<br>Rapid exploitation.</h3>
                     <ul>
@@ -209,7 +324,7 @@
                         <li>Denied-area imaging</li>
                     </ul>
                 </div>
-                <div class="market-card">
+                <div class="market-card reveal d2">
                     <div class="market-tag">Insurance & Risk</div>
                     <h3>Underwrite faster.<br>Price more accurately.</h3>
                     <ul>
@@ -218,7 +333,7 @@
                         <li>Property condition scoring</li>
                     </ul>
                 </div>
-                <div class="market-card">
+                <div class="market-card reveal d2">
                     <div class="market-tag">Agriculture</div>
                     <h3>Field-level intelligence<br>at scale.</h3>
                     <ul>
@@ -227,7 +342,7 @@
                         <li>Seasonal change detection</li>
                     </ul>
                 </div>
-                <div class="market-card">
+                <div class="market-card reveal d3">
                     <div class="market-tag">Climate & ESG</div>
                     <h3>Measurable evidence<br>for what matters.</h3>
                     <ul>
@@ -244,13 +359,13 @@
 
     <div class="wrap">
         <div class="section" id="demo">
-            <div class="label">Demo</div>
-            <h2>See it work.</h2>
-            <div class="demo-wrap">
+            <div class="label reveal">Demo</div>
+            <h2 class="reveal d1">See it work.</h2>
+            <div class="demo-wrap reveal d2">
                 <div class="demo-text">
                     <h3>GeoGuessr Benchmark</h3>
-                    <p>The model predicts geographic location from street-level imagery — a proxy for how it reasons about place from visual context alone.</p>
-                    <div><a class="btn btn-primary" href="https://geoguessr.locamage.com" target="_blank">Try it &rarr;</a></div>
+                    <p>The model predicts geographic location from street-level imagery. A proxy for how it reasons about place from visual context alone.</p>
+                    <div><a class="btn btn-primary" href="https://geoguessr.locamage.com" target="_blank">Try it →</a></div>
                 </div>
                 <div class="demo-img">
                     <img src="img/urban.webp" alt="" />
@@ -264,10 +379,10 @@
     <div class="contact-wrap">
         <div class="wrap">
             <div class="section" id="contact">
-                <div class="label">Access</div>
-                <h2>Private beta.</h2>
-                <p>Research, commercial, and custom deployments available.</p>
-                <a class="contact-email" href="mailto:pinak@locamage.com">pinak@locamage.com</a>
+                <div class="label reveal">Access</div>
+                <h2 class="reveal d1">Private beta.</h2>
+                <p class="reveal d2">Research, commercial, and custom deployments available.</p>
+                <a class="contact-email reveal d3" href="mailto:pinak@locamage.com">pinak@locamage.com</a>
             </div>
         </div>
     </div>
@@ -297,9 +412,17 @@
         </div>
         <div class="footer-bottom">
             <span>&copy; 2026 Locamage</span>
-            <span>Built in Berkeley, CA</span>
+            <span>37°52′N 122°16′W</span>
         </div>
     </footer>
+
+    <script>
+        const io = new IntersectionObserver(
+            es => es.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
+            { threshold: 0.08 }
+        );
+        document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+    </script>
 
 </body>
 </html>
