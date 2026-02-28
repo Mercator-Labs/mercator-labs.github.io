@@ -6,7 +6,7 @@
     <meta name="description" content="AI for satellite imagery." />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&family=Lora:ital,wght@0,400;1,400;1,500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
     <style>
         @font-face {
             font-family: 'Alliance';
@@ -16,181 +16,465 @@
         }
 
         :root {
-            --bg:      #141413;
-            --surface: #1c1b19;
-            --light:   #faf9f5;
-            --gray:    #b0aea5;
-            --lt-gray: #e8e6dc;
-            --blue:    #6a9bcc;
-            --border:  rgba(176,174,165,0.12);
+            --bg:         #0b0904;
+            --surface:    #111009;
+            --cream:      #f0e8d8;
+            --muted:      #7a6d5d;
+            --dim:        #3d3529;
+            --sienna:     #3d85c8;
+            --sienna-lo:  rgba(61,133,200,0.12);
+            --slate:      #7aaedb;
+            --border:     rgba(61,133,200,0.12);
+            --border-lt:  rgba(240,232,216,0.06);
         }
 
         *, *::before, *::after { box-sizing: border-box; }
         html { scroll-behavior: smooth; }
-        body { font-family: 'Lora', Georgia, serif; background: var(--bg); color: var(--gray); margin: 0; font-size: 16px; }
+        body {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            background: var(--bg);
+            color: var(--muted);
+            margin: 0;
+            font-size: 17px;
+            -webkit-font-smoothing: antialiased;
+        }
         a { text-decoration: none; }
 
+        /* ── Nav ── */
         nav {
             position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-            padding: 20px clamp(24px, 5vw, 80px);
+            padding: 18px clamp(24px, 5vw, 80px);
             display: flex; justify-content: space-between; align-items: center;
-            background: rgba(20,20,19,0.92); backdrop-filter: blur(20px);
+            background: rgba(11,9,4,0.90);
+            backdrop-filter: blur(24px);
             border-bottom: 1px solid var(--border);
         }
-        .nav-logo { font-family: 'Alliance', system-ui, sans-serif; font-size: 17px; letter-spacing: 0.02em; color: var(--light); }
-        .nav-links { display: flex; gap: 36px; list-style: none; margin: 0; padding: 0; }
-        .nav-links a { font-family: 'Poppins', Arial, sans-serif; font-size: 11px; font-weight: 400; letter-spacing: 0.07em; color: var(--gray); transition: color 0.2s; }
-        .nav-links a:hover { color: var(--light); }
+        .nav-logo {
+            font-family: 'Alliance', system-ui, sans-serif;
+            font-size: 16px; letter-spacing: 0.05em; color: var(--cream);
+        }
+        .nav-links {
+            display: flex; gap: 40px; list-style: none; margin: 0; padding: 0;
+        }
+        .nav-links a {
+            font-family: 'DM Mono', monospace;
+            font-size: 12px; font-weight: 400;
+            letter-spacing: 0.10em;
+            color: var(--muted); transition: color 0.25s;
+        }
+        .nav-links a:hover { color: var(--cream); }
 
+        /* ── Hero ── */
         .hero {
             position: relative; min-height: 100vh;
             display: flex; align-items: flex-end;
-            padding: 0 clamp(24px, 5vw, 80px) 92px; overflow: hidden;
+            padding: 0 clamp(24px, 5vw, 80px) 100px;
+            overflow: hidden;
         }
         .hero-img {
             position: absolute; inset: 0;
             background: url("bg.webp") center/cover;
-            filter: brightness(0.26) saturate(0.38);
-            animation: drift 30s ease-in-out alternate infinite;
+            filter: brightness(0.18) saturate(0.28) sepia(0.45);
+            animation: drift 36s ease-in-out alternate infinite;
         }
         @keyframes drift { from { transform: scale(1.07); } to { transform: scale(1.0); } }
+
+        /* blue tint overlay */
+        .hero-tint {
+            position: absolute; inset: 0;
+            background: linear-gradient(145deg,
+                rgba(61,133,200,0.10) 0%,
+                rgba(30,80,140,0.06) 55%,
+                transparent 100%);
+        }
+        /* scanline texture */
+        .hero-scan {
+            position: absolute; inset: 0; pointer-events: none;
+            background: repeating-linear-gradient(
+                to bottom,
+                transparent 0px, transparent 2px,
+                rgba(0,0,0,0.10) 2px, rgba(0,0,0,0.10) 3px
+            );
+        }
         .hero-vignette {
             position: absolute; inset: 0;
             background:
-                linear-gradient(to top, var(--bg) 0%, rgba(20,20,19,0.3) 50%, transparent 78%),
-                linear-gradient(to right, rgba(20,20,19,0.72) 0%, transparent 62%);
+                linear-gradient(to top, var(--bg) 0%, rgba(11,9,4,0.28) 45%, transparent 74%),
+                linear-gradient(to right, rgba(11,9,4,0.82) 0%, transparent 60%);
         }
-        .hero-coords {
+
+        /* Telemetry block */
+        .hero-telemetry {
             position: absolute; top: 96px; right: clamp(24px, 5vw, 80px);
-            font-family: 'Poppins', Arial, sans-serif; font-size: 9px; font-weight: 300; letter-spacing: 0.16em;
-            color: rgba(250,249,245,0.1); line-height: 2.8; text-align: right;
-            animation: fadein 2.2s ease 1s both;
+            font-family: 'DM Mono', monospace;
+            font-size: 9px; font-weight: 300;
+            letter-spacing: 0.18em; line-height: 2.8;
+            color: rgba(61,133,200,0.22); text-align: right;
+            animation: fadein 3s ease 1.4s both;
         }
+        .hero-telemetry .tv { color: rgba(61,133,200,0.45); }
+
+        /* Live acquisition indicator */
+        .hero-acq {
+            position: absolute;
+            bottom: 100px; right: clamp(24px, 5vw, 80px);
+            display: flex; align-items: center; gap: 8px;
+            font-family: 'DM Mono', monospace;
+            font-size: 9px; letter-spacing: 0.18em;
+            color: rgba(61,133,200,0.32);
+            animation: fadein 3s ease 2.2s both;
+        }
+        .acq-dot {
+            width: 5px; height: 5px; border-radius: 50%;
+            background: var(--sienna);
+            animation: pulse 2.6s ease-in-out infinite;
+        }
+        @keyframes pulse { 0%,100% { opacity: 0.55; } 50% { opacity: 0.15; } }
         @keyframes fadein { from { opacity: 0; } to { opacity: 1; } }
-        .hero-content { position: relative; z-index: 1; max-width: 860px; }
 
+        .hero-content { position: relative; z-index: 1; max-width: 920px; }
+
+        /* ── Label ── */
         .label {
-            font-family: 'Poppins', Arial, sans-serif; font-size: 9px; font-weight: 500;
-            letter-spacing: 0.28em; text-transform: uppercase; color: var(--blue); margin-bottom: 22px;
+            display: inline-flex; align-items: center; gap: 12px;
+            font-family: 'DM Mono', monospace;
+            font-size: 11px; font-weight: 400;
+            letter-spacing: 0.22em; text-transform: uppercase;
+            color: var(--sienna); margin-bottom: 28px;
+        }
+        .label::before {
+            content: '';
+            display: block; width: 22px; height: 1px;
+            background: var(--sienna); opacity: 0.7; flex-shrink: 0;
         }
 
+        /* ── Type scale ── */
         h1 {
-            font-family: 'Alliance', system-ui, sans-serif; font-weight: 400;
-            font-size: clamp(56px, 8vw, 108px);
-            color: var(--light); margin: 0 0 28px; line-height: 1.06; letter-spacing: -0.03em;
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-weight: 300;
+            font-size: clamp(62px, 9.5vw, 128px);
+            color: var(--cream); margin: 0 0 30px;
+            line-height: 1.02; letter-spacing: -0.025em;
         }
+        h1 em { font-style: italic; color: rgba(240,232,216,0.55); }
+
         h2 {
-            font-family: 'Poppins', Arial, sans-serif; font-weight: 300;
-            font-size: clamp(32px, 4vw, 52px);
-            color: var(--light); margin: 0 0 16px; letter-spacing: -0.02em; line-height: 1.13;
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-weight: 300;
+            font-size: clamp(38px, 5vw, 62px);
+            color: var(--cream); margin: 0 0 18px;
+            letter-spacing: -0.02em; line-height: 1.08;
         }
-        h3 { font-family: 'Poppins', Arial, sans-serif; font-size: 14px; font-weight: 500; color: var(--light); margin: 0 0 10px; }
+        h3 {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: 23px; font-weight: 500;
+            color: var(--cream); margin: 0 0 10px;
+            letter-spacing: 0.01em;
+        }
 
-        .hero-sub { font-size: 17px; color: var(--gray); max-width: 420px; line-height: 1.85; margin-bottom: 52px; }
+        .hero-sub {
+            font-size: clamp(17px, 2vw, 21px);
+            font-weight: 300; font-style: italic;
+            color: var(--muted); max-width: 440px;
+            line-height: 1.78; margin-bottom: 54px;
+        }
 
+        /* ── Buttons ── */
         .btn {
-            display: inline-flex; align-items: center; gap: 8px; padding: 13px 28px;
-            font-family: 'Poppins', Arial, sans-serif; font-size: 10px; font-weight: 500;
-            letter-spacing: 0.12em; text-transform: uppercase;
-            transition: background 0.2s, color 0.2s, border-color 0.2s;
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 13px 30px;
+            font-family: 'DM Mono', monospace;
+            font-size: 12px; font-weight: 400;
+            letter-spacing: 0.12em;
+            transition: background 0.25s, color 0.25s, border-color 0.25s;
         }
-        .btn-primary { background: var(--blue); color: var(--bg); }
-        .btn-primary:hover { background: #82b0dc; }
-        .btn-ghost { border: 1px solid rgba(176,174,165,0.22); color: var(--gray); margin-left: 12px; }
-        .btn-ghost:hover { border-color: rgba(176,174,165,0.46); color: var(--light); }
+        .btn-primary {
+            background: var(--sienna); color: var(--bg);
+            border: 1px solid transparent;
+        }
+        .btn-primary:hover { background: #5498d4; }
+        .btn-ghost {
+            border: 1px solid rgba(240,232,216,0.14);
+            color: var(--muted); margin-left: 12px;
+        }
+        .btn-ghost:hover { border-color: rgba(240,232,216,0.32); color: var(--cream); }
 
+        /* ── Layout ── */
         .wrap { max-width: 1440px; margin: 0 auto; padding: 0 clamp(24px, 5vw, 80px); }
-        .section { padding: 108px 0; }
-        .rule { height: 1px; background: var(--border); margin: 0 clamp(24px, 5vw, 80px); }
-        .section-sub { font-size: 16px; color: var(--gray); max-width: 400px; line-height: 1.9; margin-bottom: 60px; font-style: italic; }
+        .section { padding: 116px 0; }
+        .rule {
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--border) 15%, var(--border) 85%, transparent);
+            margin: 0 clamp(24px, 5vw, 80px);
+        }
 
-        .ticker { overflow: hidden; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 13px 0; }
-        .ticker-track { display: inline-flex; animation: tick 36s linear infinite; white-space: nowrap; }
-        .ticker-track span { font-family: 'Poppins', Arial, sans-serif; font-size: 9px; font-weight: 400; letter-spacing: 0.22em; text-transform: uppercase; color: #4a4845; padding: 0 28px; }
-        .ticker-track .sep { color: var(--blue); padding: 0 4px; letter-spacing: 0; }
+        /* 2-col section intro (heading left, sub right) */
+        .section-intro {
+            display: grid; grid-template-columns: 1fr 1fr;
+            gap: 40px; align-items: end;
+            margin-bottom: 68px;
+        }
+        .section-sub {
+            font-size: 17px; font-style: italic;
+            color: var(--muted); line-height: 1.88;
+            max-width: 360px;
+        }
+
+        /* ── Ticker ── */
+        .ticker {
+            overflow: hidden;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            padding: 12px 0;
+            background: var(--surface);
+        }
+        .ticker-track {
+            display: inline-flex;
+            animation: tick 44s linear infinite;
+            white-space: nowrap;
+        }
+        .ticker-track span {
+            font-family: 'DM Mono', monospace;
+            font-size: 11px; font-weight: 300;
+            letter-spacing: 0.18em; text-transform: uppercase;
+            color: #302a22; padding: 0 28px;
+        }
+        .ticker-track .sep { color: var(--sienna); opacity: 0.4; padding: 0 4px; letter-spacing: 0; }
         @keyframes tick { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
-        .cap-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); }
+        /* ── Capabilities Grid ── */
+        .cap-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr);
+            gap: 1px; background: var(--border);
+        }
         .cap-card {
             position: relative; background: var(--bg);
             display: flex; flex-direction: column; overflow: hidden;
+            transition: background 0.38s;
         }
-        .cap-card::after {
-            content: ""; position: absolute; top: 0; left: 0; right: 0; height: 1px;
-            background: var(--blue); transform: scaleX(0); transform-origin: left;
-            transition: transform 0.38s ease;
+        .cap-card:hover { background: var(--surface); }
+        /* left-side vertical accent bar */
+        .cap-card::before {
+            content: ''; position: absolute;
+            left: 0; top: 0; bottom: 0; width: 2px;
+            background: var(--sienna);
+            transform: scaleY(0); transform-origin: bottom;
+            transition: transform 0.42s cubic-bezier(0.22, 1, 0.36, 1);
         }
-        .cap-card:hover::after { transform: scaleX(1); }
-        .cap-img { position: relative; height: 210px; overflow: hidden; flex-shrink: 0; }
+        .cap-card:hover::before { transform: scaleY(1); }
+
+        .cap-img { position: relative; height: 216px; overflow: hidden; flex-shrink: 0; }
         .cap-img img {
             position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
-            filter: brightness(0.36) saturate(0.45);
-            transition: filter 0.5s ease, transform 0.65s ease;
+            filter: brightness(0.28) saturate(0.32) sepia(0.30);
+            transition: filter 0.6s ease, transform 0.7s ease;
         }
-        .cap-card:hover .cap-img img { filter: brightness(0.55) saturate(0.62); transform: scale(1.04); }
-        .cap-body { padding: 26px 30px 36px; flex: 1; }
-        .cap-num { font-family: 'Poppins', Arial, sans-serif; font-size: 9px; font-weight: 400; letter-spacing: 0.2em; color: #4a4845; margin-bottom: 14px; }
-        .cap-card h3 { font-size: 13px; margin-bottom: 10px; }
-        .cap-card p { font-size: 14px; color: var(--gray); line-height: 1.82; margin: 0; }
+        .cap-card:hover .cap-img img {
+            filter: brightness(0.46) saturate(0.48) sepia(0.20);
+            transform: scale(1.05);
+        }
+        .cap-img::after {
+            content: ''; position: absolute; inset: 0;
+            background: linear-gradient(to bottom, transparent 58%, var(--bg) 100%);
+            transition: opacity 0.4s;
+        }
+        .cap-card:hover .cap-img::after { opacity: 0.7; }
 
+        .cap-body { padding: 26px 32px 40px; flex: 1; }
+        .cap-num {
+            font-family: 'DM Mono', monospace;
+            font-size: 9px; font-weight: 300;
+            letter-spacing: 0.22em;
+            color: var(--sienna); opacity: 0.45; margin-bottom: 16px;
+        }
+        .cap-card h3 { font-size: 17px; margin-bottom: 9px; }
+        .cap-card p {
+            font-size: 17px; font-style: italic;
+            color: var(--muted); line-height: 1.80; margin: 0;
+        }
+
+        /* ── Band / Quote ── */
         .band {
-            position: relative; height: 500px; overflow: hidden;
+            position: relative; height: 520px; overflow: hidden;
             display: flex; align-items: center; justify-content: center;
             padding: 0 clamp(24px, 5vw, 80px); text-align: center;
         }
-        .band img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: brightness(0.14) saturate(0.3); }
+        .band-img {
+            position: absolute; inset: 0;
+            background: url("img/feature.webp") center/cover;
+            filter: brightness(0.11) saturate(0.20) sepia(0.50);
+        }
         .band::after {
-            content: ""; position: absolute; inset: 0;
-            background: linear-gradient(to bottom, var(--bg) 0%, transparent 22%, transparent 78%, var(--bg) 100%);
+            content: ''; position: absolute; inset: 0;
+            background:
+                linear-gradient(to bottom, var(--bg) 0%, transparent 20%, transparent 80%, var(--bg) 100%),
+                linear-gradient(145deg, rgba(61,133,200,0.06) 0%, transparent 55%);
         }
-        .band-text { position: relative; z-index: 1; max-width: 800px; }
+        .band-text { position: relative; z-index: 1; max-width: 860px; }
         .band-text p {
-            font-family: 'Lora', Georgia, serif; font-weight: 400; font-style: italic;
-            font-size: clamp(34px, 4.5vw, 58px);
-            color: var(--light); margin: 0; letter-spacing: -0.01em; line-height: 1.22;
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-weight: 300; font-style: italic;
+            font-size: clamp(38px, 5.2vw, 68px);
+            color: var(--cream); margin: 0;
+            letter-spacing: -0.015em; line-height: 1.18;
         }
-        .band-text span { color: var(--blue); font-style: normal; }
+        .band-text em {
+            font-style: normal;
+            color: var(--sienna);
+        }
 
-        .market-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--border); }
-        .market-card { background: var(--bg); padding: 52px; }
-        .market-tag { font-family: 'Poppins', Arial, sans-serif; font-size: 9px; font-weight: 500; letter-spacing: 0.24em; text-transform: uppercase; color: var(--blue); margin-bottom: 24px; }
-        .market-card h3 { font-family: 'Poppins', Arial, sans-serif; font-size: 22px; font-weight: 300; color: var(--light); margin: 0 0 32px; line-height: 1.35; letter-spacing: -0.01em; }
-        .market-card ul { margin: 0; padding: 0; list-style: none; }
-        .market-card ul li { font-size: 14px; color: var(--gray); padding: 10px 0; border-bottom: 1px solid var(--border); }
-        .market-card ul li:first-child { border-top: 1px solid var(--border); }
+        /* ── Markets — vertical list ── */
+        .market-list { display: flex; flex-direction: column; }
+        .market-row {
+            display: grid; grid-template-columns: 1fr 1fr;
+            border-top: 1px solid var(--border-lt);
+            padding: 56px 0; position: relative;
+            transition: background 0.3s;
+        }
+        .market-row::before {
+            content: ''; position: absolute;
+            left: calc(-1 * clamp(24px, 5vw, 80px));
+            right: calc(-1 * clamp(24px, 5vw, 80px));
+            top: 0; bottom: 0;
+            background: transparent;
+            transition: background 0.3s;
+            z-index: 0;
+        }
+        .market-row:hover::before { background: rgba(61,133,200,0.03); }
+        .market-left, .market-right { position: relative; z-index: 1; }
+        .market-left {
+            padding-right: 64px;
+            border-right: 1px solid var(--border);
+        }
+        .market-right {
+            padding-left: 64px;
+            display: flex; flex-direction: column; justify-content: center;
+        }
+        .market-tag {
+            display: inline-flex; align-items: center; gap: 10px;
+            font-family: 'DM Mono', monospace;
+            font-size: 11px; font-weight: 400;
+            letter-spacing: 0.18em; text-transform: uppercase;
+            color: var(--sienna); margin-bottom: 22px;
+        }
+        .market-tag::before {
+            content: ''; display: block;
+            width: 16px; height: 1px;
+            background: var(--sienna); opacity: 0.7; flex-shrink: 0;
+        }
+        .market-row h3 {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-weight: 300; font-size: clamp(26px, 3vw, 40px);
+            color: var(--cream); margin: 0;
+            line-height: 1.18; letter-spacing: -0.015em;
+        }
+        .market-row ul { margin: 0; padding: 0; list-style: none; }
+        .market-row ul li {
+            font-family: 'DM Mono', monospace;
+            font-size: 13px; font-weight: 300;
+            letter-spacing: 0.05em;
+            color: var(--muted);
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border);
+            display: flex; align-items: center; gap: 10px;
+        }
+        .market-row ul li:first-child { border-top: 1px solid var(--border); }
+        .market-row ul li::before {
+            content: '›'; color: var(--sienna);
+            font-size: 14px; flex-shrink: 0;
+        }
 
-        .demo-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); overflow: hidden; }
-        .demo-text { background: var(--bg); padding: 64px; display: flex; flex-direction: column; justify-content: center; gap: 18px; }
-        .demo-text p { font-size: 15px; color: var(--gray); line-height: 1.9; margin: 0; }
-        .demo-img { position: relative; min-height: 380px; background: var(--surface); }
-        .demo-img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: brightness(0.44) saturate(0.52); }
+        /* ── Demo ── */
+        .demo-wrap {
+            display: grid; grid-template-columns: 1fr 1fr;
+            gap: 1px; background: var(--border); overflow: hidden;
+        }
+        .demo-text {
+            background: var(--surface); padding: 70px;
+            display: flex; flex-direction: column; justify-content: center; gap: 20px;
+        }
+        .demo-text p {
+            font-size: 16px; font-style: italic;
+            color: var(--muted); line-height: 1.90; margin: 0;
+        }
+        .demo-img { position: relative; min-height: 400px; background: #090704; }
+        .demo-img img {
+            position: absolute; inset: 0; width: 100%; height: 100%;
+            object-fit: cover;
+            filter: brightness(0.38) saturate(0.42) sepia(0.22);
+        }
 
-        .contact-wrap { background: #0f0f0e; border-top: 1px solid var(--border); }
-        .contact-wrap p { font-size: 16px; color: var(--gray); margin: 14px 0 42px; line-height: 1.9; font-style: italic; }
+        /* ── Contact ── */
+        .contact-wrap { background: var(--surface); border-top: 1px solid var(--border); }
+        .contact-wrap p {
+            font-size: 18px; font-style: italic;
+            color: var(--muted); margin: 16px 0 50px;
+            line-height: 1.88; max-width: 440px;
+        }
         .contact-email {
-            font-family: 'Poppins', Arial, sans-serif; font-weight: 300; font-size: 28px;
-            color: var(--blue); letter-spacing: -0.01em;
-            border-bottom: 1px solid rgba(106,155,204,0.22); padding-bottom: 4px;
-            transition: border-color 0.25s;
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-weight: 300;
+            font-size: clamp(28px, 3.8vw, 50px);
+            color: var(--sienna);
+            letter-spacing: -0.015em;
+            border-bottom: 1px solid rgba(61,133,200,0.22);
+            padding-bottom: 4px;
+            display: inline-block;
+            transition: border-color 0.28s;
         }
-        .contact-email:hover { border-color: var(--blue); }
+        .contact-email:hover { border-color: var(--sienna); }
 
-        footer { padding: 56px clamp(24px, 5vw, 80px) 32px; border-top: 1px solid var(--border); }
-        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; padding-bottom: 44px; border-bottom: 1px solid rgba(176,174,165,0.06); margin-bottom: 24px; }
-        .footer-logo { font-family: 'Alliance', system-ui, sans-serif; font-size: 16px; color: var(--light); margin-bottom: 10px; letter-spacing: 0.02em; }
-        .footer-brand p { font-size: 13px; color: #686460; line-height: 1.7; margin: 0; }
+        /* ── Footer ── */
+        footer {
+            padding: 56px clamp(24px, 5vw, 80px) 36px;
+            border-top: 1px solid var(--border);
+        }
+        .footer-grid {
+            display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px; padding-bottom: 44px;
+            border-bottom: 1px solid rgba(61,133,200,0.05);
+            margin-bottom: 24px;
+        }
+        .footer-logo {
+            font-family: 'Alliance', system-ui, sans-serif;
+            font-size: 15px; color: var(--cream); margin-bottom: 10px;
+            letter-spacing: 0.04em;
+        }
+        .footer-brand p {
+            font-family: 'DM Mono', monospace;
+            font-size: 13px; font-weight: 300;
+            color: var(--dim); line-height: 1.8; margin: 0;
+        }
         .footer-col { display: flex; flex-direction: column; gap: 10px; }
-        .footer-col-label { font-family: 'Poppins', Arial, sans-serif; font-size: 9px; font-weight: 500; letter-spacing: 0.26em; text-transform: uppercase; color: #686460; margin-bottom: 4px; }
-        .footer-col a, .footer-col span { font-family: 'Poppins', Arial, sans-serif; font-size: 12px; color: #686460; transition: color 0.2s; }
-        .footer-col a:hover { color: var(--gray); }
-        .footer-bottom { display: flex; justify-content: space-between; font-family: 'Poppins', Arial, sans-serif; font-size: 10px; font-weight: 300; letter-spacing: 0.09em; color: #484644; }
+        .footer-col-label {
+            font-family: 'DM Mono', monospace;
+            font-size: 10px; font-weight: 400;
+            letter-spacing: 0.22em; text-transform: uppercase;
+            color: var(--dim); margin-bottom: 5px;
+        }
+        .footer-col a, .footer-col span {
+            font-family: 'DM Mono', monospace;
+            font-size: 13px; color: var(--dim);
+            transition: color 0.2s;
+        }
+        .footer-col a:hover { color: var(--muted); }
+        .footer-bottom {
+            display: flex; justify-content: space-between;
+            font-family: 'DM Mono', monospace;
+            font-size: 11px; font-weight: 300;
+            letter-spacing: 0.08em; color: #28241d;
+        }
 
-        .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.75s ease, transform 0.75s ease; }
+        /* ── Reveals ── */
+        .reveal {
+            opacity: 0; transform: translateY(18px);
+            transition: opacity 0.82s ease, transform 0.82s ease;
+        }
         .reveal.visible { opacity: 1; transform: none; }
-        .d1 { transition-delay: 0.1s; }
-        .d2 { transition-delay: 0.22s; }
-        .d3 { transition-delay: 0.36s; }
-        .d4 { transition-delay: 0.5s; }
+        .d1 { transition-delay: 0.12s; }
+        .d2 { transition-delay: 0.26s; }
+        .d3 { transition-delay: 0.42s; }
+        .d4 { transition-delay: 0.60s; }
     </style>
 </head>
 <body>
@@ -198,29 +482,36 @@
     <nav>
         <a class="nav-logo" href="#">Locamage</a>
         <ul class="nav-links">
-            <li><a href="#capabilities">Capabilities</a></li>
-            <li><a href="#markets">Markets</a></li>
-            <li><a href="#demo">Demo</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="#capabilities">capabilities</a></li>
+            <li><a href="#markets">markets</a></li>
+            <li><a href="#demo">demo</a></li>
+            <li><a href="#contact">contact</a></li>
         </ul>
     </nav>
 
     <div class="hero">
         <div class="hero-img"></div>
+        <div class="hero-tint"></div>
+        <div class="hero-scan"></div>
         <div class="hero-vignette"></div>
-        <div class="hero-coords">
+        <div class="hero-telemetry">
             <div>38°52′ N</div>
             <div>121°01′ W</div>
-            <div>ALT 482 KM</div>
-            <div>MULTISPECTRAL</div>
+            <div>ALT&nbsp;&nbsp;<span class="tv">482 km</span></div>
+            <div>RES&nbsp;&nbsp;<span class="tv">0.3 m</span></div>
+            <div>SENSOR <span class="tv">MSI</span></div>
+        </div>
+        <div class="hero-acq">
+            <div class="acq-dot"></div>
+            live acquisition
         </div>
         <div class="hero-content">
             <div class="label">Geospatial Intelligence</div>
-            <h1>See everything.<br>Know anything.</h1>
-            <p class="hero-sub">Ask questions about satellite imagery in plain English. Get answers in seconds, not minutes.</p>
+            <h1>See everything.<br><em>Know anything.</em></h1>
+            <p class="hero-sub">Ask questions about satellite imagery in plain English. Get answers in seconds, not months.</p>
             <div>
-                <a class="btn btn-primary" href="#demo">Try the demo →</a>
-                <a class="btn btn-ghost" href="#contact">Request access</a>
+                <a class="btn btn-primary" href="#demo">try the demo →</a>
+                <a class="btn btn-ghost" href="#contact">request access</a>
             </div>
         </div>
     </div>
@@ -248,9 +539,13 @@
 
     <div class="wrap">
         <div class="section" id="capabilities">
-            <div class="label reveal">Capabilities</div>
-            <h2 class="reveal d1">What it does.</h2>
-            <p class="section-sub reveal d2">No GIS background required. Point it at any satellite or aerial imagery and start asking questions.</p>
+            <div class="section-intro">
+                <div>
+                    <div class="label reveal">Capabilities</div>
+                    <h2 class="reveal d1">What it does.</h2>
+                </div>
+                <p class="section-sub reveal d2">No GIS background required. Point it at any satellite or aerial imagery and start asking questions.</p>
+            </div>
             <div class="cap-grid">
                 <div class="cap-card reveal d1">
                     <div class="cap-img"><img src="img/disaster.webp" alt="" /></div>
@@ -280,7 +575,7 @@
                     <div class="cap-img"><img src="img/climate_cap.webp" alt="" /></div>
                     <div class="cap-body">
                         <div class="cap-num">004</div>
-                        <h3>Climate & Environment</h3>
+                        <h3>Climate &amp; Environment</h3>
                         <p>Track deforestation, coastal erosion, and wildfire exposure over any time range.</p>
                     </div>
                 </div>
@@ -305,53 +600,73 @@
     </div>
 
     <div class="band">
-        <img src="img/feature.webp" alt="" />
+        <div class="band-img"></div>
         <div class="band-text">
-            <p>Any sensor. Any resolution.<br><span>Any question.</span></p>
+            <p>Any sensor. Any resolution.<br><em>Any question.</em></p>
         </div>
     </div>
 
     <div class="wrap">
         <div class="section" id="markets">
-            <div class="label reveal">Markets</div>
-            <h2 class="reveal d1">Who uses it.</h2>
-            <p class="section-sub reveal d2">Built for teams that need answers fast and can't wait weeks for a GIS report.</p>
-            <div class="market-grid">
-                <div class="market-card reveal d1">
-                    <div class="market-tag">Defense & Intelligence</div>
-                    <h3>Persistent monitoring.<br>Rapid exploitation.</h3>
-                    <ul>
-                        <li>Pattern-of-life analysis</li>
-                        <li>Infrastructure assessment</li>
-                        <li>Denied-area imaging</li>
-                    </ul>
+            <div class="section-intro">
+                <div>
+                    <div class="label reveal">Markets</div>
+                    <h2 class="reveal d1">Who uses it.</h2>
                 </div>
-                <div class="market-card reveal d2">
-                    <div class="market-tag">Insurance & Risk</div>
-                    <h3>Underwrite faster.<br>Price more accurately.</h3>
-                    <ul>
-                        <li>Wildfire exposure modeling</li>
-                        <li>Flood damage assessment</li>
-                        <li>Property condition scoring</li>
-                    </ul>
+                <p class="section-sub reveal d2">Built for teams that need answers fast and can't wait weeks for a GIS report.</p>
+            </div>
+            <div class="market-list">
+                <div class="market-row reveal">
+                    <div class="market-left">
+                        <div class="market-tag">Defense &amp; Intelligence</div>
+                        <h3>Persistent monitoring.<br>Rapid exploitation.</h3>
+                    </div>
+                    <div class="market-right">
+                        <ul>
+                            <li>Pattern-of-life analysis</li>
+                            <li>Infrastructure assessment</li>
+                            <li>Denied-area imaging</li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="market-card reveal d2">
-                    <div class="market-tag">Agriculture</div>
-                    <h3>Field-level intelligence<br>at scale.</h3>
-                    <ul>
-                        <li>Crop health monitoring</li>
-                        <li>Yield forecasting</li>
-                        <li>Seasonal change detection</li>
-                    </ul>
+                <div class="market-row reveal d1">
+                    <div class="market-left">
+                        <div class="market-tag">Insurance &amp; Risk</div>
+                        <h3>Underwrite faster.<br>Price more accurately.</h3>
+                    </div>
+                    <div class="market-right">
+                        <ul>
+                            <li>Wildfire exposure modeling</li>
+                            <li>Flood damage assessment</li>
+                            <li>Property condition scoring</li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="market-card reveal d3">
-                    <div class="market-tag">Climate & ESG</div>
-                    <h3>Measurable evidence<br>for what matters.</h3>
-                    <ul>
-                        <li>Deforestation tracking</li>
-                        <li>Carbon stock estimation</li>
-                        <li>Coastal & wetland monitoring</li>
-                    </ul>
+                <div class="market-row reveal d2">
+                    <div class="market-left">
+                        <div class="market-tag">Agriculture</div>
+                        <h3>Field-level intelligence<br>at scale.</h3>
+                    </div>
+                    <div class="market-right">
+                        <ul>
+                            <li>Crop health monitoring</li>
+                            <li>Yield forecasting</li>
+                            <li>Seasonal change detection</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="market-row reveal d3" style="border-bottom: 1px solid var(--border-lt);">
+                    <div class="market-left">
+                        <div class="market-tag">Climate &amp; ESG</div>
+                        <h3>Measurable evidence<br>for what matters.</h3>
+                    </div>
+                    <div class="market-right">
+                        <ul>
+                            <li>Deforestation tracking</li>
+                            <li>Carbon stock estimation</li>
+                            <li>Coastal &amp; wetland monitoring</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
@@ -366,8 +681,8 @@
             <div class="demo-wrap reveal d2">
                 <div class="demo-text">
                     <h3>GeoGuessr Benchmark</h3>
-                    <p>The model predicts geographic location from street-level imagery. A proxy for how it reasons about place from visual context alone.</p>
-                    <div><a class="btn btn-primary" href="https://geoguessr.locamage.com" target="_blank">Try it →</a></div>
+                    <p>The model predicts geographic location from street-level imagery — a proxy for how it reasons about place from visual context alone.</p>
+                    <div><a class="btn btn-primary" href="https://geoguessr.locamage.com" target="_blank">try it →</a></div>
                 </div>
                 <div class="demo-img">
                     <img src="img/demo.webp" alt="" />
@@ -414,7 +729,7 @@
         </div>
         <div class="footer-bottom">
             <span>&copy; 2026 Locamage</span>
-            <span>37°52′N 122°16′W</span>
+            <span>37°52′N · 122°16′W</span>
         </div>
     </footer>
 
