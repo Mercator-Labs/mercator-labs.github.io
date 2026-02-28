@@ -6,184 +6,186 @@
     <meta name="description" content="AI for satellite imagery." />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&family=Lora:ital,wght@0,400;1,400;1,500&display=swap" rel="stylesheet">
     <style>
+        @font-face {
+            font-family: 'Alliance';
+            src: url('AllianceNo2-Regular.woff2') format('woff2');
+            font-weight: 400;
+            font-display: swap;
+        }
+
         :root {
-            --bg:        #141413;
-            --light:     #faf9f5;
-            --mid-gray:  #b0aea5;
-            --lt-gray:   #e8e6dc;
-            --orange:    #6a9bcc;
-            --blue:      #6a9bcc;
-            --green:     #788c5d;
-            --border:    rgba(176,174,165,0.14);
-            --surface:   #1a1917;
+            --bg:      #141413;
+            --surface: #1c1b19;
+            --light:   #faf9f5;
+            --gray:    #b0aea5;
+            --lt-gray: #e8e6dc;
+            --blue:    #6a9bcc;
+            --border:  rgba(176,174,165,0.12);
         }
 
         *, *::before, *::after { box-sizing: border-box; }
         html { scroll-behavior: smooth; }
-        body { font-family: 'Lora', Georgia, serif; background: var(--bg); color: var(--mid-gray); margin: 0; font-size: 16px; }
+        body { font-family: 'Lora', Georgia, serif; background: var(--bg); color: var(--gray); margin: 0; font-size: 16px; }
         a { text-decoration: none; }
 
         nav {
             position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-            padding: 22px clamp(24px, 5vw, 80px);
+            padding: 20px clamp(24px, 5vw, 80px);
             display: flex; justify-content: space-between; align-items: center;
-            background: rgba(20,20,19,0.88); backdrop-filter: blur(18px);
+            background: rgba(20,20,19,0.92); backdrop-filter: blur(20px);
             border-bottom: 1px solid var(--border);
         }
-        .nav-logo { font-family: 'Poppins', Arial, sans-serif; font-weight: 500; color: var(--light); font-size: 18px; letter-spacing: 0.01em; }
+        .nav-logo { font-family: 'Alliance', system-ui, sans-serif; font-size: 17px; letter-spacing: 0.02em; color: var(--light); }
         .nav-links { display: flex; gap: 36px; list-style: none; margin: 0; padding: 0; }
-        .nav-links a { font-family: 'Poppins', Arial, sans-serif; font-size: 12px; font-weight: 400; letter-spacing: 0.06em; color: #8a8880; transition: color 0.25s; }
+        .nav-links a { font-family: 'Poppins', Arial, sans-serif; font-size: 11px; font-weight: 400; letter-spacing: 0.07em; color: var(--gray); transition: color 0.2s; }
         .nav-links a:hover { color: var(--light); }
 
         .hero {
             position: relative; min-height: 100vh;
             display: flex; align-items: flex-end;
-            padding: 0 clamp(24px, 5vw, 80px) 88px; overflow: hidden;
+            padding: 0 clamp(24px, 5vw, 80px) 92px; overflow: hidden;
         }
         .hero-img {
             position: absolute; inset: 0;
             background: url("bg.webp") center/cover;
-            filter: brightness(0.28) saturate(0.4);
-            animation: drift 28s ease-in-out alternate infinite;
+            filter: brightness(0.26) saturate(0.38);
+            animation: drift 30s ease-in-out alternate infinite;
         }
-        @keyframes drift { from { transform: scale(1.06); } to { transform: scale(1.0); } }
+        @keyframes drift { from { transform: scale(1.07); } to { transform: scale(1.0); } }
         .hero-vignette {
             position: absolute; inset: 0;
             background:
-                linear-gradient(to top, var(--bg) 0%, rgba(20,20,19,0.35) 48%, transparent 75%),
-                linear-gradient(to right, rgba(20,20,19,0.6) 0%, transparent 65%);
+                linear-gradient(to top, var(--bg) 0%, rgba(20,20,19,0.3) 50%, transparent 78%),
+                linear-gradient(to right, rgba(20,20,19,0.72) 0%, transparent 62%);
         }
         .hero-coords {
             position: absolute; top: 96px; right: clamp(24px, 5vw, 80px);
-            font-family: 'Poppins', Arial, sans-serif; font-size: 10px; font-weight: 300;
-            color: rgba(250,249,245,0.14); letter-spacing: 0.12em;
-            line-height: 2.4; text-align: right;
-            animation: fadein 2s ease 0.8s both;
+            font-family: 'Poppins', Arial, sans-serif; font-size: 9px; font-weight: 300; letter-spacing: 0.16em;
+            color: rgba(250,249,245,0.1); line-height: 2.8; text-align: right;
+            animation: fadein 2.2s ease 1s both;
         }
         @keyframes fadein { from { opacity: 0; } to { opacity: 1; } }
-        .hero-content { position: relative; z-index: 1; max-width: 820px; }
+        .hero-content { position: relative; z-index: 1; max-width: 860px; }
 
         .label {
-            font-family: 'Poppins', Arial, sans-serif; font-size: 10px; font-weight: 500;
-            letter-spacing: 0.22em; text-transform: uppercase; color: var(--orange); margin-bottom: 20px;
+            font-family: 'Poppins', Arial, sans-serif; font-size: 9px; font-weight: 500;
+            letter-spacing: 0.28em; text-transform: uppercase; color: var(--blue); margin-bottom: 22px;
         }
 
         h1 {
-            font-family: 'Poppins', Arial, sans-serif; font-weight: 300;
-            font-size: clamp(52px, 7.5vw, 100px);
-            color: var(--light); margin: 0 0 26px; line-height: 1.08; letter-spacing: -0.02em;
+            font-family: 'Alliance', system-ui, sans-serif; font-weight: 400;
+            font-size: clamp(56px, 8vw, 108px);
+            color: var(--light); margin: 0 0 28px; line-height: 1.06; letter-spacing: -0.03em;
         }
         h2 {
             font-family: 'Poppins', Arial, sans-serif; font-weight: 300;
-            font-size: clamp(30px, 3.5vw, 48px);
-            color: var(--light); margin: 0 0 14px; letter-spacing: -0.02em; line-height: 1.15;
+            font-size: clamp(32px, 4vw, 52px);
+            color: var(--light); margin: 0 0 16px; letter-spacing: -0.02em; line-height: 1.13;
         }
-        h3 { font-family: 'Poppins', Arial, sans-serif; font-size: 15px; font-weight: 500; color: var(--light); margin: 0 0 10px; letter-spacing: 0.01em; }
+        h3 { font-family: 'Poppins', Arial, sans-serif; font-size: 14px; font-weight: 500; color: var(--light); margin: 0 0 10px; }
 
-        .hero-sub { font-size: 17px; color: #8a8880; max-width: 440px; line-height: 1.8; margin-bottom: 48px; }
+        .hero-sub { font-size: 17px; color: var(--gray); max-width: 420px; line-height: 1.85; margin-bottom: 52px; }
 
         .btn {
             display: inline-flex; align-items: center; gap: 8px; padding: 13px 28px;
-            font-family: 'Poppins', Arial, sans-serif; font-size: 11px; font-weight: 500;
-            letter-spacing: 0.1em; text-transform: uppercase;
+            font-family: 'Poppins', Arial, sans-serif; font-size: 10px; font-weight: 500;
+            letter-spacing: 0.12em; text-transform: uppercase;
             transition: background 0.2s, color 0.2s, border-color 0.2s;
         }
-        .btn-primary { background: var(--orange); color: var(--light); }
-        .btn-primary:hover { background: #e08a6a; }
-        .btn-ghost { border: 1px solid rgba(176,174,165,0.22); color: var(--mid-gray); margin-left: 12px; }
-        .btn-ghost:hover { border-color: rgba(176,174,165,0.5); color: var(--light); }
+        .btn-primary { background: var(--blue); color: var(--bg); }
+        .btn-primary:hover { background: #82b0dc; }
+        .btn-ghost { border: 1px solid rgba(176,174,165,0.22); color: var(--gray); margin-left: 12px; }
+        .btn-ghost:hover { border-color: rgba(176,174,165,0.46); color: var(--light); }
 
         .wrap { max-width: 1440px; margin: 0 auto; padding: 0 clamp(24px, 5vw, 80px); }
-        .section { padding: 100px 0; }
+        .section { padding: 108px 0; }
         .rule { height: 1px; background: var(--border); margin: 0 clamp(24px, 5vw, 80px); }
-        .section-sub { font-size: 16px; color: #7a7870; max-width: 420px; line-height: 1.85; margin-bottom: 56px; font-style: italic; }
+        .section-sub { font-size: 16px; color: var(--gray); max-width: 400px; line-height: 1.9; margin-bottom: 60px; font-style: italic; }
 
-        .ticker { overflow: hidden; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 14px 0; }
-        .ticker-track { display: inline-flex; animation: tick 38s linear infinite; white-space: nowrap; }
-        .ticker-track span {
-            font-family: 'Poppins', Arial, sans-serif; font-size: 10px; font-weight: 400;
-            letter-spacing: 0.18em; text-transform: uppercase; color: #686460; padding: 0 28px;
-        }
-        .ticker-track .sep { color: var(--orange); padding: 0 4px; letter-spacing: 0; }
+        .ticker { overflow: hidden; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 13px 0; }
+        .ticker-track { display: inline-flex; animation: tick 36s linear infinite; white-space: nowrap; }
+        .ticker-track span { font-family: 'Poppins', Arial, sans-serif; font-size: 9px; font-weight: 400; letter-spacing: 0.22em; text-transform: uppercase; color: #4a4845; padding: 0 28px; }
+        .ticker-track .sep { color: var(--blue); padding: 0 4px; letter-spacing: 0; }
         @keyframes tick { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
-        .cap-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: var(--border); }
+        .cap-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); }
         .cap-card {
             position: relative; background: var(--bg);
             display: flex; flex-direction: column; overflow: hidden;
         }
         .cap-card::after {
-            content: ""; position: absolute; top: 0; left: 0; right: 0; height: 2px;
-            background: var(--orange); transform: scaleX(0); transform-origin: left;
-            transition: transform 0.4s ease;
+            content: ""; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+            background: var(--blue); transform: scaleX(0); transform-origin: left;
+            transition: transform 0.38s ease;
         }
         .cap-card:hover::after { transform: scaleX(1); }
-        .cap-img { position: relative; height: 220px; overflow: hidden; flex-shrink: 0; }
+        .cap-img { position: relative; height: 210px; overflow: hidden; flex-shrink: 0; }
         .cap-img img {
             position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
-            filter: brightness(0.42) saturate(0.55);
-            transition: filter 0.5s ease, transform 0.6s ease;
+            filter: brightness(0.36) saturate(0.45);
+            transition: filter 0.5s ease, transform 0.65s ease;
         }
-        .cap-card:hover .cap-img img { filter: brightness(0.6) saturate(0.72); transform: scale(1.04); }
-        .cap-body { padding: 28px 32px 36px; flex: 1; }
-        .cap-num { font-family: 'Poppins', Arial, sans-serif; font-size: 10px; font-weight: 400; letter-spacing: 0.16em; color: #686460; margin-bottom: 14px; }
-        .cap-card h3 { font-size: 14px; margin-bottom: 10px; }
-        .cap-card p { font-size: 14px; color: #8a8880; line-height: 1.75; margin: 0; }
+        .cap-card:hover .cap-img img { filter: brightness(0.55) saturate(0.62); transform: scale(1.04); }
+        .cap-body { padding: 26px 30px 36px; flex: 1; }
+        .cap-num { font-family: 'Poppins', Arial, sans-serif; font-size: 9px; font-weight: 400; letter-spacing: 0.2em; color: #4a4845; margin-bottom: 14px; }
+        .cap-card h3 { font-size: 13px; margin-bottom: 10px; }
+        .cap-card p { font-size: 14px; color: var(--gray); line-height: 1.82; margin: 0; }
 
         .band {
-            position: relative; height: 440px; overflow: hidden;
-            display: flex; align-items: center; padding: 0 clamp(24px, 5vw, 80px);
+            position: relative; height: 500px; overflow: hidden;
+            display: flex; align-items: center; justify-content: center;
+            padding: 0 clamp(24px, 5vw, 80px); text-align: center;
         }
-        .band img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: brightness(0.18) saturate(0.4); }
+        .band img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: brightness(0.14) saturate(0.3); }
         .band::after {
             content: ""; position: absolute; inset: 0;
-            background: linear-gradient(to right, rgba(20,20,19,0.94) 0%, rgba(20,20,19,0.55) 52%, transparent 100%);
+            background: linear-gradient(to bottom, var(--bg) 0%, transparent 22%, transparent 78%, var(--bg) 100%);
         }
-        .band-text { position: relative; z-index: 1; max-width: 680px; }
+        .band-text { position: relative; z-index: 1; max-width: 800px; }
         .band-text p {
             font-family: 'Lora', Georgia, serif; font-weight: 400; font-style: italic;
-            font-size: clamp(30px, 4vw, 50px);
-            color: var(--light); margin: 0; letter-spacing: -0.01em; line-height: 1.25;
+            font-size: clamp(34px, 4.5vw, 58px);
+            color: var(--light); margin: 0; letter-spacing: -0.01em; line-height: 1.22;
         }
-        .band-text span { color: var(--orange); font-style: normal; font-weight: 500; }
+        .band-text span { color: var(--blue); font-style: normal; }
 
-        .market-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px; background: var(--border); }
+        .market-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--border); }
         .market-card { background: var(--bg); padding: 52px; }
-        .market-tag { font-family: 'Poppins', Arial, sans-serif; font-size: 10px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--blue); margin-bottom: 22px; }
-        .market-card h3 { font-family: 'Poppins', Arial, sans-serif; font-size: 22px; font-weight: 300; color: var(--light); margin: 0 0 28px; line-height: 1.35; }
+        .market-tag { font-family: 'Poppins', Arial, sans-serif; font-size: 9px; font-weight: 500; letter-spacing: 0.24em; text-transform: uppercase; color: var(--blue); margin-bottom: 24px; }
+        .market-card h3 { font-family: 'Poppins', Arial, sans-serif; font-size: 22px; font-weight: 300; color: var(--light); margin: 0 0 32px; line-height: 1.35; letter-spacing: -0.01em; }
         .market-card ul { margin: 0; padding: 0; list-style: none; }
-        .market-card ul li { font-size: 14px; color: #706e68; padding: 9px 0; border-bottom: 1px solid var(--border); }
+        .market-card ul li { font-size: 14px; color: var(--gray); padding: 10px 0; border-bottom: 1px solid var(--border); }
         .market-card ul li:first-child { border-top: 1px solid var(--border); }
 
-        .demo-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: var(--border); overflow: hidden; }
+        .demo-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); overflow: hidden; }
         .demo-text { background: var(--bg); padding: 64px; display: flex; flex-direction: column; justify-content: center; gap: 18px; }
-        .demo-text p { font-size: 15px; color: #8a8880; line-height: 1.85; margin: 0; }
-        .demo-img { position: relative; min-height: 360px; background: var(--surface); }
-        .demo-img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: brightness(0.5) saturate(0.6); }
+        .demo-text p { font-size: 15px; color: var(--gray); line-height: 1.9; margin: 0; }
+        .demo-img { position: relative; min-height: 380px; background: var(--surface); }
+        .demo-img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: brightness(0.44) saturate(0.52); }
 
         .contact-wrap { background: #0f0f0e; border-top: 1px solid var(--border); }
-        .contact-wrap p { font-size: 16px; color: #8a8880; margin: 12px 0 38px; line-height: 1.8; font-style: italic; }
+        .contact-wrap p { font-size: 16px; color: var(--gray); margin: 14px 0 42px; line-height: 1.9; font-style: italic; }
         .contact-email {
-            font-family: 'Poppins', Arial, sans-serif; font-weight: 300; font-size: 26px;
-            color: var(--orange); letter-spacing: 0.01em;
-            border-bottom: 1px solid rgba(106,155,204,0.22); padding-bottom: 3px;
+            font-family: 'Poppins', Arial, sans-serif; font-weight: 300; font-size: 28px;
+            color: var(--blue); letter-spacing: -0.01em;
+            border-bottom: 1px solid rgba(106,155,204,0.22); padding-bottom: 4px;
             transition: border-color 0.25s;
         }
-        .contact-email:hover { border-color: var(--orange); }
+        .contact-email:hover { border-color: var(--blue); }
 
         footer { padding: 56px clamp(24px, 5vw, 80px) 32px; border-top: 1px solid var(--border); }
-        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; padding-bottom: 44px; border-bottom: 1px solid rgba(176,174,165,0.08); margin-bottom: 24px; }
-        .footer-logo { font-family: 'Poppins', Arial, sans-serif; font-weight: 500; font-size: 17px; color: var(--light); margin-bottom: 10px; }
-        .footer-brand p { font-size: 13px; color: #686460; line-height: 1.65; margin: 0; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; padding-bottom: 44px; border-bottom: 1px solid rgba(176,174,165,0.06); margin-bottom: 24px; }
+        .footer-logo { font-family: 'Alliance', system-ui, sans-serif; font-size: 16px; color: var(--light); margin-bottom: 10px; letter-spacing: 0.02em; }
+        .footer-brand p { font-size: 13px; color: #686460; line-height: 1.7; margin: 0; }
         .footer-col { display: flex; flex-direction: column; gap: 10px; }
-        .footer-col-label { font-family: 'Poppins', Arial, sans-serif; font-size: 9px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: #686460; margin-bottom: 4px; }
-        .footer-col a, .footer-col span { font-size: 13px; color: #686460; transition: color 0.2s; }
-        .footer-col a:hover { color: var(--mid-gray); }
-        .footer-bottom { display: flex; justify-content: space-between; font-family: 'Poppins', Arial, sans-serif; font-size: 11px; font-weight: 300; letter-spacing: 0.06em; color: #504e4a; }
+        .footer-col-label { font-family: 'Poppins', Arial, sans-serif; font-size: 9px; font-weight: 500; letter-spacing: 0.26em; text-transform: uppercase; color: #686460; margin-bottom: 4px; }
+        .footer-col a, .footer-col span { font-family: 'Poppins', Arial, sans-serif; font-size: 12px; color: #686460; transition: color 0.2s; }
+        .footer-col a:hover { color: var(--gray); }
+        .footer-bottom { display: flex; justify-content: space-between; font-family: 'Poppins', Arial, sans-serif; font-size: 10px; font-weight: 300; letter-spacing: 0.09em; color: #484644; }
 
-        .reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.8s ease, transform 0.8s ease; }
+        .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.75s ease, transform 0.75s ease; }
         .reveal.visible { opacity: 1; transform: none; }
         .d1 { transition-delay: 0.1s; }
         .d2 { transition-delay: 0.22s; }
@@ -368,7 +370,7 @@
                     <div><a class="btn btn-primary" href="https://geoguessr.locamage.com" target="_blank">Try it →</a></div>
                 </div>
                 <div class="demo-img">
-                    <img src="img/urban.webp" alt="" />
+                    <img src="img/demo.webp" alt="" />
                 </div>
             </div>
         </div>
