@@ -19,8 +19,8 @@
             --bg:         #0b0904;
             --surface:    #111009;
             --cream:      #f0e8d8;
-            --muted:      #7a6d5d;
-            --dim:        #3d3529;
+            --muted:      #c8bdb0;
+            --dim:        #9c8d7e;
             --sienna:     #3d85c8;
             --sienna-lo:  rgba(61,133,200,0.12);
             --slate:      #7aaedb;
@@ -109,10 +109,10 @@
             font-family: 'DM Mono', monospace;
             font-size: 9px; font-weight: 300;
             letter-spacing: 0.18em; line-height: 2.8;
-            color: rgba(61,133,200,0.22); text-align: right;
+            color: rgba(61,133,200,0.45); text-align: right;
             animation: fadein 3s ease 1.4s both;
         }
-        .hero-telemetry .tv { color: rgba(61,133,200,0.45); }
+        .hero-telemetry .tv { color: rgba(61,133,200,0.80); }
 
         /* Live acquisition indicator */
         .hero-acq {
@@ -121,7 +121,7 @@
             display: flex; align-items: center; gap: 8px;
             font-family: 'DM Mono', monospace;
             font-size: 9px; letter-spacing: 0.18em;
-            color: rgba(61,133,200,0.32);
+            color: rgba(61,133,200,0.55);
             animation: fadein 3s ease 2.2s both;
         }
         .acq-dot {
@@ -173,8 +173,8 @@
         }
 
         .hero-sub {
-            font-size: clamp(17px, 2vw, 21px);
-            font-weight: 300; font-style: italic;
+            font-size: clamp(19px, 2vw, 22px);
+            font-weight: 400; font-style: italic;
             color: var(--muted); max-width: 440px;
             line-height: 1.78; margin-bottom: 38px;
         }
@@ -215,7 +215,7 @@
             margin-bottom: 44px;
         }
         .section-sub {
-            font-size: 17px; font-style: italic;
+            font-size: 19px; font-style: italic;
             color: var(--muted); line-height: 1.88;
             max-width: 360px;
         }
@@ -237,9 +237,9 @@
             font-family: 'DM Mono', monospace;
             font-size: 11px; font-weight: 300;
             letter-spacing: 0.18em; text-transform: uppercase;
-            color: rgba(122,109,93,0.42); padding: 0 28px;
+            color: rgba(200,189,176,0.55); padding: 0 28px;
         }
-        .ticker-track .sep { color: var(--sienna); opacity: 0.4; padding: 0 4px; letter-spacing: 0; }
+        .ticker-track .sep { color: var(--sienna); opacity: 0.65; padding: 0 4px; letter-spacing: 0; }
         @keyframes tick { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
         /* ── Capabilities Grid ── */
@@ -285,11 +285,11 @@
             font-family: 'DM Mono', monospace;
             font-size: 9px; font-weight: 300;
             letter-spacing: 0.22em;
-            color: var(--sienna); opacity: 0.45; margin-bottom: 16px;
+            color: var(--sienna); opacity: 1; margin-bottom: 16px;
         }
         .cap-card h3 { font-size: 17px; margin-bottom: 9px; }
         .cap-card p {
-            font-size: 17px; font-style: italic;
+            font-size: 18px; font-style: italic;
             color: var(--muted); line-height: 1.80; margin: 0;
         }
 
@@ -371,7 +371,7 @@
         .market-row ul { margin: 0; padding: 0; list-style: none; }
         .market-row ul li {
             font-family: 'DM Mono', monospace;
-            font-size: 13px; font-weight: 300;
+            font-size: 13px; font-weight: 400;
             letter-spacing: 0.05em;
             color: var(--muted);
             padding: 12px 0;
@@ -394,7 +394,7 @@
             display: flex; flex-direction: column; justify-content: center; gap: 20px;
         }
         .demo-text p {
-            font-size: 16px; font-style: italic;
+            font-size: 19px; font-style: italic;
             color: var(--muted); line-height: 1.90; margin: 0;
         }
         .demo-img { position: relative; min-height: 300px; background: #090704; }
@@ -407,7 +407,7 @@
         /* ── Contact ── */
         .contact-wrap { background: var(--surface); border-top: 1px solid var(--border); position: relative; overflow: hidden; }
         .contact-wrap p {
-            font-size: 18px; font-style: italic;
+            font-size: 20px; font-style: italic;
             color: var(--muted); margin: 12px 0 32px;
             line-height: 1.88; max-width: 440px;
         }
@@ -442,8 +442,8 @@
         }
         .footer-brand p {
             font-family: 'DM Mono', monospace;
-            font-size: 13px; font-weight: 300;
-            color: var(--dim); line-height: 1.8; margin: 0;
+            font-size: 13px; font-weight: 400;
+            color: var(--muted); line-height: 1.8; margin: 0;
         }
         .footer-col { display: flex; flex-direction: column; gap: 10px; }
         .footer-col-label {
@@ -454,15 +454,15 @@
         }
         .footer-col a, .footer-col span {
             font-family: 'DM Mono', monospace;
-            font-size: 13px; color: var(--dim);
+            font-size: 13px; color: var(--muted);
             transition: color 0.2s;
         }
-        .footer-col a:hover { color: var(--muted); }
+        .footer-col a:hover { color: var(--cream); }
         .footer-bottom {
             display: flex; justify-content: space-between;
             font-family: 'DM Mono', monospace;
             font-size: 11px; font-weight: 300;
-            letter-spacing: 0.08em; color: #28241d;
+            letter-spacing: 0.08em; color: var(--dim);
         }
 
         /* ── Reveals ── */
@@ -555,6 +555,21 @@
 
         /* ── Scroll anchor offset for fixed nav ── */
         [id] { scroll-margin-top: 72px; }
+
+        /* ── h1 em shimmer ── */
+        h1 em {
+            font-style: italic;
+            color: rgba(240,232,216,0.68);
+            animation: em-shimmer 8s ease-in-out 3s infinite;
+        }
+        @keyframes em-shimmer {
+            0%, 20%  { color: rgba(240,232,216,0.62); }
+            50%      { color: rgba(240,232,216,1.00); }
+            80%, 100%{ color: rgba(240,232,216,0.62); }
+        }
+
+        /* ── Parallax will-change ── */
+        .hero-img, .hero-tint, .hero-vignette { will-change: transform; }
     </style>
     <script>
     !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init capture register register_once register_for_session unregister opt_out_capturing has_opted_out_capturing opt_in_capturing reset isFeatureEnabled getFeatureFlag getFeatureFlagPayload reloadFeatureFlags group identify setPersonProperties setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags resetGroups onFeatureFlags addFeatureFlagsHandler onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey getNextSurveyStep".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
@@ -589,11 +604,11 @@
             <div class="hero-corner"></div>
         </div>
         <div class="hero-telemetry">
-            <div>38°52′ N</div>
-            <div>121°01′ W</div>
-            <div>ALT&nbsp;&nbsp;<span class="tv">482 km</span></div>
-            <div>RES&nbsp;&nbsp;<span class="tv">0.3 m</span></div>
-            <div>SENSOR <span class="tv">MSI</span></div>
+            <div data-telem="lat">38°52′ N</div>
+            <div data-telem="lon">121°01′ W</div>
+            <div>ALT&nbsp;&nbsp;<span class="tv" data-telem="alt">482 km</span></div>
+            <div>RES&nbsp;&nbsp;<span class="tv" data-telem="res">0.3 m</span></div>
+            <div>SENSOR <span class="tv" data-telem="sensor">MSI</span></div>
         </div>
         <div class="hero-acq">
             <div class="acq-dot"></div>
@@ -833,6 +848,71 @@
             { threshold: 0.08 }
         );
         document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+    </script>
+
+    <script>
+        // ── Parallax ──
+        (function () {
+            const heroImg     = document.querySelector('.hero-img');
+            const heroTint    = document.querySelector('.hero-tint');
+            const heroVignette= document.querySelector('.hero-vignette');
+            const heroH       = document.querySelector('.hero').offsetHeight;
+
+            window.addEventListener('scroll', function () {
+                const y = window.scrollY;
+                if (y > heroH) return;
+                // Image: shift background-position so it moves at ~55% of scroll speed
+                heroImg.style.backgroundPositionY = 'calc(50% + ' + (y * 0.45) + 'px)';
+                // Tint + vignette: translateY opposite to scroll to slow their exit
+                heroTint.style.transform     = 'translateY(' + (y * 0.20) + 'px)';
+                heroVignette.style.transform = 'translateY(' + (y * 0.10) + 'px)';
+            }, { passive: true });
+        })();
+
+        // ── Coordinate typewriter ──
+        (function () {
+            var LOCS = [
+                { lat: '38°52\u2032 N', lon: '121°01\u2032 W', alt: '482 km', res: '0.3 m', sensor: 'MSI' },
+                { lat: '51°30\u2032 N', lon: '000°07\u2032 W', alt: '617 km', res: '0.5 m', sensor: 'SAR' },
+                { lat: '35°41\u2032 N', lon: '139°46\u2032 E', alt: '534 km', res: '0.3 m', sensor: 'MSI' },
+                { lat: '19°25\u2032 N', lon: '099°08\u2032 W', alt: '498 km', res: '1.0 m', sensor: 'PAN' },
+                { lat: '01°21\u2032 N', lon: '103°55\u2032 E', alt: '561 km', res: '0.5 m', sensor: 'MSI' },
+                { lat: '48°51\u2032 N', lon: '002°20\u2032 E', alt: '509 km', res: '0.3 m', sensor: 'VIS' },
+                { lat: '55°45\u2032 N', lon: '037°37\u2032 E', alt: '577 km', res: '1.0 m', sensor: 'SAR' },
+                { lat: '22°54\u2032 S', lon: '043°10\u2032 W', alt: '520 km', res: '0.5 m', sensor: 'MSI' },
+            ];
+            var CHARS = '0123456789NSEW°\u2032. ';
+            var locIdx = 0;
+
+            function scramble(el, target, delay) {
+                var STEPS = 20;
+                var step = 0;
+                setTimeout(function () {
+                    function tick() {
+                        el.textContent = target.split('').map(function (ch, i) {
+                            return (step / STEPS > i / target.length)
+                                ? ch
+                                : CHARS[Math.floor(Math.random() * CHARS.length)];
+                        }).join('');
+                        if (++step <= STEPS) requestAnimationFrame(tick);
+                    }
+                    tick();
+                }, delay || 0);
+            }
+
+            function cycle() {
+                locIdx = (locIdx + 1) % LOCS.length;
+                var loc = LOCS[locIdx];
+                var q = function (k) { return document.querySelector('[data-telem="' + k + '"]'); };
+                scramble(q('lat'),    loc.lat,    0);
+                scramble(q('lon'),    loc.lon,    90);
+                scramble(q('alt'),    loc.alt,    210);
+                scramble(q('res'),    loc.res,    330);
+                scramble(q('sensor'), loc.sensor, 450);
+            }
+
+            setInterval(cycle, 4500);
+        })();
     </script>
 
     <script>
