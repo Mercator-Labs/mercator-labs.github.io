@@ -405,7 +405,7 @@
         }
 
         /* ── Contact ── */
-        .contact-wrap { background: var(--surface); border-top: 1px solid var(--border); }
+        .contact-wrap { background: var(--surface); border-top: 1px solid var(--border); position: relative; overflow: hidden; }
         .contact-wrap p {
             font-size: 18px; font-style: italic;
             color: var(--muted); margin: 12px 0 32px;
@@ -825,6 +825,100 @@
             { threshold: 0.08 }
         );
         document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+    </script>
+
+    <script>
+        (function () {
+            const wrap = document.querySelector('.contact-wrap');
+            const cvs = document.createElement('canvas');
+            cvs.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;pointer-events:none;';
+            wrap.prepend(cvs);
+
+            const ctx = cvs.getContext('2d');
+            const GRID = 76, DEG = 0.12;
+            const BASE_LAT = 38.52, BASE_LON = 122.47;
+            let t = 0, W = 0, H = 0;
+
+            function resize() {
+                const dpr = window.devicePixelRatio || 1;
+                W = cvs.offsetWidth;
+                H = cvs.offsetHeight;
+                cvs.width = W * dpr;
+                cvs.height = H * dpr;
+                ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+            }
+
+            function draw() {
+                ctx.clearRect(0, 0, W, H);
+
+                const ox = (t * 0.18) % GRID;
+                const oy = (t * 0.10) % GRID;
+                const c0 = Math.floor(-ox / GRID) - 1;
+                const r0 = Math.floor(-oy / GRID) - 1;
+
+                ctx.lineWidth = 0.5;
+
+                // Meridians
+                for (let i = c0; i * GRID + ox < W + GRID; i++) {
+                    const x = i * GRID + ox;
+                    ctx.strokeStyle = 'rgba(61,133,200,0.10)';
+                    ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, H); ctx.stroke();
+                }
+
+                // Parallels
+                for (let j = r0; j * GRID + oy < H + GRID; j++) {
+                    const y = j * GRID + oy;
+                    ctx.strokeStyle = 'rgba(61,133,200,0.10)';
+                    ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke();
+                }
+
+                // Intersection dots + coordinate labels
+                ctx.font = '8px "DM Mono", monospace';
+                for (let i = c0; i * GRID + ox < W + GRID; i++) {
+                    for (let j = r0; j * GRID + oy < H + GRID; j++) {
+                        const x = i * GRID + ox;
+                        const y = j * GRID + oy;
+
+                        ctx.fillStyle = 'rgba(61,133,200,0.22)';
+                        ctx.beginPath(); ctx.arc(x, y, 1.5, 0, Math.PI * 2); ctx.fill();
+
+                        if (i % 4 === 0 && j % 3 === 0) {
+                            const lat = (BASE_LAT - j * DEG).toFixed(2);
+                            const lon = (BASE_LON - i * DEG).toFixed(2);
+                            ctx.fillStyle = 'rgba(61,133,200,0.18)';
+                            ctx.fillText(lat + '\u00b0 N', x + 6, y - 3);
+                            ctx.fillText(lon + '\u00b0 W', x + 6, y + 11);
+                        }
+                    }
+                }
+
+                // Fade mask: left edge fades (text lives there), top/bottom edges fade
+                ctx.globalCompositeOperation = 'destination-in';
+
+                const hm = ctx.createLinearGradient(0, 0, W, 0);
+                hm.addColorStop(0,    'rgba(0,0,0,0.02)');
+                hm.addColorStop(0.22, 'rgba(0,0,0,0.22)');
+                hm.addColorStop(0.48, 'rgba(0,0,0,0.68)');
+                hm.addColorStop(1,    'rgba(0,0,0,0.62)');
+                ctx.fillStyle = hm; ctx.fillRect(0, 0, W, H);
+
+                const vm = ctx.createLinearGradient(0, 0, 0, H);
+                vm.addColorStop(0,    'rgba(0,0,0,0)');
+                vm.addColorStop(0.12, 'rgba(0,0,0,1)');
+                vm.addColorStop(0.88, 'rgba(0,0,0,1)');
+                vm.addColorStop(1,    'rgba(0,0,0,0)');
+                ctx.fillStyle = vm; ctx.fillRect(0, 0, W, H);
+
+                ctx.globalCompositeOperation = 'source-over';
+
+                t++;
+                requestAnimationFrame(draw);
+            }
+
+            new ResizeObserver(resize).observe(cvs);
+            resize();
+            draw();
+        })();
     </script>
 
 </body>
