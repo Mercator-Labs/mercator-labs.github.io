@@ -548,22 +548,6 @@
         /* ── Parallax will-change ── */
         .hero-img, .hero-tint, .hero-vignette { will-change: transform; }
 
-        /* ── Hamburger (hidden on desktop) ── */
-        .nav-hamburger {
-            display: none;
-            flex-direction: column; justify-content: center; align-items: center; gap: 6px;
-            width: 36px; height: 36px;
-            background: none; border: none; cursor: pointer; padding: 0;
-            z-index: 201; flex-shrink: 0;
-        }
-        .nav-hamburger span {
-            display: block; width: 22px; height: 2px;
-            background: var(--cream); border-radius: 1px;
-            transition: transform 0.25s, opacity 0.25s;
-        }
-        .nav-hamburger.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
-        .nav-hamburger.open span:nth-child(2) { opacity: 0; }
-        .nav-hamburger.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
 
         /* ── Carousel dots (mobile only) ── */
         .cap-dots { display: none; }
@@ -577,21 +561,9 @@
             h3 { font-size: 19px; }
             .hero-sub { font-size: 17px; max-width: 100%; margin-bottom: 28px; }
 
-            /* Nav hamburger */
-            nav { padding: 0 20px; height: 60px; }
-            .nav-logo { flex: 1; }
-            .nav-hamburger { display: flex; }
-            .nav-links {
-                display: none;
-                position: fixed; inset: 0; z-index: 200;
-                background: rgba(11,9,4,0.97);
-                flex-direction: column; align-items: center; justify-content: center;
-                gap: 36px; list-style: none; margin: 0; padding: 0;
-            }
-            .nav-links.open { display: flex; }
-            .nav-links li { display: block; text-align: center; }
-            .nav-links a { font-size: 26px; letter-spacing: 0.14em; color: var(--muted); }
-            .nav-links a:hover { color: var(--cream); }
+            nav { padding: 16px 20px; }
+            .nav-links { gap: 20px; }
+            .nav-links a { font-size: 12px; }
 
             .hero { padding: 0 20px 56px; }
             .hero-telemetry { display: none; }
@@ -690,9 +662,6 @@
             <li><a href="#demo">Demo</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
-        <button class="nav-hamburger" aria-label="Open menu">
-            <span></span><span></span><span></span>
-        </button>
     </nav>
 
     <div class="hero">
@@ -1133,22 +1102,6 @@
     </script>
 
     <script>
-        // ── Mobile hamburger menu ──
-        (function () {
-            var hamburger = document.querySelector('.nav-hamburger');
-            var navLinks  = document.querySelector('.nav-links');
-            hamburger.addEventListener('click', function () {
-                hamburger.classList.toggle('open');
-                navLinks.classList.toggle('open');
-            });
-            navLinks.querySelectorAll('a').forEach(function (a) {
-                a.addEventListener('click', function () {
-                    hamburger.classList.remove('open');
-                    navLinks.classList.remove('open');
-                });
-            });
-        })();
-
         // ── Capabilities carousel dots (mobile only) ──
         (function () {
             if (window.innerWidth > 768) return;
