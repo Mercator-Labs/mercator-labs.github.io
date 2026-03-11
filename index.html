@@ -76,6 +76,9 @@
             filter: brightness(0.18) saturate(0.28) sepia(0.45);
             animation: drift 36s ease-in-out alternate infinite;
         }
+        @media (max-width: 768px) {
+            .hero-img { background-image: url("bg-mobile.webp"); }
+        }
         @keyframes drift { from { transform: scale(1.07); } to { transform: scale(1.0); } }
 
         /* blue tint overlay */
