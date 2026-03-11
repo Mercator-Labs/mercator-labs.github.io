@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Locamage</title>
     <meta name="description" content="AI for satellite imagery." />
     <style>
@@ -546,6 +547,66 @@
 
         /* ── Parallax will-change ── */
         .hero-img, .hero-tint, .hero-vignette { will-change: transform; }
+
+        /* ── Mobile ── */
+        @media (max-width: 768px) {
+            .hero-img { background-image: url("bg-mobile.webp"); }
+
+            h1 { font-size: 42px; }
+            h2 { font-size: 30px; }
+            h3 { font-size: 19px; }
+            .hero-sub { font-size: 17px; max-width: 100%; margin-bottom: 28px; }
+
+            nav {
+                padding: 16px 20px;
+            }
+            .nav-links { gap: 20px; }
+            .nav-links a { font-size: 12px; }
+
+            .hero { padding: 0 20px 56px; }
+            .hero-telemetry { display: none; }
+            .hero-acq { bottom: 60px; right: 20px; }
+
+            .wrap { padding: 0 20px; }
+            .section { padding: 52px 0; }
+
+            .section-intro {
+                grid-template-columns: 1fr;
+                gap: 16px;
+                margin-bottom: 32px;
+            }
+            .section-sub { max-width: 100%; font-size: 17px; }
+
+            .cap-grid { grid-template-columns: 1fr; }
+
+            .market-row {
+                grid-template-columns: 1fr;
+                gap: 24px;
+                padding: 28px 0;
+            }
+            .market-left {
+                padding-right: 0;
+                border-right: none;
+                border-bottom: 1px solid var(--border);
+                padding-bottom: 24px;
+            }
+            .market-right { padding-left: 0; }
+
+            .demo-wrap { grid-template-columns: 1fr; }
+            .demo-text { padding: 32px 24px; }
+            .demo-img { min-height: 220px; }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 28px;
+            }
+            .footer-brand { grid-column: 1 / -1; }
+
+            .btn-ghost { margin-left: 0; }
+            .hero-cta { display: flex; flex-direction: column; gap: 12px; align-items: flex-start; }
+
+            .band { height: 260px; }
+        }
     </style>
     <script>
     !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init capture register register_once register_for_session unregister opt_out_capturing has_opted_out_capturing opt_in_capturing reset isFeatureEnabled getFeatureFlag getFeatureFlagPayload reloadFeatureFlags group identify setPersonProperties setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags resetGroups onFeatureFlags addFeatureFlagsHandler onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey getNextSurveyStep".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
