@@ -6,9 +6,11 @@
     <meta name="description" content="AI for satellite imagery." />
     <style>
         @font-face {
-            font-family: 'Alliance';
-            src: url('AllianceNo2-Regular.woff2') format('woff2');
+            font-family: 'Mona Sans';
+            src: url('MonaSansVF[wdth,wght,opsz,ital].woff2') format('woff2 supports variations'),
+                 url('MonaSansVF[wdth,wght,opsz,ital].woff2') format('woff2');
             font-weight: 100 900;
+            font-stretch: 75% 125%;
             font-display: swap;
         }
 
@@ -28,7 +30,7 @@
         *, *::before, *::after { box-sizing: border-box; }
         html { scroll-behavior: smooth; }
         body {
-            font-family: 'Alliance', system-ui, sans-serif;
+            font-family: 'Mona Sans', system-ui, sans-serif;
             background: var(--bg);
             color: var(--muted);
             margin: 0;
@@ -47,15 +49,15 @@
             border-bottom: 1px solid var(--border);
         }
         .nav-logo {
-            font-family: 'Alliance', system-ui, sans-serif;
+            font-family: 'Mona Sans', system-ui, sans-serif;
             font-size: 16px; letter-spacing: 0.05em; color: var(--cream);
         }
         .nav-links {
             display: flex; gap: 40px; list-style: none; margin: 0; padding: 0;
         }
         .nav-links a {
-            font-family: 'Alliance', system-ui, sans-serif;
-            font-size: 12px; font-weight: 400;
+            font-family: 'Mona Sans', system-ui, sans-serif;
+            font-size: 14px; font-weight: 400;
             letter-spacing: 0.10em;
             color: var(--muted); transition: color 0.25s;
         }
@@ -103,11 +105,10 @@
         /* Telemetry block */
         .hero-telemetry {
             position: absolute; top: 96px; right: clamp(24px, 5vw, 80px);
-            font-family: 'Alliance', system-ui, sans-serif;
-            font-size: 9px; font-weight: 300;
+            font-family: 'Mona Sans', system-ui, sans-serif;
+            font-size: 11px; font-weight: 300;
             letter-spacing: 0.18em; line-height: 2.8;
             color: rgba(61,133,200,0.45); text-align: right;
-            animation: fadein 3s ease 1.4s both;
         }
         .hero-telemetry .tv { color: rgba(61,133,200,0.80); }
 
@@ -116,10 +117,9 @@
             position: absolute;
             bottom: 100px; right: clamp(24px, 5vw, 80px);
             display: flex; align-items: center; gap: 8px;
-            font-family: 'Alliance', system-ui, sans-serif;
-            font-size: 9px; letter-spacing: 0.18em;
+            font-family: 'Mona Sans', system-ui, sans-serif;
+            font-size: 11px; letter-spacing: 0.18em;
             color: rgba(61,133,200,0.55);
-            animation: fadein 3s ease 2.2s both;
         }
         .acq-dot {
             width: 5px; height: 5px; border-radius: 50%;
@@ -134,8 +134,8 @@
         /* ── Label ── */
         .label {
             display: inline-flex; align-items: center; gap: 12px;
-            font-family: 'Alliance', system-ui, sans-serif;
-            font-size: 11px; font-weight: 400;
+            font-family: 'Mona Sans', system-ui, sans-serif;
+            font-size: 13px; font-weight: 400;
             letter-spacing: 0.22em; text-transform: uppercase;
             color: var(--sienna); margin-bottom: 18px;
         }
@@ -147,7 +147,7 @@
 
         /* ── Type scale ── */
         h1 {
-            font-family: 'Alliance', system-ui, sans-serif;
+            font-family: 'Mona Sans', system-ui, sans-serif;
             font-weight: 300;
             font-size: clamp(62px, 9.5vw, 128px);
             color: var(--cream); margin: 0 0 20px;
@@ -156,14 +156,14 @@
         h1 em { font-style: italic; color: rgba(240,232,216,0.55); }
 
         h2 {
-            font-family: 'Alliance', system-ui, sans-serif;
+            font-family: 'Mona Sans', system-ui, sans-serif;
             font-weight: 300;
             font-size: clamp(38px, 5vw, 62px);
             color: var(--cream); margin: 0 0 18px;
             letter-spacing: -0.02em; line-height: 1.08;
         }
         h3 {
-            font-family: 'Alliance', system-ui, sans-serif;
+            font-family: 'Mona Sans', system-ui, sans-serif;
             font-size: 23px; font-weight: 500;
             color: var(--cream); margin: 0 0 10px;
             letter-spacing: 0.01em;
@@ -180,8 +180,8 @@
         .btn {
             display: inline-flex; align-items: center; gap: 8px;
             padding: 13px 30px;
-            font-family: 'Alliance', system-ui, sans-serif;
-            font-size: 12px; font-weight: 400;
+            font-family: 'Mona Sans', system-ui, sans-serif;
+            font-size: 15px; font-weight: 400;
             letter-spacing: 0.12em;
             transition: background 0.25s, color 0.25s, border-color 0.25s;
         }
@@ -231,7 +231,7 @@
             white-space: nowrap;
         }
         .ticker-track span {
-            font-family: 'Alliance', system-ui, sans-serif;
+            font-family: 'Mona Sans', system-ui, sans-serif;
             font-size: 12px; font-weight: 400;
             letter-spacing: 0.18em; text-transform: uppercase;
             color: var(--muted); padding: 0 28px;
@@ -279,8 +279,8 @@
 
         .cap-body { padding: 20px 28px 28px; flex: 1; }
         .cap-num {
-            font-family: 'Alliance', system-ui, sans-serif;
-            font-size: 9px; font-weight: 300;
+            font-family: 'Mona Sans', system-ui, sans-serif;
+            font-size: 11px; font-weight: 300;
             letter-spacing: 0.22em;
             color: var(--sienna); opacity: 1; margin-bottom: 16px;
         }
@@ -309,7 +309,7 @@
         }
         .band-text { position: relative; z-index: 1; max-width: 860px; }
         .band-text p {
-            font-family: 'Alliance', system-ui, sans-serif;
+            font-family: 'Mona Sans', system-ui, sans-serif;
             font-weight: 300; font-style: italic;
             font-size: clamp(38px, 5.2vw, 68px);
             color: var(--cream); margin: 0;
@@ -349,8 +349,8 @@
         }
         .market-tag {
             display: inline-flex; align-items: center; gap: 10px;
-            font-family: 'Alliance', system-ui, sans-serif;
-            font-size: 11px; font-weight: 400;
+            font-family: 'Mona Sans', system-ui, sans-serif;
+            font-size: 13px; font-weight: 400;
             letter-spacing: 0.18em; text-transform: uppercase;
             color: var(--sienna); margin-bottom: 22px;
         }
@@ -360,15 +360,15 @@
             background: var(--sienna); opacity: 0.7; flex-shrink: 0;
         }
         .market-row h3 {
-            font-family: 'Alliance', system-ui, sans-serif;
+            font-family: 'Mona Sans', system-ui, sans-serif;
             font-weight: 300; font-size: clamp(26px, 3vw, 40px);
             color: var(--cream); margin: 0;
             line-height: 1.18; letter-spacing: -0.015em;
         }
         .market-row ul { margin: 0; padding: 0; list-style: none; }
         .market-row ul li {
-            font-family: 'Alliance', system-ui, sans-serif;
-            font-size: 13px; font-weight: 400;
+            font-family: 'Mona Sans', system-ui, sans-serif;
+            font-size: 15px; font-weight: 400;
             letter-spacing: 0.05em;
             color: var(--muted);
             padding: 12px 0;
@@ -409,7 +409,7 @@
             line-height: 1.88; max-width: 440px;
         }
         .contact-email {
-            font-family: 'Alliance', system-ui, sans-serif;
+            font-family: 'Mona Sans', system-ui, sans-serif;
             font-weight: 300;
             font-size: clamp(28px, 3.8vw, 50px);
             color: var(--sienna);
@@ -433,45 +433,38 @@
             margin-bottom: 24px;
         }
         .footer-logo {
-            font-family: 'Alliance', system-ui, sans-serif;
+            font-family: 'Mona Sans', system-ui, sans-serif;
             font-size: 15px; color: var(--cream); margin-bottom: 10px;
             letter-spacing: 0.04em;
         }
         .footer-brand p {
-            font-family: 'Alliance', system-ui, sans-serif;
-            font-size: 13px; font-weight: 400;
+            font-family: 'Mona Sans', system-ui, sans-serif;
+            font-size: 15px; font-weight: 400;
             color: var(--muted); line-height: 1.8; margin: 0;
         }
         .footer-col { display: flex; flex-direction: column; gap: 10px; }
         .footer-col-label {
-            font-family: 'Alliance', system-ui, sans-serif;
-            font-size: 10px; font-weight: 400;
+            font-family: 'Mona Sans', system-ui, sans-serif;
+            font-size: 12px; font-weight: 400;
             letter-spacing: 0.22em; text-transform: uppercase;
             color: var(--dim); margin-bottom: 5px;
         }
         .footer-col a, .footer-col span {
-            font-family: 'Alliance', system-ui, sans-serif;
-            font-size: 13px; color: var(--muted);
+            font-family: 'Mona Sans', system-ui, sans-serif;
+            font-size: 15px; color: var(--muted);
             transition: color 0.2s;
         }
         .footer-col a:hover { color: var(--cream); }
         .footer-bottom {
             display: flex; justify-content: space-between;
-            font-family: 'Alliance', system-ui, sans-serif;
-            font-size: 11px; font-weight: 300;
+            font-family: 'Mona Sans', system-ui, sans-serif;
+            font-size: 13px; font-weight: 300;
             letter-spacing: 0.08em; color: var(--dim);
         }
 
         /* ── Reveals ── */
-        .reveal {
-            opacity: 0; transform: translateY(18px);
-            transition: opacity 0.82s ease, transform 0.82s ease;
-        }
+        .reveal { opacity: 1; transform: none; }
         .reveal.visible { opacity: 1; transform: none; }
-        .d1 { transition-delay: 0.12s; }
-        .d2 { transition-delay: 0.26s; }
-        .d3 { transition-delay: 0.42s; }
-        .d4 { transition-delay: 0.60s; }
 
         /* ── Film grain overlay ── */
         body::before {
@@ -482,28 +475,11 @@
             background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='256' height='256'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='256' height='256' filter='url(%23n)'/%3E%3C/svg%3E");
         }
 
-        /* ── Hero entrance animations ── */
-        @keyframes rise { from { transform: translateY(16px); } to { transform: translateY(0); } }
-
-        .hero-content .label {
-            animation: fadein 0.9s ease 0.35s both;
-        }
-        .hero-content h1 {
-            animation: fadein 1.1s ease 0.55s both, rise 1.1s cubic-bezier(0.22, 1, 0.36, 1) 0.55s both;
-        }
-        .hero-content .hero-sub {
-            animation: fadein 0.9s ease 0.82s both, rise 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.82s both;
-        }
-        .hero-content .hero-cta {
-            animation: fadein 0.9s ease 1.06s both;
-        }
-
         /* ── Hero corner brackets ── */
         .hero-corners {
             position: absolute;
             inset: 90px clamp(24px, 5vw, 80px) 60px;
             pointer-events: none;
-            animation: fadein 3.5s ease 2s both;
         }
         .hero-corner {
             position: absolute; width: 22px; height: 22px;
@@ -614,7 +590,7 @@
         <div class="hero-content">
             <div class="label">Geospatial Intelligence</div>
             <h1>See everything.<br><em>Know anything.</em></h1>
-            <p class="hero-sub">Ask questions about satellite imagery in plain English. Get answers in seconds, not months.</p>
+            <p class="hero-sub">Type a question about any satellite image. Get a real answer in seconds.</p>
             <div class="hero-cta">
                 <a class="btn btn-primary" href="#demo">try the demo →</a>
                 <a class="btn btn-ghost" href="#contact">request access</a>
@@ -650,7 +626,7 @@
                     <div class="label reveal">Capabilities</div>
                     <h2 class="reveal d1">What it does.</h2>
                 </div>
-                <p class="section-sub reveal d2">No GIS background required. Point it at any satellite or aerial imagery and start asking questions.</p>
+                <p class="section-sub reveal d2">No GIS degree needed. Drop in any image and start asking.</p>
             </div>
             <div class="cap-grid">
                 <div class="cap-card reveal d1">
@@ -690,7 +666,7 @@
                     <div class="cap-body">
                         <div class="cap-num">005</div>
                         <h3>Location Intelligence</h3>
-                        <p>Search for features — solar panels, unpaved roads, water bodies — across any region.</p>
+                        <p>Search for features like solar panels, unpaved roads, and water bodies across any region.</p>
                     </div>
                 </div>
                 <div class="cap-card reveal d4">
@@ -751,7 +727,7 @@
                 <div class="market-row reveal d2">
                     <div class="market-left">
                         <div class="market-tag">Agriculture</div>
-                        <h3>Field-level intelligence<br>at scale.</h3>
+                        <h3>Field-level intelligence<br>across your whole operation.</h3>
                     </div>
                     <div class="market-right">
                         <ul>
@@ -764,7 +740,7 @@
                 <div class="market-row reveal d3" style="border-bottom: 1px solid var(--border-lt);">
                     <div class="market-left">
                         <div class="market-tag">Climate &amp; ESG</div>
-                        <h3>Measurable evidence<br>for what matters.</h3>
+                        <h3>Numbers you can<br>actually report on.</h3>
                     </div>
                     <div class="market-right">
                         <ul>
@@ -787,7 +763,7 @@
             <div class="demo-wrap reveal d2">
                 <div class="demo-text">
                     <h3>GeoGuessr Benchmark</h3>
-                    <p>The model predicts geographic location from street-level imagery — a proxy for how it reasons about place from visual context alone.</p>
+                    <p>We tested the model on GeoGuessr. Give it a street-level photo and it tells you where in the world it was taken.</p>
                     <div><a class="btn btn-primary" href="https://geoguessr.locamage.com" target="_blank">try it →</a></div>
                 </div>
                 <div class="demo-img">
@@ -804,7 +780,7 @@
             <div class="section" id="contact">
                 <div class="label reveal">Access</div>
                 <h2 class="reveal d1">Private beta.</h2>
-                <p class="reveal d2">Research, commercial, and custom deployments available.</p>
+                <p class="reveal d2">We work with research teams, companies, and anyone who needs a custom setup.</p>
                 <a class="contact-email reveal d3" href="mailto:pinak@locamage.com">pinak@locamage.com</a>
             </div>
         </div>
@@ -814,7 +790,7 @@
         <div class="footer-grid">
             <div class="footer-brand">
                 <div class="footer-logo">Locamage</div>
-                <p>Geospatial intelligence<br>for everyone.</p>
+                <p>Satellite imagery<br>made easy to use.</p>
             </div>
             <div class="footer-col">
                 <div class="footer-col-label">Product</div>
