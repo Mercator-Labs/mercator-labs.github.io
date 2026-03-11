@@ -548,6 +548,25 @@
         /* ── Parallax will-change ── */
         .hero-img, .hero-tint, .hero-vignette { will-change: transform; }
 
+        /* ── Hamburger (hidden on desktop) ── */
+        .nav-hamburger {
+            display: none;
+            flex-direction: column; gap: 5px;
+            background: none; border: none; cursor: pointer; padding: 4px;
+            z-index: 201;
+        }
+        .nav-hamburger span {
+            display: block; width: 22px; height: 1px;
+            background: var(--cream);
+            transition: transform 0.25s, opacity 0.25s;
+        }
+        .nav-hamburger.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+        .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+        .nav-hamburger.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+        /* ── Carousel dots (mobile only) ── */
+        .cap-dots { display: none; }
+
         /* ── Mobile ── */
         @media (max-width: 768px) {
             .hero-img { background-image: url("bg-mobile.webp"); }
@@ -557,11 +576,20 @@
             h3 { font-size: 19px; }
             .hero-sub { font-size: 17px; max-width: 100%; margin-bottom: 28px; }
 
-            nav {
-                padding: 16px 20px;
+            /* Nav hamburger */
+            .nav-hamburger { display: flex; }
+            .nav-links {
+                display: none;
+                position: fixed; inset: 0; z-index: 200;
+                background: rgba(11,9,4,0.97);
+                flex-direction: column; align-items: center; justify-content: center;
+                gap: 36px;
             }
-            .nav-links { gap: 20px; }
-            .nav-links a { font-size: 12px; }
+            .nav-links.open { display: flex; }
+            .nav-links a { font-size: 26px; letter-spacing: 0.14em; color: var(--muted); }
+            .nav-links a:hover { color: var(--cream); }
+
+            nav { padding: 16px 20px; }
 
             .hero { padding: 0 20px 56px; }
             .hero-telemetry { display: none; }
@@ -577,29 +605,62 @@
             }
             .section-sub { max-width: 100%; font-size: 17px; }
 
-            .cap-grid { grid-template-columns: 1fr; }
+            /* Capabilities carousel */
+            .cap-grid {
+                display: flex;
+                overflow-x: scroll;
+                scroll-snap-type: x mandatory;
+                scroll-padding: 0 20px;
+                gap: 10px;
+                background: transparent;
+                -ms-overflow-style: none; scrollbar-width: none;
+                margin: 0 -20px; padding: 0 20px 4px;
+            }
+            .cap-grid::-webkit-scrollbar { display: none; }
+            .cap-card {
+                flex: 0 0 80vw;
+                scroll-snap-align: start;
+                border: 1px solid var(--border);
+            }
+            .cap-dots {
+                display: flex; justify-content: center; gap: 7px;
+                margin-top: 18px;
+            }
+            .cap-dot {
+                width: 5px; height: 5px; border-radius: 50%;
+                background: var(--dim); transition: background 0.2s;
+                cursor: pointer;
+            }
+            .cap-dot.active { background: var(--sienna); }
 
-            .market-row {
-                grid-template-columns: 1fr;
-                gap: 24px;
-                padding: 28px 0;
-            }
+            /* Markets accordion */
+            .market-row { grid-template-columns: 1fr; padding: 0; }
             .market-left {
-                padding-right: 0;
-                border-right: none;
-                border-bottom: 1px solid var(--border);
-                padding-bottom: 24px;
+                padding: 24px 0;
+                padding-right: 0; border-right: none;
+                display: flex; flex-direction: column; cursor: pointer;
             }
-            .market-right { padding-left: 0; }
+            .market-left-header {
+                display: flex; justify-content: space-between; align-items: flex-start;
+            }
+            .market-toggle-icon {
+                color: var(--sienna); font-size: 22px; line-height: 1;
+                flex-shrink: 0; margin-left: 16px; margin-top: 2px;
+                transition: transform 0.3s;
+            }
+            .market-row.open .market-toggle-icon { transform: rotate(45deg); }
+            .market-right {
+                padding-left: 0;
+                max-height: 0; overflow: hidden;
+                transition: max-height 0.38s ease, padding 0.38s ease;
+            }
+            .market-row.open .market-right { max-height: 400px; padding-bottom: 24px; }
 
             .demo-wrap { grid-template-columns: 1fr; }
             .demo-text { padding: 32px 24px; }
             .demo-img { min-height: 220px; }
 
-            .footer-grid {
-                grid-template-columns: 1fr 1fr;
-                gap: 28px;
-            }
+            .footer-grid { grid-template-columns: 1fr 1fr; gap: 28px; }
             .footer-brand { grid-column: 1 / -1; }
 
             .btn-ghost { margin-left: 0; }
@@ -627,6 +688,9 @@
             <li><a href="#demo">Demo</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
+        <button class="nav-hamburger" aria-label="Open menu">
+            <span></span><span></span><span></span>
+        </button>
     </nav>
 
     <div class="hero">
@@ -764,8 +828,13 @@
             <div class="market-list">
                 <div class="market-row reveal">
                     <div class="market-left">
-                        <div class="market-tag">Defense &amp; Intelligence</div>
-                        <h3>Persistent monitoring.<br>Rapid exploitation.</h3>
+                        <div class="market-left-header">
+                            <div>
+                                <div class="market-tag">Defense &amp; Intelligence</div>
+                                <h3>Persistent monitoring.<br>Rapid exploitation.</h3>
+                            </div>
+                            <span class="market-toggle-icon">+</span>
+                        </div>
                     </div>
                     <div class="market-right">
                         <ul>
@@ -777,8 +846,13 @@
                 </div>
                 <div class="market-row reveal d1">
                     <div class="market-left">
-                        <div class="market-tag">Insurance &amp; Risk</div>
-                        <h3>Underwrite faster.<br>Price more accurately.</h3>
+                        <div class="market-left-header">
+                            <div>
+                                <div class="market-tag">Insurance &amp; Risk</div>
+                                <h3>Underwrite faster.<br>Price more accurately.</h3>
+                            </div>
+                            <span class="market-toggle-icon">+</span>
+                        </div>
                     </div>
                     <div class="market-right">
                         <ul>
@@ -790,8 +864,13 @@
                 </div>
                 <div class="market-row reveal d2">
                     <div class="market-left">
-                        <div class="market-tag">Agriculture</div>
-                        <h3>Field-level intelligence<br>across your whole operation.</h3>
+                        <div class="market-left-header">
+                            <div>
+                                <div class="market-tag">Agriculture</div>
+                                <h3>Field-level intelligence<br>across your whole operation.</h3>
+                            </div>
+                            <span class="market-toggle-icon">+</span>
+                        </div>
                     </div>
                     <div class="market-right">
                         <ul>
@@ -803,8 +882,13 @@
                 </div>
                 <div class="market-row reveal d3" style="border-bottom: 1px solid var(--border-lt);">
                     <div class="market-left">
-                        <div class="market-tag">Climate &amp; ESG</div>
-                        <h3>Numbers you can<br>actually report on.</h3>
+                        <div class="market-left-header">
+                            <div>
+                                <div class="market-tag">Climate &amp; ESG</div>
+                                <h3>Numbers you can<br>actually report on.</h3>
+                            </div>
+                            <span class="market-toggle-icon">+</span>
+                        </div>
                     </div>
                     <div class="market-right">
                         <ul>
@@ -1043,6 +1127,60 @@
             new ResizeObserver(resize).observe(cvs);
             resize();
             draw();
+        })();
+    </script>
+
+    <script>
+        // ── Mobile hamburger menu ──
+        (function () {
+            var hamburger = document.querySelector('.nav-hamburger');
+            var navLinks  = document.querySelector('.nav-links');
+            hamburger.addEventListener('click', function () {
+                hamburger.classList.toggle('open');
+                navLinks.classList.toggle('open');
+            });
+            navLinks.querySelectorAll('a').forEach(function (a) {
+                a.addEventListener('click', function () {
+                    hamburger.classList.remove('open');
+                    navLinks.classList.remove('open');
+                });
+            });
+        })();
+
+        // ── Capabilities carousel dots (mobile only) ──
+        (function () {
+            if (window.innerWidth > 768) return;
+            var grid  = document.querySelector('.cap-grid');
+            var cards = grid.querySelectorAll('.cap-card');
+            var dotsEl = document.createElement('div');
+            dotsEl.className = 'cap-dots';
+            cards.forEach(function (_, i) {
+                var dot = document.createElement('div');
+                dot.className = 'cap-dot' + (i === 0 ? ' active' : '');
+                dot.addEventListener('click', function () {
+                    grid.scrollTo({ left: cards[i].offsetLeft - 20, behavior: 'smooth' });
+                });
+                dotsEl.appendChild(dot);
+            });
+            grid.parentNode.insertBefore(dotsEl, grid.nextSibling);
+            grid.addEventListener('scroll', function () {
+                var idx = Math.round(grid.scrollLeft / (grid.scrollWidth / cards.length));
+                dotsEl.querySelectorAll('.cap-dot').forEach(function (dot, i) {
+                    dot.classList.toggle('active', i === idx);
+                });
+            }, { passive: true });
+        })();
+
+        // ── Markets accordion (mobile only) ──
+        (function () {
+            if (window.innerWidth > 768) return;
+            document.querySelectorAll('.market-row').forEach(function (row) {
+                var left = row.querySelector('.market-left');
+                left.addEventListener('click', function () {
+                    var isOpen = row.classList.toggle('open');
+                    row.querySelector('.market-toggle-icon').textContent = isOpen ? '−' : '+';
+                });
+            });
         })();
     </script>
 
