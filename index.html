@@ -8,8 +8,8 @@
     <style>
         @font-face {
             font-family: 'Mona Sans';
-            src: url('MonaSansVF[wdth,wght,opsz,ital].woff2') format('woff2 supports variations'),
-                 url('MonaSansVF[wdth,wght,opsz,ital].woff2') format('woff2');
+            src: url('fonts/MonaSansVF[wdth,wght,opsz,ital].woff2') format('woff2 supports variations'),
+                 url('fonts/MonaSansVF[wdth,wght,opsz,ital].woff2') format('woff2');
             font-weight: 100 900;
             font-stretch: 75% 125%;
             font-display: swap;
@@ -73,12 +73,12 @@
         }
         .hero-img {
             position: absolute; inset: 0;
-            background: url("bg.webp") center/cover;
+            background: url("img/bg.webp") center/cover;
             filter: brightness(0.55) saturate(0.55) sepia(0.25);
             animation: drift 36s ease-in-out alternate infinite;
         }
         @media (max-width: 768px) {
-            .hero-img { background-image: url("bg-mobile.webp"); }
+            .hero-img { background-image: url("img/bg-mobile.webp"); }
         }
         @keyframes drift { from { transform: scale(1.07); } to { transform: scale(1.0); } }
 
@@ -576,7 +576,7 @@
 
         /* ── Mobile ── */
         @media (max-width: 768px) {
-            .hero-img { background-image: url("bg-mobile.webp"); }
+            .hero-img { background-image: url("img/bg-mobile.webp"); }
 
             h1 { font-size: 42px; }
             h2 { font-size: 30px; }
