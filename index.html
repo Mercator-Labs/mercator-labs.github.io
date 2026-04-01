@@ -46,7 +46,7 @@
             position: fixed; top: 0; left: 0; right: 0; z-index: 100;
             padding: 16px var(--pad);
             display: flex; justify-content: space-between; align-items: center;
-            background: rgba(1,1,2,.92); backdrop-filter: blur(20px);
+            background: rgba(1,1,2,.96);
             border-bottom: 1px solid var(--stroke);
             transition: transform .5s var(--ease);
         }
@@ -70,12 +70,11 @@
             animation: drift 36s ease-in-out alternate infinite;
             will-change: transform;
         }
-        .hero-tint { position: absolute; inset: 0; background: linear-gradient(145deg,rgba(22,100,240,.06) 0%,transparent 100%); will-change: transform; }
+        .hero-tint { position: absolute; inset: 0; background: linear-gradient(145deg,rgba(22,100,240,.06) 0%,transparent 100%); }
         .hero-vignette {
             position: absolute; inset: 0;
             background: linear-gradient(to right,rgba(1,1,2,.88) 0%,rgba(1,1,2,.60) 35%,rgba(1,1,2,.15) 65%,transparent 100%),
                         linear-gradient(to top,var(--bg) 0%,rgba(1,1,2,.15) 50%,transparent 100%);
-            will-change: transform;
         }
         @keyframes drift { from { transform: scale(1.07); } to { transform: scale(1); } }
 
@@ -85,13 +84,12 @@
             color: rgba(22,100,240,.45); text-align: right;
             border: 1px solid var(--stroke);
             padding: 16px 20px;
-            background: rgba(1,1,2,.6);
-            backdrop-filter: blur(8px);
+            background: rgba(1,1,2,.82);
         }
         .hero-telemetry .tv { color: rgba(22,100,240,.80); }
         .acq-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); animation: pulse 2.5s ease-in-out infinite; }
         @keyframes pulse { 0%,100% { opacity: .6; transform: scale(1); } 50% { opacity: .2; transform: scale(1.4); } }
-        .hero-bar { position: absolute; bottom: 0; left: 0; right: 0; z-index: 1; padding: 14px var(--pad); display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--stroke); font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); background: rgba(1,1,2,.5); backdrop-filter: blur(8px); }
+        .hero-bar { position: absolute; bottom: 0; left: 0; right: 0; z-index: 1; padding: 14px var(--pad); display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--stroke); font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); background: rgba(1,1,2,.75); }
         .hero-bar-status { display: flex; align-items: center; gap: 8px; color: rgba(22,100,240,.7); }
 
         .hero-content { position: relative; z-index: 1; max-width: 680px; text-align: left; }
@@ -308,8 +306,8 @@
         </div>
         <div class="hero-content">
             <div class="label">Geospatial Intelligence</div>
-            <h1>See everything.<br><em>Know anything.</em></h1>
-            <p class="hero-sub">Type a question about any satellite image. Get a real answer in seconds.</p>
+            <h1>Ask anything.<br><em>See anywhere.</em></h1>
+            <p class="hero-sub">Drop in any satellite image and ask a question. Get a real answer in seconds.</p>
             <div class="hero-cta">
                 <a class="btn btn-primary" href="#demo"><span class="br-tl"></span><span class="br-br"></span>Try the Demo →</a>
                 <a class="btn btn-ghost" href="#contact"><span class="br-tl"></span><span class="br-br"></span>Request Access</a>
@@ -706,11 +704,13 @@
                 ctx.fillStyle = vm; ctx.fillRect(0, 0, W, H);
                 ctx.globalCompositeOperation = 'source-over';
                 t++;
-                requestAnimationFrame(draw);
+                if (visible) requestAnimationFrame(draw);
             }
 
+            let visible = false;
+            new IntersectionObserver(([e]) => { visible = e.isIntersecting; if (visible) draw(); }, { threshold: 0.01 }).observe(wrap);
             new ResizeObserver(resize).observe(cvs);
-            resize(); draw();
+            resize();
         })();
     </script>
 
