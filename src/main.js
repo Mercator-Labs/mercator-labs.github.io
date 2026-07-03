@@ -1,10 +1,6 @@
 const $ = (s, c = document) => c.querySelector(s);
 const $$ = (s, c = document) => [...c.querySelectorAll(s)];
 
-$$('.query-strip, .approach-list, .usecase-list').forEach(group =>
-    [...group.children].forEach((el, i) => el.style.setProperty('--reveal-index', Math.min(i, 6)))
-);
-
 if ('IntersectionObserver' in window) {
     document.documentElement.classList.add('reveal-ready');
     const io = new IntersectionObserver(entries => entries.forEach(e => {
@@ -12,7 +8,10 @@ if ('IntersectionObserver' in window) {
         e.target.classList.add('visible');
         io.unobserve(e.target);
     }), { threshold: 0.08 });
-    $$('.reveal').forEach(el => io.observe(el));
+    $$('.reveal').forEach(el => {
+        if (el.getBoundingClientRect().bottom < 0) el.classList.add('visible');
+        else io.observe(el);
+    });
 } else {
     $$('.reveal').forEach(el => el.classList.add('visible'));
 }
@@ -28,8 +27,10 @@ if ('IntersectionObserver' in window) {
 
 {
     const stage = $('.slider-stage');
+    const hint = $('.slider-hint');
     let pct = 50;
     let dragging = false;
+    let touch = null;
 
     const set = value => {
         pct = Math.max(2, Math.min(98, value));
@@ -41,92 +42,81 @@ if ('IntersectionObserver' in window) {
         const rect = stage.getBoundingClientRect();
         set((x - rect.left) / rect.width * 100);
     };
-    const end = () => {
+    const begin = e => {
+        dragging = true;
+        stage.classList.add('is-dragging');
+        stage.setPointerCapture(e.pointerId);
+        hint.classList.add('seen');
+    };
+    const reset = () => {
         dragging = false;
+        touch = null;
         stage.classList.remove('is-dragging');
     };
 
     stage.addEventListener('pointerdown', e => {
-        dragging = true;
-        stage.classList.add('is-dragging');
-        stage.setPointerCapture(e.pointerId);
+        if (e.pointerType === 'touch') {
+            touch = { x: e.clientX, y: e.clientY };
+            return;
+        }
+        begin(e);
         setFromX(e.clientX);
         e.preventDefault();
     });
-    stage.addEventListener('pointermove', e => { if (dragging) setFromX(e.clientX); });
-    stage.addEventListener('pointerup', end);
-    stage.addEventListener('pointercancel', end);
+    stage.addEventListener('pointermove', e => {
+        if (dragging) return setFromX(e.clientX);
+        if (!touch) return;
+        const dx = e.clientX - touch.x;
+        const dy = e.clientY - touch.y;
+        if (Math.abs(dx) > 8 && Math.abs(dx) > Math.abs(dy)) {
+            begin(e);
+            setFromX(e.clientX);
+        } else if (Math.abs(dy) > 8) {
+            touch = null;
+        }
+    });
+    stage.addEventListener('pointerup', e => {
+        if (touch && !dragging) {
+            setFromX(e.clientX);
+            hint.classList.add('seen');
+        }
+        reset();
+    });
+    stage.addEventListener('pointercancel', reset);
     stage.addEventListener('keydown', e => {
         const step = e.shiftKey ? 10 : 4;
         const moves = { ArrowLeft: pct - step, ArrowDown: pct - step, ArrowRight: pct + step, ArrowUp: pct + step, Home: 2, End: 98 };
         if (e.key in moves) {
             set(moves[e.key]);
+            hint.classList.add('seen');
             e.preventDefault();
         }
     });
     set(pct);
 }
 
-{
-    const viewport = $('.cap-viewport');
-    const cards = $$('.cap-card', viewport);
-    const prev = $('.cap-prev');
-    const next = $('.cap-next');
-    const dots = document.createElement('div');
-    let active = 0;
-    let swipeX = null;
+if ('IntersectionObserver' in window) {
+    const navLinks = $$('.nav-links a');
+    const targets = navLinks.map(a => $(a.hash)).filter(Boolean);
+    const spy = new IntersectionObserver(() => {
+        const line = innerHeight * .4;
+        let active = -1;
+        targets.forEach((t, i) => { if (t.getBoundingClientRect().top <= line) active = i; });
+        navLinks.forEach((a, i) => a.classList.toggle('active', i === active));
+    }, { rootMargin: '-10% 0px -50% 0px' });
+    targets.forEach(t => spy.observe(t));
+}
 
-    dots.className = 'cap-dots';
-    dots.setAttribute('role', 'group');
-    dots.setAttribute('aria-label', 'Capability slide navigation');
-    viewport.setAttribute('aria-live', 'polite');
-
-    const update = () => {
-        prev.disabled = active === 0;
-        next.disabled = active === cards.length - 1;
-        cards.forEach((card, i) => {
-            card.classList.toggle('active', i === active);
-            card.toggleAttribute('hidden', i !== active);
-            card.setAttribute('aria-hidden', i !== active);
-        });
-        [...dots.children].forEach((dot, i) => {
-            dot.classList.toggle('active', i === active);
-            dot.setAttribute('aria-current', i === active);
-        });
-    };
-    const goTo = i => {
-        active = Math.max(0, Math.min(cards.length - 1, i));
-        update();
-    };
-
-    cards.forEach((card, i) => {
-        card.setAttribute('aria-label', `Capability ${i + 1} of ${cards.length}`);
-        const dot = document.createElement('button');
-        dot.type = 'button';
-        dot.className = 'cap-dot';
-        dot.setAttribute('aria-label', `Go to capability ${i + 1}`);
-        dot.addEventListener('click', () => goTo(i));
-        dots.appendChild(dot);
-    });
-    $('.cap-dot-slot').appendChild(dots);
-
-    prev.addEventListener('click', () => goTo(active - 1));
-    next.addEventListener('click', () => goTo(active + 1));
-    viewport.addEventListener('keydown', e => {
-        if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
-            goTo(e.key === 'ArrowLeft' ? active - 1 : active + 1);
-            e.preventDefault();
-        }
-    });
-    viewport.addEventListener('pointerdown', e => { swipeX = e.clientX; });
-    viewport.addEventListener('pointerup', e => {
-        if (swipeX == null) return;
-        const delta = e.clientX - swipeX;
-        swipeX = null;
-        if (Math.abs(delta) >= 48) goTo(delta > 0 ? active - 1 : active + 1);
-    });
-    viewport.addEventListener('pointercancel', () => { swipeX = null; });
-    update();
+if ('IntersectionObserver' in window) {
+    const links = $$('.rail-link');
+    const jobs = $$('.job');
+    const spy = new IntersectionObserver(() => {
+        const line = innerHeight * .35;
+        let active = 0;
+        jobs.forEach((job, i) => { if (job.getBoundingClientRect().top <= line) active = i; });
+        links.forEach((link, j) => link.classList.toggle('active', j === active));
+    }, { rootMargin: '-10% 0px -55% 0px' });
+    jobs.forEach(job => spy.observe(job));
 }
 
 {

@@ -1,0 +1,101 @@
+@layer base {
+    @font-face {
+        font-family: "Mona Sans";
+        src: url("../fonts/MonaSansVF[wdth,wght,opsz,ital].woff2") format("woff2 supports variations"),
+             url("../fonts/MonaSansVF[wdth,wght,opsz,ital].woff2") format("woff2");
+        font-weight: 100 900;
+        font-stretch: 75% 125%;
+        font-display: swap;
+    }
+
+    @font-face {
+        font-family: "Alliance No2";
+        src: url("../fonts/AllianceNo2-Regular.woff2") format("woff2");
+        font-weight: 400;
+        font-display: swap;
+    }
+
+    :root {
+        --ease: cubic-bezier(.15, 1, .3, 1);
+        --ease-fast: cubic-bezier(.25, 1, .5, 1);
+        --pad: clamp(24px, 5vw, 80px);
+        --sy: clamp(64px, 7vw, 100px);
+    }
+
+    *,
+    *::before,
+    *::after {
+        box-sizing: border-box;
+    }
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        @apply m-0 bg-canvas font-sans text-[19px] text-measured antialiased;
+        font-optical-sizing: auto;
+        font-kerning: normal;
+        text-wrap: pretty;
+    }
+
+    ::selection {
+        background: rgba(22, 100, 240, .16);
+    }
+
+    a {
+        @apply no-underline;
+    }
+
+    [id] {
+        scroll-margin-top: 72px;
+    }
+
+    h1,
+    h2,
+    h3 {
+        @apply m-0 font-display text-ink;
+        text-wrap: balance;
+    }
+
+    h1 {
+        font-size: clamp(44px, 5.8vw, 96px);
+        font-weight: 400;
+        line-height: .97;
+        letter-spacing: -.04em;
+        margin-bottom: 26px;
+        margin-left: -.02em;
+    }
+
+    h1 em {
+        @apply text-signal;
+        font-style: normal;
+    }
+
+    h2 {
+        font-size: clamp(36px, 5vw, 64px);
+        font-weight: 400;
+        line-height: 1.08;
+        letter-spacing: -.03em;
+        margin-bottom: 20px;
+    }
+
+    h3 {
+        font-size: 24px;
+        font-weight: 500;
+        line-height: 1.2;
+        letter-spacing: .005em;
+        margin-bottom: 10px;
+    }
+}
+
+@layer utilities {
+    :focus-visible {
+        outline: 2px solid var(--color-signal);
+        outline-offset: 3px;
+    }
+
+    .btn:focus-visible {
+        outline-offset: 4px;
+    }
+}

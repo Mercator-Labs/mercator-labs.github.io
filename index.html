@@ -4,24 +4,25 @@
     <script>document.documentElement.classList.add('js');</script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Locamage — AI for Satellite Imagery</title>
-    <meta name="description" content="Ask plain-language questions about satellite imagery and get useful answers in seconds. No GIS expertise needed." />
+    <title>Locamage · AI for Satellite Imagery</title>
+    <meta name="description" content="Locamage reads optical, radar, hyperspectral, elevation, and street-level imagery with one model and answers questions in plain language. No GIS expertise needed." />
     <link rel="canonical" href="https://locamage.com/" />
     <meta name="theme-color" content="#f8fafc" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://locamage.com/" />
     <meta property="og:site_name" content="Locamage" />
-    <meta property="og:title" content="Locamage — AI for Satellite Imagery" />
-    <meta property="og:description" content="Ask plain-language questions about satellite imagery and get useful answers in seconds. No GIS expertise needed." />
-    <meta property="og:image" content="https://locamage.com/img/og.webp" />
+    <meta property="og:title" content="Locamage · AI for Satellite Imagery" />
+    <meta property="og:description" content="Locamage reads optical, radar, hyperspectral, elevation, and street-level imagery with one model and answers questions in plain language. No GIS expertise needed." />
+    <meta property="og:image" content="https://locamage.com/img/og.jpg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Locamage — AI for Satellite Imagery" />
-    <meta name="twitter:description" content="Ask plain-language questions about satellite imagery and get useful answers in seconds. No GIS expertise needed." />
-    <meta name="twitter:image" content="https://locamage.com/img/og.webp" />
-    <link rel="preload" as="image" href="img/ftw/2_orig.webp" type="image/webp" />
-    <link rel="preload" as="image" href="img/ftw/2_masked.webp" type="image/webp" />
+    <meta name="twitter:title" content="Locamage · AI for Satellite Imagery" />
+    <meta name="twitter:description" content="Locamage reads optical, radar, hyperspectral, elevation, and street-level imagery with one model and answers questions in plain language. No GIS expertise needed." />
+    <meta name="twitter:image" content="https://locamage.com/img/og.jpg" />
+    <link rel="icon" type="image/svg+xml" href="img/favicon.svg" />
+    <link rel="preload" as="image" href="img/ftw/2_orig.webp" type="image/webp" media="(min-width: 769px)" />
+    <link rel="preload" as="image" href="img/ftw/2_masked.webp" type="image/webp" media="(min-width: 769px)" />
     <link rel="stylesheet" href="dist/styles.css" />
     <script src="src/analytics.js" defer></script>
     <script src="src/main.js" defer></script>
@@ -31,219 +32,191 @@
     <a class="skip-link" href="#main-content">Skip to main content</a>
     <nav aria-label="Main navigation">
         <a class="nav-logo" href="#">Locamage</a>
-        <ul class="nav-links">
-            <li><a href="#capabilities">What It Answers</a></li>
-            <li><a href="#approach">Approach</a></li>
-            <li><a href="#markets">Use Cases</a></li>
-            <li><a href="#demo">Demo</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-        <button class="nav-toggle" aria-label="Open navigation" aria-expanded="false" aria-controls="mobile-nav">
-            <span></span><span></span><span></span>
-        </button>
+        <div class="nav-right">
+            <ul class="nav-links">
+                <li><a href="#jobs">What It Does</a></li>
+                <li><a href="#markets">Use Cases</a></li>
+                <li><a href="#model">The Model</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <a class="btn btn-primary nav-cta" href="https://calendar.app.google/j5f5RdS1qkEQQXXA6" target="_blank" rel="noopener noreferrer">Book a Call</a>
+            <button class="nav-toggle" aria-label="Open navigation" aria-expanded="false" aria-controls="mobile-nav">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
     </nav>
     <div class="mobile-nav" id="mobile-nav" role="dialog" aria-modal="true" aria-label="Navigation" aria-hidden="true">
         <ul>
-            <li><a class="mobile-nav-link" href="#capabilities">What It Answers</a></li>
-            <li><a class="mobile-nav-link" href="#approach">Approach</a></li>
+            <li><a class="mobile-nav-link" href="#jobs">What It Does</a></li>
             <li><a class="mobile-nav-link" href="#markets">Use Cases</a></li>
-            <li><a class="mobile-nav-link" href="#demo">Demo</a></li>
+            <li><a class="mobile-nav-link" href="#model">The Model</a></li>
             <li><a class="mobile-nav-link" href="#contact">Contact</a></li>
+            <li><a class="mobile-nav-link" href="https://calendar.app.google/j5f5RdS1qkEQQXXA6" target="_blank" rel="noopener noreferrer">Book a Call</a></li>
         </ul>
     </div>
 
     <main id="main-content">
     <section class="hero">
-        <div class="hero-slider">
-            <div class="slider-stage" role="slider" tabindex="0" aria-label="Compare harvest image with field predictions" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" aria-valuetext="50% predictions visible">
-                <img class="slider-before" src="img/ftw/2_orig.webp" alt="Sentinel-2 harvest composite, Iowa 2024" fetchpriority="high" />
-                <div class="slider-after-wrap">
-                    <img class="slider-after" src="img/ftw/2_masked.webp" alt="Harvest image with AI field boundary predictions overlaid" />
-                </div>
-                <div class="slider-divider" aria-hidden="true">
-                    <div class="slider-handle">‹ ›</div>
-                </div>
-                <span class="slider-lbl slider-lbl-l">Harvest</span>
-                <span class="slider-lbl slider-lbl-r">Predictions</span>
+        <div class="hero-copy">
+            <div class="hero-head-row">
+                <div class="label">Answers from orbit</div>
+                <span class="hero-coord">Any sensor · Any resolution · Any revisit</span>
             </div>
-            <div class="slider-meta" aria-hidden="true">
-                <span>Sentinel-2 · Iowa · Oct 2024</span>
-                <span>Field boundaries · 10 m/px</span>
-            </div>
-        </div>
-        <div class="hero-content">
-            <div class="label">Satellite Image Answers</div>
             <h1>Ask a place<br><em>what changed.</em></h1>
-            <p class="hero-sub">Upload satellite imagery and ask plain-language questions. Locamage turns pixels into answers people can use.</p>
+            <p class="hero-sub">Point Locamage at imagery from any satellite, plane, drone, or street camera and ask in the words you already use. It reads the scene and answers.</p>
             <div class="hero-cta">
-                <a class="btn btn-primary" href="#demo">Try the Demo →</a>
-                <a class="btn btn-ghost" href="#contact">Request Access</a>
+                <a class="btn btn-primary" href="https://calendar.app.google/j5f5RdS1qkEQQXXA6" target="_blank" rel="noopener noreferrer">Book a Call →</a>
+                <a class="btn btn-ghost" href="#contact">Ask for Access</a>
             </div>
+            <p class="hero-reads">Reads<span class="rd b-blue">optical</span><span class="rd b-teal">radar</span><span class="rd b-violet">hyperspectral</span><span class="rd b-ochre">elevation</span></p>
+        </div>
+        <div class="hero-slider">
+                <div class="slider-stage" role="slider" tabindex="0" aria-label="Compare harvest image with field predictions" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" aria-valuetext="50% predictions visible">
+                    <img class="slider-before" src="img/ftw/2_orig.webp" alt="Sentinel-2 harvest composite, Iowa 2024" fetchpriority="high" />
+                    <div class="slider-after-wrap">
+                        <img class="slider-after" src="img/ftw/2_masked.webp" alt="Harvest image with AI field boundary predictions overlaid" />
+                    </div>
+                    <div class="slider-divider" aria-hidden="true">
+                        <div class="slider-handle">‹ ›</div>
+                    </div>
+                    <span class="slider-lbl slider-lbl-l">Harvest</span>
+                    <span class="slider-lbl slider-lbl-r">Predictions</span>
+                    <span class="slider-hint" aria-hidden="true">‹ drag to compare ›</span>
+                </div>
+                <div class="meta-strip slider-meta">
+                    <span>Sentinel-2 · Iowa · Oct 2024</span>
+                    <span>Field boundaries · 10 m/px</span>
+                </div>
         </div>
     </section>
 
-    <section class="query-strip" aria-label="How Locamage turns imagery into answers">
-        <div class="query-item reveal">
-            <span class="query-step">Question</span>
-            <strong>Which fields changed since last week?</strong>
-            <span>Ask in the same language a field team would use.</span>
+    <section class="section" id="jobs">
+        <div class="section-intro">
+            <div>
+                <div class="label">What it does</div>
+                <h2 class="reveal">What people ask it.</h2>
+            </div>
+            <p class="section-sub reveal">Five jobs cover most of it. They all run on the same model, whatever sensor took the picture.</p>
         </div>
-        <div class="query-item reveal">
-            <span class="query-step">Evidence</span>
-            <strong>Compare imagery, dates, and overlays.</strong>
-            <span>Use visual context without forcing a GIS workflow.</span>
-        </div>
-        <div class="query-item reveal">
-            <span class="query-step">Answer</span>
-            <strong>Return the areas worth inspecting.</strong>
-            <span>Surface the visible change and why it matters.</span>
-        </div>
-        <div class="query-item reveal">
-            <span class="query-step">Action</span>
-            <strong>Send the next team to the right place.</strong>
-            <span>Turn the result into a map, note, or review queue.</span>
-        </div>
-    </section>
-
-    <section class="section" id="capabilities">
-        <div class="cap-header">
-            <div class="cap-heading">
-                <h2 class="reveal">Questions it can answer.</h2>
-                <p class="section-sub reveal">Ask a satellite image about damage, growth, risk, or change.</p>
+        <div class="jobs">
+            <nav class="job-rail reveal" aria-label="Jobs">
+                <a class="rail-link" href="#job-map">Map</a>
+                <a class="rail-link" href="#job-monitor">Monitor</a>
+                <a class="rail-link" href="#job-find">Find</a>
+                <a class="rail-link" href="#job-compare">Compare</a>
+                <a class="rail-link" href="#job-measure">Measure</a>
+            </nav>
+            <div class="job-list">
+                <article class="job reveal" id="job-map" aria-label="Map">
+                    <div class="meta-strip job-meta"><span>Map</span><span>OpenEarthMap · Abancay · Buildings</span></div>
+                    <div class="job-body">
+                        <div class="job-text">
+                            <h3>What is on this land?</h3>
+                            <p>It draws the map from the pixels up. Fields, rooftops, roads, forest, and water, each one labeled and measured, ready to check against a permit, a claim, or a plan.</p>
+                            <div class="job-runs"><span>Runs on</span><span class="rd b-blue">optical</span><span class="rd b-teal">radar</span><span class="rd b-ochre">elevation</span></div>
+                        </div>
+                        <div class="job-img"><img srcset="img/job_map-760.webp 760w, img/job_map-1024.webp 1024w" sizes="(max-width: 768px) 100vw, 380px" src="img/job_map-760.webp" alt="Aerial view of Abancay with every building picked out in blue" loading="lazy" /></div>
+                    </div>
+                </article>
+                <article class="job reveal" id="job-monitor" aria-label="Monitor">
+                    <div class="meta-strip job-meta"><span>Monitor</span><span>OpenEarthMap · Aachen · Agriculture</span></div>
+                    <div class="job-body">
+                        <div class="job-text">
+                            <h3>Are the crops okay?</h3>
+                            <p>It reads every field the way an agronomist would, all of them at once, week after week. Stress and patchy growth get flagged while there is still time to act.</p>
+                            <div class="job-runs"><span>Runs on</span><span class="rd b-blue">optical</span><span class="rd b-violet">hyperspectral</span><span class="rd b-green">revisits</span></div>
+                        </div>
+                        <div class="job-img"><img srcset="img/job_monitor-760.webp 760w, img/job_monitor-1000.webp 1000w" sizes="(max-width: 768px) 100vw, 380px" src="img/job_monitor-760.webp" alt="Aerial view of farmland around Aachen with agricultural parcels marked in blue" loading="lazy" /></div>
+                    </div>
+                </article>
+                <article class="job reveal" id="job-find" aria-label="Find">
+                    <div class="meta-strip job-meta"><span>Find</span><span>OpenEarthMap · Lohur · Water</span></div>
+                    <div class="job-body">
+                        <div class="job-text">
+                            <h3>Where are all the solar farms?</h3>
+                            <p>Describe what you are hunting for. Solar panels, new construction, ponds, bare ground. It checks every acre in the region and marks the hits.</p>
+                            <div class="job-runs"><span>Runs on</span><span class="rd b-blue">optical</span><span class="rd b-ochre">elevation</span></div>
+                        </div>
+                        <div class="job-img"><img srcset="img/job_find-760.webp 760w, img/job_find-1024.webp 1024w" sizes="(max-width: 768px) 100vw, 380px" src="img/job_find-760.webp" alt="Aerial view of Lohur with every water body marked in blue" loading="lazy" /></div>
+                    </div>
+                </article>
+                <article class="job reveal" id="job-compare" aria-label="Compare">
+                    <div class="meta-strip job-meta"><span>Compare</span><span>OSCD · Sentinel-2 · 10 m/px</span></div>
+                    <div class="job-body">
+                        <div class="job-text">
+                            <h3>What changed since March?</h3>
+                            <p>Give it two passes over the same ground and it outlines what actually moved. Clouds and shifting light get ignored, so the difference you see is real.</p>
+                            <div class="job-runs"><span>Runs on</span><span class="rd b-blue">optical</span><span class="rd b-teal">radar</span><span class="rd b-green">revisits</span></div>
+                        </div>
+                        <div class="job-img"><img srcset="img/job_compare-760.webp 760w, img/job_compare-1070.webp 1070w" sizes="(max-width: 768px) 100vw, 380px" src="img/job_compare-760.webp" alt="Two-date Sentinel-2 city scene with detected changes highlighted in blue" loading="lazy" /></div>
+                    </div>
+                </article>
+                <article class="job reveal" id="job-measure" aria-label="Measure">
+                    <div class="meta-strip job-meta"><span>Measure</span><span>OpenEarthMap · Lodzkie · Tree cover</span></div>
+                    <div class="job-body">
+                        <div class="job-text">
+                            <h3>How much forest came back?</h3>
+                            <p>Some questions end in a number. Planted acres, standing timber, water surface, new pavement. It measures from orbit and shows where the number came from.</p>
+                            <div class="job-runs"><span>Runs on</span><span class="rd b-blue">optical</span><span class="rd b-violet">hyperspectral</span><span class="rd b-ochre">elevation</span></div>
+                        </div>
+                        <div class="job-img"><img srcset="img/job_measure-760.webp 760w, img/job_measure-1024.webp 1024w" sizes="(max-width: 768px) 100vw, 380px" src="img/job_measure-760.webp" alt="Aerial view in Lodzkie with tree cover marked in blue" loading="lazy" /></div>
+                    </div>
+                </article>
             </div>
         </div>
-        <div class="cap-showcase reveal">
-            <div class="cap-carousel">
-                <div class="cap-viewport" id="capability-carousel" tabindex="0" aria-label="Capability examples">
-                    <div class="cap-grid">
-                        <div class="cap-card">
-                            <div class="cap-img"><img src="img/disaster.webp" alt="Satellite view of damaged buildings and blocked roads" loading="lazy" /></div>
-                            <div class="cap-body">
-                                <div>
-                                    <h3>What was damaged?</h3>
-                                    <p>Find damaged buildings, blocked roads, and hard-hit areas after a flood, storm, or wildfire.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="cap-card">
-                            <div class="cap-img"><img src="img/agriculture.webp" alt="Satellite imagery of agricultural fields for crop health monitoring" loading="lazy" /></div>
-                            <div class="cap-body">
-                                <div>
-                                    <h3>Are crops healthy?</h3>
-                                    <p>Spot field stress, irrigation problems, and uneven growth before sending people into the field.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="cap-card">
-                            <div class="cap-img"><img src="img/urban.webp" alt="Satellite view of city grid and building density" loading="lazy" /></div>
-                            <div class="cap-body">
-                                <div>
-                                    <h3>Where is the city growing?</h3>
-                                    <p>Map new buildings, road expansion, and land-use changes across fast-moving urban areas.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="cap-card">
-                            <div class="cap-img"><img src="img/climate_cap.webp" alt="Satellite imagery showing environmental change and deforestation" loading="lazy" /></div>
-                            <div class="cap-body">
-                                <div>
-                                    <h3>What is changing over time?</h3>
-                                    <p>Track deforestation, erosion, water movement, wildfire exposure, and other visible shifts.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="cap-card">
-                            <div class="cap-img"><img src="img/location.webp" alt="Satellite imagery used to detect geographic features across a region" loading="lazy" /></div>
-                            <div class="cap-body">
-                                <div>
-                                    <h3>Where are the features?</h3>
-                                    <p>Search across an area for solar panels, roads, water bodies, bare ground, or other visible patterns.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="cap-card">
-                            <div class="cap-img"><img src="img/change.webp" alt="Before-and-after satellite imagery showing land use changes" loading="lazy" /></div>
-                            <div class="cap-body">
-                                <div>
-                                    <h3>What changed between dates?</h3>
-                                    <p>Compare two images to find new construction, land shifts, storm damage, and recovery progress.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="cap-slide-nav">
-                    <div class="cap-controls" aria-label="Capability carousel controls">
-                        <button class="cap-arrow cap-prev" type="button" aria-label="Previous capability" aria-controls="capability-carousel">‹</button>
-                        <button class="cap-arrow cap-next" type="button" aria-label="Next capability" aria-controls="capability-carousel">›</button>
-                    </div>
-                    <div class="cap-dot-slot"></div>
-                </div>
-            </div>
-            <aside class="usecase-panel" id="markets" aria-labelledby="usecase-heading">
-                <h3 id="usecase-heading">Where it helps.</h3>
-                <div class="usecase-list">
-                    <div class="usecase-item">
-                        <strong>Security</strong>
-                        <span>Activity, buildings, roads, remote areas.</span>
-                    </div>
-                    <div class="usecase-item">
-                        <strong>Insurance</strong>
-                        <span>Wildfire exposure, flood damage, property condition.</span>
-                    </div>
-                    <div class="usecase-item">
-                        <strong>Agriculture</strong>
-                        <span>Crop health, yield risk, seasonal change.</span>
-                    </div>
-                    <div class="usecase-item">
-                        <strong>Climate</strong>
-                        <span>Deforestation, vegetation signals, coasts, wetlands.</span>
-                    </div>
-                </div>
-            </aside>
+        <div class="market-block reveal" id="markets" aria-labelledby="market-heading">
+            <h3 id="market-heading">Who runs on it.</h3>
+            <p class="market-prose"><a class="mk b-blue" href="#job-compare">Security teams</a> watch places nobody can drive to. <a class="mk b-ochre" href="#job-map">Insurers</a> price a storm before the adjusters land. <a class="mk b-green" href="#job-monitor">Growers</a> catch stress while it is still cheap to fix. <a class="mk b-teal" href="#job-measure">Climate researchers</a> keep a running record of forests, coasts, and wetlands.</p>
         </div>
     </section>
 
     <div class="band">
         <div class="band-img"></div>
         <div class="band-text">
-            <p>Every satellite image has a question inside it.<br><span class="accent">Ask it in plain language.</span></p>
+            <p>Somewhere in orbit there is a picture of your problem.<br><span class="accent">Ask it what happened.</span></p>
         </div>
     </div>
 
-    <section class="section approach" id="approach">
+    <section class="section model" id="model">
         <div class="section-intro">
             <div>
-                <h2 class="reveal">Why this is possible now.</h2>
+                <div class="label">The Model</div>
+                <h2 class="reveal">One model.<br>Any sensor.</h2>
             </div>
-            <p class="section-sub reveal">Earth AI is getting useful because it no longer treats each image as a one-off snapshot. The strongest systems combine sources, compare time, and turn pixels into a clear next step.</p>
+            <p class="section-sub reveal">Most Earth AI is built for one satellite and falls apart on the next. Locamage was built the other way. One model takes any sensor, any resolution, one frame or a decade of them.</p>
         </div>
-        <div class="approach-list">
-            <div class="approach-row reveal">
-                <h3>More than one sensor.</h3>
-                <p>Useful answers can draw from optical imagery, radar, elevation, climate context, maps, and other Earth data.</p>
+        <div class="manifest reveal">
+            <div class="meta-strip manifest-head">
+                <span>Signal path</span>
+                <span>Any resolution · Any revisit</span>
             </div>
-            <div class="approach-row reveal">
-                <h3>Time is part of the image.</h3>
-                <p>The question is often what appeared, disappeared, expanded, dried out, flooded, or burned between dates.</p>
-            </div>
-            <div class="approach-row reveal">
-                <h3>The output should be usable.</h3>
-                <p>Teams need to know where to look, what changed, and what to do next, not just receive another model layer.</p>
+            <div class="converge">
+                <div class="converge-in">
+                    <div class="sensor b-blue"><i></i><div><strong>Optical</strong><span>street level to whole-country mosaics</span></div></div>
+                    <div class="sensor b-teal"><i></i><div><strong>Radar</strong><span>structure through cloud and darkness</span></div></div>
+                    <div class="sensor b-violet"><i></i><div><strong>Hyperspectral</strong><span>hundreds of bands past visible light</span></div></div>
+                    <div class="sensor b-ochre"><i></i><div><strong>Elevation</strong><span>terrain read as part of the scene</span></div></div>
+                    <div class="sensor b-green"><i></i><div><strong>Revisits</strong><span>the same acre, week after week</span></div></div>
+                    <div class="sensor b-magenta sensor-unseen"><i></i><div><strong>Unseen sensors</strong><span>new feeds read on arrival, no retraining</span></div></div>
+                </div>
+                <div class="converge-bus" aria-hidden="true"></div>
+                <div class="converge-node"><strong>One model</strong><span>reads them together</span></div>
+                <div class="converge-link" aria-hidden="true"></div>
+                <div class="converge-out">
+                    <span class="out-label">Answer</span>
+                    <strong>An answer in plain words.</strong>
+                    <span>Where to look, what changed, what to do about it.</span>
+                </div>
             </div>
         </div>
-    </section>
-
-    <section class="section" id="demo">
-        <h2 class="reveal">Try a public demo.</h2>
-        <div class="demo-wrap reveal">
-            <div class="demo-text">
-                <h3>Image-location demo</h3>
-                <p>Upload a street-level image and Locamage estimates where it was taken. This demo is smaller than the satellite workflow, but it shows the same visual reasoning.</p>
-                <div><a class="btn btn-primary" href="https://geoguessr.locamage.com" target="_blank" rel="noopener noreferrer">Try It →</a></div>
+        <div class="found reveal">
+            <div>
+                <span class="found-label">What it is</span>
+                <p>A geospatial foundation model is one big model trained on imagery from across the whole planet. Every sensor, every scale, every season, until reading Earth is something it simply knows how to do. After that, new jobs stop needing new models. You describe the job and it applies what it already learned.</p>
             </div>
-            <div class="demo-img">
-                <img src="img/demo.webp" alt="Street-level imagery used for geolocation analysis" loading="lazy" />
+            <div>
+                <span class="found-label">What it enables</span>
+                <p>A sensor that launches tomorrow works the day it comes online. Radar from last night, a street photo from this morning, and an elevation map land in one answer. Questions that used to take a mapping team a quarter get typed before a meeting. And decades of archive imagery stop being storage and become something you can interrogate.</p>
             </div>
         </div>
     </section>
@@ -251,14 +224,14 @@
     <section class="contact" id="contact">
         <div class="contact-grid">
             <div class="contact-left">
-                <h2 class="reveal">Request private beta access.</h2>
-                <p class="reveal">Tell us what imagery you work with and what questions you need answered. We will reply with the right setup for your use case.</p>
+                <div class="label">Contact</div>
+                <h2 class="reveal">Ask for access.</h2>
+                <p class="reveal">Tell us what imagery you have and what you need to know from it. You will get a straight answer about whether Locamage fits.</p>
             </div>
             <div class="contact-right reveal">
                 <a class="contact-email" href="mailto:pinak@locamage.com">pinak@locamage.com</a>
                 <div class="contact-actions">
-                    <a class="btn btn-primary" href="mailto:pinak@locamage.com?subject=Locamage%20access%20request">Email Your Use Case →</a>
-                    <a class="btn btn-ghost" href="https://calendar.app.google/j5f5RdS1qkEQQXXA6" target="_blank" rel="noopener noreferrer">Book a Call</a>
+                    <a class="btn btn-primary" href="https://calendar.app.google/j5f5RdS1qkEQQXXA6" target="_blank" rel="noopener noreferrer">Book a Call →</a>
                     <button class="btn btn-ghost copy-email" type="button" data-copy-email="pinak@locamage.com">Copy Email</button>
                 </div>
                 <div class="contact-status" aria-live="polite"></div>
@@ -271,14 +244,13 @@
         <div class="footer-grid">
             <div class="footer-brand">
                 <div class="footer-logo">Locamage</div>
-                <p>Ask satellite imagery<br>plain-language questions.</p>
+                <p>Satellite imagery,<br>answered.</p>
             </div>
             <div class="footer-col">
                 <div class="footer-col-label">Product</div>
-                <a href="#capabilities">What it answers</a>
-                <a href="#approach">Approach</a>
+                <a href="#jobs">What it does</a>
                 <a href="#markets">Use cases</a>
-                <a href="#demo">Demo</a>
+                <a href="#model">The model</a>
             </div>
             <div class="footer-col">
                 <div class="footer-col-label">Company</div>
@@ -293,6 +265,7 @@
         </div>
         <div class="footer-bottom">
             <span>&copy; 2026 Locamage</span>
+            <div class="footer-bands" aria-hidden="true"><i class="b-blue"></i><i class="b-teal"></i><i class="b-violet"></i><i class="b-ochre"></i><i class="b-green"></i><i class="b-magenta"></i></div>
             <span>37°46′N · 122°25′W</span>
         </div>
     </footer>
