@@ -443,23 +443,11 @@
         @apply text-[15px] leading-[1.5] text-measured;
     }
 
-    .found {
-        @apply grid;
-        grid-template-columns: 1fr 1fr;
-        gap: clamp(28px, 4vw, 56px);
-        max-width: 1160px;
-        margin-top: 56px;
-    }
-
-    .found-label {
-        @apply mb-3 block text-[13px] font-medium uppercase text-signal;
-        letter-spacing: .1em;
-    }
-
-    .found p {
-        @apply m-0 text-measured;
-        font-size: 20px;
-        line-height: 1.7;
+    .model-prose {
+        @apply m-0 max-w-[940px] text-measured;
+        font-size: clamp(21px, 2.2vw, 28px);
+        line-height: 1.62;
+        margin-top: 48px;
     }
 
     .contact {
@@ -562,6 +550,24 @@
     }
 
     .footer-col a:hover {
+        @apply text-white;
+    }
+
+    .footer-credits {
+        @apply max-w-[940px] text-[13px] leading-[1.7] text-[#76859a];
+        margin-bottom: 24px;
+    }
+
+    .footer-credits p {
+        @apply m-0;
+    }
+
+    .footer-credits a {
+        @apply text-[#b7c2d0] underline transition-colors duration-200;
+        text-underline-offset: 3px;
+    }
+
+    .footer-credits a:hover {
         @apply text-white;
     }
 

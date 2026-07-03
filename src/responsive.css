@@ -140,11 +140,6 @@
         grid-template-columns: minmax(0, 1fr) minmax(240px, 320px);
     }
 
-    .found {
-        grid-template-columns: 1fr;
-        gap: 24px;
-    }
-
     .contact-grid {
         grid-template-columns: 1fr;
     }
@@ -241,12 +236,10 @@
         padding-top: 14px;
     }
 
-    .found {
-        margin-top: 40px;
-    }
-
-    .found p {
-        font-size: 18px;
+    .model-prose {
+        margin-top: 36px;
+        font-size: 19px;
+        line-height: 1.7;
     }
 
     .market-block {

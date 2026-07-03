@@ -5,6 +5,7 @@ import hashlib
 import io
 import json
 import pathlib
+import time
 import urllib.request
 
 from PIL import Image, ImageFilter
@@ -13,6 +14,14 @@ API = "https://datasets-server.huggingface.co/rows?dataset={ds}&config=default&s
 IMG = pathlib.Path(__file__).resolve().parent.parent / "img"
 SIGNAL = (22, 100, 240)
 JOBS = [("map", 8, .10, .40, 1.0), ("monitor", 7, .25, .70, 1.0), ("find", 6, .01, .12, .05), ("measure", 5, .20, .60, 1.0)]
+ALLOW = {
+    "aachen", "bielefeld", "dortmund", "dortmunt", "dusseldorf", "koeln", "muenster",
+    "christchurch", "chisinau", "ngaoundere", "kinshasa", "pointenoire", "accra",
+    "monrovia", "niamey", "mahe", "dar es salaam", "zanzibar", "kampala",
+    "buenos aires", "rosario", "melbourne", "coxs bazar", "dhaka", "santiago",
+    "bogota", "svaneti", "western", "al qurnah", "dowa", "ulaanbaatar", "maputo",
+    "baybay", "san tome", "sao tome", "chiangmai", "lohur", "kagera", "tonga", "soriano",
+}
 
 
 def fetch(url):
@@ -58,8 +67,9 @@ for row in oscd:
         break
 
 rows = []
-for off in (0, 50, 1400, 1450):
+for off in (0, 50, 700, 750, 1400, 1450, 2000, 2050, 2600):
     rows += [r["row"] for r in json.loads(fetch(API.format(ds="EVER-Z%2Fopen_earth_map", off=off, n=50)))["rows"]]
+    time.sleep(1)
 rows.sort(key=lambda r: hashlib.md5(r["image_name"].encode()).hexdigest())
 
 used = set()
@@ -68,7 +78,7 @@ for job, cls, lo, hi, edge in JOBS:
     for row in rows:
         name = row["image_name"]
         city = " ".join(name.rsplit(".", 1)[0].split("_")[:-1]).title()
-        if city in used:
+        if city.lower() not in ALLOW or city in used:
             continue
         if name not in masks:
             masks[name] = load(row["mask"]).convert("L")
@@ -76,7 +86,10 @@ for job, cls, lo, hi, edge in JOBS:
         frac = m.histogram()[255] / (m.width * m.height)
         if lo <= frac <= hi and border_frac(m) <= edge:
             image = load(row["image"]).convert("RGB")
-            manifest[job] = {"srcset": save(f"job_{job}", tint(image, m, 3)), "source": f"OpenEarthMap · {city.title()}", "frac": round(frac, 3)}
+            void = image.convert("L").point(lambda v: 255 * (v < 6)).histogram()[255] / (m.width * m.height)
+            if void > .02:
+                continue
+            manifest[job] = {"srcset": save(f"job_{job}", tint(image, m, 3)), "source": f"OpenEarthMap · {city}", "frac": round(frac, 3)}
             used.add(city)
             break
 
