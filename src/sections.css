@@ -17,6 +17,7 @@
 
     .hero-copy {
         @apply relative z-[1] flex flex-col justify-center;
+        max-width: 760px;
         padding: 110px var(--pad) 56px;
         padding-right: clamp(28px, 4vw, 64px);
     }
@@ -32,7 +33,8 @@
     }
 
     .hero-slider {
-        @apply relative z-[1] flex flex-col border-l border-hairline bg-white;
+        @apply relative z-[1] flex flex-col border border-hairline-strong bg-white;
+        margin: 88px var(--pad) 48px 0;
     }
 
     .slider-stage {
@@ -113,7 +115,7 @@
     }
 
     .slider-meta {
-        @apply border-t border-hairline bg-white;
+        @apply border-t border-hairline bg-canvas;
     }
 
     .hero-sub {
@@ -199,11 +201,18 @@
         line-height: 1.68;
     }
 
+    /* Kickers sit on the survey ground in these sections; signal misses AA
+       there, signal-hover passes. */
+    #jobs .label,
+    .contact .label {
+        @apply text-signal-hover;
+    }
+
     .jobs {
         @apply grid items-start;
         grid-template-columns: 190px minmax(0, 1fr);
         gap: clamp(24px, 3.2vw, 56px);
-        max-width: 1240px;
+        max-width: 1320px;
     }
 
     .job-rail {
@@ -212,7 +221,7 @@
     }
 
     .rail-link {
-        @apply border-l-2 border-hairline py-[9px] pl-4 pr-2 font-display text-[20px] text-coordinate;
+        @apply border-l-2 border-hairline-strong py-[9px] pl-4 pr-2 font-display text-[20px] text-coordinate;
         letter-spacing: -.015em;
         transition: color .2s var(--ease-fast), border-color .2s var(--ease-fast);
     }
@@ -227,15 +236,15 @@
 
     .job-list {
         @apply flex min-w-0 flex-col;
-        gap: 16px;
+        gap: 20px;
     }
 
     .job {
-        @apply border border-hairline bg-white;
+        @apply border border-hairline-strong bg-white;
     }
 
     .job-meta {
-        @apply border-b border-hairline;
+        @apply border-b border-hairline bg-canvas;
     }
 
     .job-meta span:first-child {
@@ -307,32 +316,43 @@
     }
 
     .mk:hover {
-        color: var(--band);
+        @apply text-ink;
+        background: color-mix(in srgb, var(--band) 14%, transparent);
     }
 
+    /* The sheet: full-strength model output with a title block. The imagery
+       is the artifact; the white plate carries the words, like the corner
+       block on a printed map sheet. */
     .band {
-        @apply relative flex items-center overflow-hidden border-t border-hairline bg-survey;
-        min-height: 360px;
-        padding: 0 var(--pad);
+        @apply relative flex items-end overflow-hidden border-t border-hairline bg-survey;
+        min-height: clamp(460px, 58vh, 620px);
+        padding: 96px var(--pad) 56px;
+    }
+
+    .band::before {
+        background: repeating-linear-gradient(90deg, rgba(255, 255, 255, .8) 0 1px, transparent 1px 112px);
     }
 
     .band-img {
         @apply absolute inset-0;
-        background:
-            linear-gradient(90deg, rgba(248, 250, 252, .93) 0%, rgba(248, 250, 252, .55) 52%, rgba(248, 250, 252, .22) 100%),
-            url("../img/ftw/2_masked.webp") center/cover;
-        filter: saturate(.84);
+        background: url("../img/ftw/2_masked.webp") center/cover;
+        filter: saturate(.88);
     }
 
-    .band-text {
-        @apply relative z-[1] max-w-[980px];
+    .band-plate {
+        @apply relative z-[1] max-w-[640px] border border-hairline-strong bg-white;
     }
 
-    .band-text p {
+    .band-line {
         @apply m-0 font-display font-normal text-ink;
-        font-size: clamp(38px, 5.2vw, 72px);
-        line-height: 1.12;
-        letter-spacing: -.035em;
+        padding: 30px 34px 32px;
+        font-size: clamp(28px, 3.2vw, 44px);
+        line-height: 1.16;
+        letter-spacing: -.025em;
+    }
+
+    .band-meta {
+        @apply flex-wrap border-t border-hairline bg-canvas;
     }
 
     .model {
@@ -351,11 +371,11 @@
     }
 
     .manifest {
-        @apply border border-hairline bg-white;
+        @apply border border-hairline-strong bg-white;
     }
 
     .manifest-head {
-        @apply border-b border-hairline;
+        @apply border-b border-hairline bg-canvas;
     }
 
     .converge {
@@ -451,7 +471,7 @@
     }
 
     .contact {
-        @apply relative overflow-hidden border-t border-hairline bg-white;
+        @apply relative overflow-hidden border-t border-hairline bg-survey;
     }
 
     .contact-grid {
@@ -465,7 +485,7 @@
     }
 
     .contact-right {
-        @apply flex flex-col justify-center border-l border-hairline;
+        @apply flex flex-col justify-center border-l border-hairline bg-canvas;
         gap: 28px;
         padding: var(--sy) var(--pad);
     }

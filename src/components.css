@@ -1,7 +1,7 @@
 @layer components {
     body > nav {
         @apply fixed left-0 right-0 top-0 z-[100] flex items-center justify-between border-b border-hairline;
-        padding: 20px var(--pad);
+        padding: 16px var(--pad);
         background: rgba(255, 255, 255, .96);
         backdrop-filter: saturate(1.2) blur(12px);
         transition: transform .5s var(--ease), visibility 0s;

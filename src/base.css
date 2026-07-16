@@ -33,7 +33,7 @@
     }
 
     body {
-        @apply m-0 bg-canvas font-sans text-[19px] text-measured antialiased;
+        @apply m-0 bg-survey font-sans text-[19px] text-measured antialiased;
         font-optical-sizing: auto;
         font-kerning: normal;
         text-wrap: pretty;
