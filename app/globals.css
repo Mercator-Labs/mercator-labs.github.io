@@ -1,0 +1,91 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --font-sans: var(--font-mona), system-ui, sans-serif;
+  --font-heading: var(--font-alliance), var(--font-mona), system-ui, sans-serif;
+  --radius-*: initial;
+  --spacing-pad: clamp(1.5rem, 5vw, 5rem);
+  --spacing-sy: clamp(4rem, 7vw, 6.25rem);
+  --text-display: clamp(2.75rem, 5.8vw, 6rem);
+  --text-display--line-height: 0.97;
+  --text-display--letter-spacing: -0.04em;
+  --text-headline: clamp(2.25rem, 5vw, 4rem);
+  --text-headline--line-height: 1.08;
+  --text-headline--letter-spacing: -0.03em;
+  --text-prose: clamp(1.3rem, 2.2vw, 1.75rem);
+  --text-prose--line-height: 1.62;
+}
+
+:root {
+  --background: #e8eff7;
+  --foreground: #10141f;
+  --card: #fff;
+  --card-foreground: #10141f;
+  --popover: #fff;
+  --popover-foreground: #10141f;
+  --primary: #1664f0;
+  --primary-foreground: #fff;
+  --secondary: #f4f7fb;
+  --secondary-foreground: #10141f;
+  --muted: #f4f7fb;
+  --muted-foreground: #4f5f72;
+  --destructive: #be185d;
+  --border: #d1dce8;
+  --input: #a9bbce;
+  --ring: #1664f0;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    @apply scroll-smooth font-sans antialiased;
+  }
+  body {
+    @apply bg-background text-foreground text-pretty;
+  }
+  h1,
+  h2,
+  h3 {
+    @apply font-heading text-balance;
+  }
+  [id] {
+    @apply scroll-mt-18;
+  }
+}
+
+@utility reveal {
+  @media (prefers-reduced-motion: no-preference) {
+    animation: reveal linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 40%;
+  }
+}
+
+@keyframes reveal {
+  from {
+    opacity: 0;
+    translate: 0 1rem;
+  }
+}

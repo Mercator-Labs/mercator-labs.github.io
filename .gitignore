@@ -1,8 +1,11 @@
+node_modules
+.next
+out
+next-env.d.ts
+*.tsbuildinfo
+.DS_Store
 .agents
 .claude
 .impeccable
-node_modules
-tailwindcss
-.DS_Store
 *.md
 !README.md

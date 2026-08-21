@@ -11,7 +11,7 @@ import urllib.request
 from PIL import Image, ImageFilter
 
 API = "https://datasets-server.huggingface.co/rows?dataset={ds}&config=default&split=train&offset={off}&length={n}"
-IMG = pathlib.Path(__file__).resolve().parent.parent / "img"
+IMG = pathlib.Path(__file__).resolve().parent.parent / "public" / "img"
 SIGNAL = (22, 100, 240)
 JOBS = [("map", 8, .10, .40, 1.0), ("monitor", 7, .25, .70, 1.0), ("find", 6, .01, .12, .05), ("measure", 5, .20, .60, 1.0)]
 ALLOW = {
