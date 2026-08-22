@@ -32,17 +32,17 @@ export function Model() {
               <p className="mt-3 text-sm leading-relaxed text-accent-foreground/85">Plain words: where to look, what changed, and what to do about it.</p>
             </div>
           </Plate>
-          <div className="grid content-start gap-3 sm:grid-cols-2">
+          <ul className="flex flex-col divide-y divide-current/12 rounded-[2rem] border border-current/12 bg-current/5 px-6 md:rounded-[2.5rem] md:px-8">
             {inputs.map(([name, detail], i) => (
-              <div key={name} className="flex flex-col gap-3 rounded-2xl border border-current/12 bg-current/5 p-6 transition-colors hover:bg-current/10">
-                <div className="flex items-baseline justify-between gap-3">
-                  <span className="text-xl font-medium tracking-tight">{name}</span>
+              <li key={name} className="flex flex-1 flex-col justify-center gap-1 py-5 sm:flex-row sm:items-center sm:justify-between sm:gap-6">
+                <span className="flex items-baseline gap-4">
                   <span className="label text-current/40">{String(i + 1).padStart(2, "0")}</span>
-                </div>
-                <p className="text-sm leading-relaxed text-current/60">{detail}</p>
-              </div>
+                  <span className="text-xl font-medium tracking-tight">{name}</span>
+                </span>
+                <span className="text-sm leading-relaxed text-current/60 sm:text-right">{detail}</span>
+              </li>
             ))}
-          </div>
+          </ul>
         </div>
         <div className="wrap mt-14 grid gap-8 md:grid-cols-3 md:gap-10">
           {notes.map(([title, body]) => (
