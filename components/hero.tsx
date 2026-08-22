@@ -17,7 +17,7 @@ export function Hero() {
           <h1 className="display-hero mt-7">Ask any place <span className="text-accent">what changed.</span></h1>
           <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground md:text-xl">Point Locamage at imagery from any satellite, plane, drone, or street camera and ask in the words you already use. It reads the scene and answers.</p>
           <div className="mt-9 flex flex-wrap gap-3">
-            <a href="#access" className={cn(buttonVariants({ size: "lg" }))}>Ask for access<ArrowRightIcon /></a>
+            <a href="#access" className={cn(buttonVariants({ size: "lg" }))}>Request access<ArrowRightIcon /></a>
             <a href={calendar} target="_blank" rel="noopener noreferrer" className={cn(buttonVariants({ variant: "outline", size: "lg" }), "border-foreground/20")}>Book a call</a>
           </div>
           <p className="label mt-8 flex items-center gap-2 text-muted-foreground">Reads <SensorRotator /></p>

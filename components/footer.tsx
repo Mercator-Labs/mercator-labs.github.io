@@ -3,7 +3,7 @@ import { calendar, email, links, Wordmark } from "@/components/site"
 const groups: [string, string[][]][] = [
   ["Product", links],
   ["Sensors", ["Optical", "Radar", "Hyperspectral", "Elevation"].map((s) => [s, "#model"])],
-  ["Company", [["Ask for access", "#access"], ["Book a call", calendar], [email, `mailto:${email}`]]],
+  ["Company", [["Request access", "#access"], ["Book a call", calendar], [email, `mailto:${email}`]]],
 ]
 
 export function Footer() {

@@ -12,7 +12,7 @@ export function Cta() {
           <div className="scan-grid scan-floor absolute inset-x-[-30%] inset-y-0 opacity-40" />
         </div>
         <div className="relative">
-          <Intro dark kicker="Ask for access" title={<>Somewhere in orbit there is a picture of <span className="text-accent">your problem.</span></>}>Tell us what imagery you have and what you need to know from it. You will get a straight answer about whether Locamage fits.</Intro>
+          <Intro dark kicker="Request access" title={<>Somewhere in orbit there is a picture of <span className="text-accent">your problem.</span></>}>Tell us what imagery you have and what you need to know from it. You will get a straight answer about whether Locamage fits.</Intro>
           <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <a href={calendar} target="_blank" rel="noopener noreferrer" className={cn(buttonVariants({ size: "lg" }))}>Book a call<ArrowRightIcon /></a>
             <a href={`mailto:${email}`} className={cn(buttonVariants({ variant: "outline", size: "lg" }), "border-current/25 bg-transparent hover:bg-current/10 hover:text-current")}>{email}</a>

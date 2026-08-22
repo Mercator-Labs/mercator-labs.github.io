@@ -12,7 +12,7 @@ export function Nav() {
         </nav>
         <div className="flex items-center gap-2">
           <a href={calendar} target="_blank" rel="noopener noreferrer" className={cn(buttonVariants({ variant: "ghost" }), "max-sm:hidden")}>Book a call</a>
-          <a href="#access" className={cn(buttonVariants())}>Ask for access</a>
+          <a href="#access" className={cn(buttonVariants())}>Request access</a>
         </div>
       </div>
     </header>
