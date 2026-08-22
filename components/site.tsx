@@ -32,7 +32,7 @@ export function Intro({ kicker, title, children, dark }: { kicker: string; title
 export function Plate({ src, alt, className, children }: { src: string; alt: string; className?: string; children?: React.ReactNode }) {
   return (
     <div className={cn("relative overflow-hidden rounded-[2rem] bg-foreground md:rounded-[2.75rem]", className)}>
-      <img src={src} alt={alt} className="block w-full transition-transform duration-700 group-hover:scale-105" />
+      <img src={src} alt={alt} className="block w-full" />
       <div aria-hidden className="absolute inset-0 overflow-hidden">
         <div className="scan-grid scan-floor absolute inset-x-[-40%] top-[-10%] bottom-0" />
       </div>

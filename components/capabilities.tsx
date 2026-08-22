@@ -27,7 +27,7 @@ export function Capabilities() {
                   {j.sensors.map((s) => <li key={s} className="rounded-full border bg-card px-3 py-1 text-base font-medium text-foreground/70">{s}</li>)}
                 </ul>
               </div>
-              <div className="group relative">
+              <div className="relative">
                 <Plate src={`/img/job_${j.img}.webp`} alt={j.alt} className="md:rounded-[2.5rem]" />
                 <div className={cn("animate-float absolute -bottom-6 flex min-h-44 w-56 flex-col rounded-3xl p-5 shadow-2xl", flip ? "left-4 bg-accent text-accent-foreground md:-left-6" : "right-4 bg-card md:-right-6")}>
                   <div className="flex items-start justify-between gap-3">
