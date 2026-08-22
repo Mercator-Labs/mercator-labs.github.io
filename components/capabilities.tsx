@@ -13,7 +13,7 @@ const jobs: { verb: string; scope: string; q: string; body: string; sensors: str
 export function Capabilities() {
   return (
     <section id="capabilities" className="border-t bg-secondary/40 py-16 md:py-24">
-      <Intro kicker="What it does" title={<>Five questions cover <span className="text-muted-foreground">most of the work.</span></>}>They all run on the same model, whatever sensor took the picture.</Intro>
+      <Intro kicker="What it does" title={<>One model answers <span className="text-muted-foreground">every question, from every source.</span></>}>Map, monitor, find, compare, measure. The same model handles all of it, whatever satellite, plane, or drone took the picture.</Intro>
       <div className="mt-8 md:mt-12">
         {jobs.map((j, i) => {
           const flip = i % 2 === 1
