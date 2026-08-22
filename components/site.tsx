@@ -4,13 +4,10 @@ export const email = "pinak@locamage.com"
 export const calendar = "https://calendar.app.google/j5f5RdS1qkEQQXXA6"
 export const links = [["Capabilities", "#capabilities"], ["The model", "#model"]]
 
-export function Wordmark() {
+export function Wordmark({ className }: { className?: string }) {
   return (
-    <a href="#" className="flex items-center gap-2.5 text-base font-semibold tracking-tight">
-      <span aria-hidden className="relative flex size-6 items-center justify-center rounded-sm bg-primary before:absolute before:inset-x-0 before:top-1/2 before:h-px before:bg-primary-foreground/35 after:absolute after:inset-y-0 after:left-1/2 after:w-px after:bg-primary-foreground/35">
-        <span className="size-1.5 rounded-full bg-accent" />
-      </span>
-      Locamage
+    <a href="#" className={cn("shrink-0", className)}>
+      <img src="/logo.png" alt="Locamage" className="h-7 w-auto mix-blend-multiply md:h-8" />
     </a>
   )
 }
