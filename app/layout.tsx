@@ -1,26 +1,26 @@
 import type { Metadata, Viewport } from "next"
-import localFont from "next/font/local"
+import { Archivo, IBM_Plex_Mono } from "next/font/google"
 import "./globals.css"
 
-const mona = localFont({ src: "./fonts/MonaSans.woff2", variable: "--font-mona", weight: "100 900" })
-const alliance = localFont({ src: "./fonts/AllianceNo2.woff2", variable: "--font-alliance" })
+const archivo = Archivo({ subsets: ["latin"], variable: "--font-archivo", display: "swap" })
+const mono = IBM_Plex_Mono({ subsets: ["latin"], weight: ["400", "500"], variable: "--font-plex-mono", display: "swap" })
 
-const description = "Locamage reads optical, radar, hyperspectral, elevation, and street-level imagery with one model and answers questions in plain language. No GIS expertise needed."
+const description = "A universal geospatial foundation model. Point Locamage at imagery from any satellite, plane, or drone and ask in plain language. It reads the scene and answers."
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://locamage.com"),
-  title: "Locamage: The Universal Geospatial Foundational Model",
+  title: "Locamage: Ask any place what changed",
   description,
   alternates: { canonical: "/" },
-  openGraph: { type: "website", url: "/", siteName: "Locamage", title: "Locamage · AI for Satellite Imagery", description },
+  openGraph: { type: "website", url: "/", siteName: "Locamage", title: "Locamage: Ask any place what changed", description },
   twitter: { card: "summary_large_image" },
 }
 
-export const viewport: Viewport = { themeColor: "#ffffff" }
+export const viewport: Viewport = { colorScheme: "light", themeColor: "#fdfdfc" }
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className={`${mona.variable} ${alliance.variable}`}>
+    <html lang="en" className={`${archivo.variable} ${mono.variable}`}>
       <body>{children}</body>
     </html>
   )

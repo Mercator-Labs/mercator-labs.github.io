@@ -5,6 +5,8 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
+  --font-sans: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, monospace;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -17,31 +19,43 @@
   --color-secondary-foreground: var(--secondary-foreground);
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
   --color-destructive: var(--destructive);
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
-  --font-sans: var(--font-mona), system-ui, sans-serif;
-  --font-heading: var(--font-alliance), var(--font-mona), system-ui, sans-serif;
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
 }
 
 :root {
-  --background: #fff;
-  --foreground: #0a0a0a;
-  --card: #fff;
-  --card-foreground: #0a0a0a;
-  --popover: #fff;
-  --popover-foreground: #0a0a0a;
-  --primary: #1664f0;
-  --primary-foreground: #fff;
-  --secondary: #f4f6f9;
-  --secondary-foreground: #0a0a0a;
-  --muted: #f4f6f9;
-  --muted-foreground: #5b6573;
-  --destructive: #be185d;
-  --border: #e4e8ee;
-  --input: #e4e8ee;
+  color-scheme: light;
+  --background: oklch(0.994 0.0015 90);
+  --foreground: oklch(0.19 0.008 260);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.19 0.008 260);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.19 0.008 260);
+  --primary: oklch(0.19 0.008 260);
+  --primary-foreground: oklch(0.994 0.0015 90);
+  --secondary: oklch(0.968 0.002 90);
+  --secondary-foreground: oklch(0.19 0.008 260);
+  --muted: oklch(0.968 0.002 90);
+  --muted-foreground: oklch(0.505 0.008 260);
+  --accent: #1664f0;
+  --accent-foreground: oklch(0.994 0.0015 90);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.905 0.003 260);
+  --input: oklch(0.905 0.003 260);
   --ring: #1664f0;
+  --radius: 0.875rem;
+  --grid-line: oklch(0.19 0.008 260 / 8%);
 }
 
 @layer base {
@@ -57,24 +71,111 @@
   h1,
   h2,
   h3 {
-    @apply font-heading text-balance tracking-tight;
+    @apply text-balance;
   }
   [id] {
-    @apply scroll-mt-20;
+    @apply scroll-mt-16;
   }
 }
 
-@utility reveal {
-  @media (prefers-reduced-motion: no-preference) {
-    animation: reveal linear both;
-    animation-timeline: view();
-    animation-range: entry 0% entry 40%;
-  }
+@utility wrap {
+  @apply w-full px-6 md:px-10;
 }
 
-@keyframes reveal {
+@utility label {
+  @apply font-mono text-[0.6875rem] uppercase tracking-[0.14em];
+}
+
+@utility display-hero {
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  line-height: 1.03;
+  letter-spacing: -0.03em;
+  font-weight: 500;
+}
+
+@utility display-band {
+  font-size: clamp(1.95rem, 4.4vw, 3.5rem);
+  line-height: 1.06;
+  letter-spacing: -0.025em;
+  font-weight: 500;
+}
+
+@utility instrument-grid {
+  background-image: linear-gradient(to right, var(--grid-line) 1px, transparent 1px), linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+
+@utility scan-grid {
+  background-image: linear-gradient(to right, oklch(1 0 0 / 26%) 1px, transparent 1px), linear-gradient(to bottom, oklch(1 0 0 / 26%) 1px, transparent 1px);
+  background-size: 46px 46px;
+}
+
+@utility scan-floor {
+  transform: perspective(680px) rotateX(58deg) scale(1.9);
+  transform-origin: bottom center;
+  mask-image: linear-gradient(to top, black 12%, transparent 78%);
+}
+
+@utility animate-sweep {
+  animation: sweep-y 4.2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@utility animate-blink {
+  animation: blink 1.4s steps(1, end) infinite;
+}
+
+@utility animate-float {
+  animation: float-y 6s ease-in-out infinite;
+}
+
+@utility animate-roam {
+  animation: roam 7s ease-in-out infinite;
+}
+
+@keyframes sweep-y {
   from {
-    opacity: 0;
-    translate: 0 1rem;
+    transform: translateY(-120%);
+  }
+  to {
+    transform: translateY(820%);
+  }
+}
+
+@keyframes blink {
+  0%,
+  45% {
+    opacity: 1;
+  }
+  55%,
+  100% {
+    opacity: 0.2;
+  }
+}
+
+@keyframes float-y {
+  50% {
+    transform: translateY(-9px);
+  }
+}
+
+@keyframes roam {
+  0%,
+  8%,
+  92%,
+  100% {
+    transform: none;
+  }
+  46%,
+  54% {
+    transform: translate(-96px, -52px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-sweep,
+  .animate-blink,
+  .animate-float,
+  .animate-roam {
+    animation: none;
   }
 }
