@@ -1,115 +1,158 @@
+import { ArrowRightIcon, GlobeIcon, LeafIcon, type LucideIcon, MessageSquareIcon, PlusIcon, SatelliteIcon, ShieldIcon, SparklesIcon, SproutIcon, UmbrellaIcon } from "lucide-react"
 import { Compare } from "@/components/compare"
-import { CopyEmail } from "@/components/copy-email"
 import { Footer } from "@/components/footer"
-import { Jobs } from "@/components/jobs"
 import { Nav } from "@/components/nav"
-import { type Band, bands, Book, Chips, email, Intro, Kicker, Meta } from "@/components/site"
+import { Book, email, Heading, Placeholder } from "@/components/site"
 import { buttonVariants } from "@/components/ui/button"
-import { Card } from "@/components/ui/card"
 import { cn } from "@/lib/utils"
 
-const sensors: [Band, string, string][] = [
-  ["optical", "Optical", "street level to whole-country mosaics"],
-  ["radar", "Radar", "structure through cloud and darkness"],
-  ["hyperspectral", "Hyperspectral", "hundreds of bands past visible light"],
-  ["elevation", "Elevation", "terrain read as part of the scene"],
-  ["revisits", "Revisits", "the same acre, week after week"],
-  ["unseen", "Unseen sensors", "new feeds read on arrival, no retraining"],
+const features: [LucideIcon, string, string][] = [
+  [SatelliteIcon, "Any sensor", "Optical, radar, hyperspectral, elevation. One model reads them all, and new feeds on arrival with no retraining."],
+  [MessageSquareIcon, "Plain language", "Ask in the words you already use. You get an answer, not a layer to interpret."],
+  [SparklesIcon, "A few examples", "Mark a handful of the thing you track and it maps the rest in your vocabulary."],
+  [GlobeIcon, "Planet scale", "Trained on imagery of the whole Earth, so thin-mapped places read as clearly as surveyed ones."],
 ]
 
-function Mk({ className, ...props }: React.ComponentProps<"a">) {
-  return <a className={cn("font-medium text-foreground underline decoration-[3px] underline-offset-[7px] hover:bg-primary/10", className)} {...props} />
-}
+const jobs: [string, string, string, string, number][] = [
+  ["map", "What is on this land?", "Every rooftop, road, field, and pond, labeled and measured from the pixels up.", "Aerial view with every building picked out in blue", 1024],
+  ["monitor", "Are the crops okay?", "Every field read the way an agronomist would, all at once, week after week.", "Farmland with agricultural parcels marked in blue", 1000],
+  ["find", "Where are all the solar farms?", "Describe what you are hunting for. It checks every acre and marks the hits.", "City scene with every pond marked in blue", 1024],
+  ["compare", "What changed since March?", "Two dates or the whole archive, with clouds and shifting light ignored.", "Two-date satellite scene with detected changes highlighted", 1070],
+  ["measure", "How much forest came back?", "Planted acres, standing timber, water surface. Measured from orbit, with receipts.", "Aerial view with tree cover marked in blue", 1000],
+]
+
+const steps = [
+  ["Bring your imagery", "Satellite, plane, drone, or street camera. Any resolution, any revisit, or start from the open archives."],
+  ["Ask a question", "Type it the way you would ask a colleague. Mark a few examples if you are tracking something new."],
+  ["Act on the answer", "Where to look, what changed, and how much, with the pixels it came from."],
+]
+
+const industries: [LucideIcon, string, string][] = [
+  [ShieldIcon, "Security", "Watch places nobody can drive to, and know the moment something moves."],
+  [UmbrellaIcon, "Insurance", "Price a storm before the adjusters land, with damage mapped from the first clear pass."],
+  [SproutIcon, "Agriculture", "Catch crop stress while it is still cheap to fix, across every field at once."],
+  [LeafIcon, "Climate", "Keep a running record of forests, coasts, and wetlands, year after year."],
+]
+
+const faqs = [
+  ["What imagery does Locamage read?", "Optical, multispectral, radar, hyperspectral, thermal, lidar, and elevation, from any satellite, plane, drone, or street camera. New sensors are read on arrival without retraining."],
+  ["Do I need GIS experience?", "No. You ask in plain language and get an answer in plain language, with the pixels it came from."],
+  ["Can it learn something specific to us?", "Yes. Mark a few examples of the thing you track and it maps the rest in your vocabulary."],
+  ["How do we get access?", "Book a call or email us with what imagery you have and what you need to know from it. You will get a straight answer about whether Locamage fits."],
+]
 
 export default function Page() {
   return (
     <>
-      <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-pad focus:z-60 focus:border focus:bg-card focus:px-5 focus:py-2.5">Skip to main content</a>
       <Nav />
-      <main id="main">
-        <section className="relative grid overflow-hidden bg-muted md:min-h-svh md:grid-cols-2">
-          <div aria-hidden className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,var(--color-border)_1px,transparent_1px),linear-gradient(var(--color-border)_1px,transparent_1px)] bg-[size:calc(100%/12)_100%,100%_120px] opacity-50 [mask-image:linear-gradient(#000_45%,transparent_94%)]" />
-          <div className="relative flex max-w-3xl flex-col justify-center px-pad pt-28 pb-10 fill-mode-both duration-1000 animate-in fade-in slide-in-from-bottom-5 md:pr-16 md:pb-14">
-            <div className="flex flex-wrap items-baseline justify-between gap-x-4">
-              <Kicker>Answers from orbit</Kicker>
-              <span className="hidden text-xs uppercase tracking-widest text-muted-foreground lg:inline">Any sensor · Any resolution · Any revisit</span>
-            </div>
-            <h1 className="mb-6 text-display">Ask a place<br /><span className="text-primary">what changed.</span></h1>
-            <p className="mb-9 max-w-md text-lg leading-relaxed text-muted-foreground md:text-xl">Point Locamage at imagery from any satellite, plane, drone, or street camera and ask in the words you already use. It reads the scene and answers.</p>
-            <div className="flex flex-wrap gap-3">
+      <main>
+        <section className="px-6 pt-32 pb-20 text-center">
+          <div className="mx-auto max-w-3xl fill-mode-both duration-700 animate-in fade-in slide-in-from-bottom-4">
+            <a href="#contact" className="inline-flex items-center gap-2 rounded-full border bg-muted px-3 py-1 text-sm text-muted-foreground hover:text-foreground">
+              <span className="size-1.5 rounded-full bg-primary" />Early access is open<ArrowRightIcon className="size-3.5" />
+            </a>
+            <h1 className="mt-6 text-5xl md:text-7xl">Understand any place on Earth in plain language.</h1>
+            <p className="mx-auto mt-6 max-w-xl text-lg text-muted-foreground md:text-xl">Locamage is one foundation model that reads optical, radar, hyperspectral, and elevation imagery and answers the questions you ask of it. No GIS expertise needed.</p>
+            <div className="mt-8 flex flex-wrap justify-center gap-3">
               <Book />
-              <a href="#contact" className={buttonVariants({ variant: "outline", size: "lg" })}>Ask for access</a>
+              <a href="#contact" className={cn(buttonVariants({ variant: "outline", size: "lg" }))}>Request access</a>
             </div>
-            <Chips label="Reads" items={["optical", "radar", "hyperspectral", "elevation"]} className="mt-9" />
           </div>
           <Compare />
         </section>
 
-        <section id="jobs" className="border-t px-pad py-sy">
-          <Intro kicker="What it does" title="What people ask it.">Five jobs cover most of it. They all run on the same model, whatever sensor took the picture.</Intro>
-          <Jobs />
-          <div id="markets" className="reveal mt-14 max-w-4xl">
-            <h3 className="mb-4 text-2xl tracking-tight md:text-3xl">Who runs on it.</h3>
-            <p className="text-prose text-muted-foreground">
-              <Mk href="#compare" className="decoration-primary">Security teams</Mk> watch places nobody can drive to. <Mk href="#map" className="decoration-amber-700">Insurers</Mk> price a storm before the adjusters land. <Mk href="#monitor" className="decoration-green-700">Growers</Mk> catch stress while it is still cheap to fix. <Mk href="#measure" className="decoration-teal-700">Climate researchers</Mk> keep a running record of forests, coasts, and wetlands.
-            </p>
+        <section className="border-y bg-muted/50 px-6 py-10">
+          <p className="mb-6 text-center text-sm text-muted-foreground">Built for teams in security, insurance, agriculture, and climate research</p>
+          <div className="mx-auto grid max-w-4xl grid-cols-3 gap-4 md:grid-cols-6">
+            {[...Array(6)].map((_, i) => <Placeholder key={i} className="h-10" label="Logo" />)}
           </div>
         </section>
 
-        <section className="flex min-h-[clamp(28rem,58vh,40rem)] items-end border-t bg-[url(/img/ftw/2_masked.webp)] bg-cover bg-center px-pad pt-24 pb-14">
-          <Card className="reveal max-w-2xl gap-0 py-0">
-            <p className="p-8 font-heading text-3xl leading-tight tracking-tight md:text-4xl">Somewhere in orbit there is a picture of your problem.<br /><span className="text-primary">Ask it what happened.</span></p>
-            <Meta className="flex-wrap border-t">
-              <span>Sentinel-2 · Iowa · Oct 2024</span>
-              <span>Field boundaries · 10 m/px</span>
-            </Meta>
-          </Card>
+        <section id="product" className="px-6 py-24">
+          <Heading kicker="Why Locamage" title="Earth observation without the GIS degree.">Most Earth AI is built for one satellite and falls apart on the next. Locamage was built the other way.</Heading>
+          <div className="mx-auto grid max-w-6xl gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {features.map(([Icon, title, body]) => (
+              <div key={title} className="reveal rounded-2xl border p-6">
+                <Icon className="mb-4 size-5 text-primary" />
+                <h3 className="text-lg font-medium">{title}</h3>
+                <p className="mt-2 text-sm text-muted-foreground">{body}</p>
+              </div>
+            ))}
+          </div>
         </section>
 
-        <section id="model" className="border-t bg-card px-pad py-sy">
-          <Intro kicker="The model" title={<>One model.<br />Any sensor.</>}>Most Earth AI is built for one satellite and falls apart on the next. Locamage was built the other way.</Intro>
-          <Card className="reveal gap-0 py-0 text-base">
-            <Meta className="border-b">
-              <span>Signal path</span>
-              <span>Any resolution · Any revisit</span>
-            </Meta>
-            <div className="grid items-center gap-6 p-5 md:p-8 lg:grid-cols-[1fr_14rem_1fr] lg:gap-10">
-              <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
-                {sensors.map(([band, name, desc]) => (
-                  <li key={band} className="flex gap-3 border p-3 last:border-dashed">
-                    <i className={cn("mt-1.5 size-2.5 shrink-0", bands[band])} />
+        <section id="use-cases" className="bg-muted/50 px-6 py-24">
+          <Heading kicker="What people ask it" title="Five questions cover most of it.">They all run on the same model, whatever sensor took the picture.</Heading>
+          <div className="mx-auto grid max-w-6xl gap-4 md:grid-cols-6">
+            {jobs.map(([id, q, body, alt, w], i) => (
+              <div key={id} className={cn("reveal group overflow-hidden rounded-2xl border bg-card", i < 2 ? "md:col-span-3" : "md:col-span-2")}>
+                <img src={`/img/job_${id}-760.webp`} srcSet={`/img/job_${id}-760.webp 760w, /img/job_${id}-${w}.webp ${w}w`} sizes="(max-width: 768px) 100vw, 50vw" alt={alt} loading="lazy" className="aspect-[3/2] w-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                <div className="p-6">
+                  <h3 className="text-xl">{q}</h3>
+                  <p className="mt-2 text-muted-foreground">{body}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section id="how" className="px-6 py-24">
+          <div className="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-2">
+            <div>
+              <Heading kicker="How it works" title="From pixels to an answer in three steps." className="mx-0 mb-10 text-left" />
+              <ol className="flex flex-col gap-8">
+                {steps.map(([title, body], i) => (
+                  <li key={title} className="reveal flex gap-4">
+                    <span className="grid size-8 shrink-0 place-items-center rounded-full bg-primary/10 text-sm font-medium text-primary">{i + 1}</span>
                     <div>
-                      <strong className="block font-medium">{name}</strong>
-                      <span className="text-sm text-muted-foreground">{desc}</span>
+                      <h3 className="text-lg font-medium">{title}</h3>
+                      <p className="mt-1 text-muted-foreground">{body}</p>
                     </div>
                   </li>
                 ))}
-              </ul>
-              <div className="relative bg-foreground p-6 text-center text-background lg:before:absolute lg:before:top-1/2 lg:before:-left-10 lg:before:h-px lg:before:w-10 lg:before:bg-border lg:after:absolute lg:after:top-1/2 lg:after:-right-10 lg:after:h-px lg:after:w-10 lg:after:bg-border">
-                <strong className="block font-heading text-xl font-normal">One model</strong>
-                <span className="text-sm text-background/60">reads them together</span>
-              </div>
-              <div className="flex flex-col gap-2 border bg-muted p-6">
-                <span className="flex items-center gap-2 text-xs uppercase tracking-wider text-muted-foreground before:size-2.5 before:bg-primary">Answer</span>
-                <strong className="font-heading text-lg font-normal">An answer in plain words.</strong>
-                <span className="text-sm text-muted-foreground">Where to look, what changed, what to do about it.</span>
-              </div>
+              </ol>
             </div>
-          </Card>
-          <p className="reveal mt-12 max-w-4xl text-prose text-muted-foreground">It learned from imagery covering the whole planet, so places with thin maps read as clearly as well-surveyed ones. Mark a few examples of the thing you track and it maps the rest in your vocabulary. And the archive you already pay to store becomes a searchable history of any acre.</p>
+            <Placeholder className="reveal aspect-4/3 rounded-2xl" label="Product screenshot" />
+          </div>
         </section>
 
-        <section id="contact" className="grid border-t md:grid-cols-2">
-          <div className="reveal px-pad py-sy">
-            <Kicker>Contact</Kicker>
-            <h2 className="text-headline">Ask for access.</h2>
-            <p className="mt-4 max-w-md text-lg leading-relaxed text-muted-foreground">Tell us what imagery you have and what you need to know from it. You will get a straight answer about whether Locamage fits.</p>
+        <section className="bg-muted/50 px-6 py-24">
+          <Heading kicker="Use cases" title="Who runs on it.">Teams that arrive with imagery problems, not GIS expertise.</Heading>
+          <div className="mx-auto grid max-w-6xl gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {industries.map(([Icon, title, body]) => (
+              <div key={title} className="reveal overflow-hidden rounded-2xl border bg-card">
+                <Placeholder className="aspect-video rounded-none border-0 border-b" label="Image" />
+                <div className="p-6">
+                  <Icon className="mb-3 size-5 text-primary" />
+                  <h3 className="text-lg font-medium">{title}</h3>
+                  <p className="mt-2 text-sm text-muted-foreground">{body}</p>
+                </div>
+              </div>
+            ))}
           </div>
-          <div className="reveal flex flex-col justify-center gap-7 border-t bg-muted px-pad py-sy md:border-t-0 md:border-l">
-            <a href={`mailto:${email}`} className="self-start border-b border-primary/20 font-heading text-3xl tracking-tight text-primary transition-colors hover:border-primary md:text-5xl">{email}</a>
-            <div className="flex flex-wrap gap-3">
+        </section>
+
+        <section id="faq" className="px-6 py-24">
+          <Heading kicker="FAQ" title="Questions, answered." />
+          <div className="mx-auto max-w-2xl divide-y rounded-2xl border">
+            {faqs.map(([q, a]) => (
+              <details key={q} className="group px-6 py-5">
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-medium [&::-webkit-details-marker]:hidden">
+                  {q}<PlusIcon className="size-4 shrink-0 text-muted-foreground transition-transform group-open:rotate-45" />
+                </summary>
+                <p className="mt-3 text-muted-foreground">{a}</p>
+              </details>
+            ))}
+          </div>
+        </section>
+
+        <section id="contact" className="px-6 pb-24">
+          <div className="reveal mx-auto max-w-6xl rounded-3xl bg-foreground px-6 py-20 text-center text-background">
+            <h2 className="mx-auto max-w-2xl text-4xl md:text-5xl">Somewhere in orbit there is a picture of your problem.</h2>
+            <p className="mx-auto mt-4 max-w-lg text-lg text-background/70">Tell us what imagery you have and what you need to know from it. You will get a straight answer about whether Locamage fits.</p>
+            <div className="mt-8 flex flex-wrap justify-center gap-3">
               <Book />
-              <CopyEmail />
+              <a href={`mailto:${email}`} className={cn(buttonVariants({ variant: "outline", size: "lg" }), "border-background/20 bg-transparent text-background hover:bg-background/10 hover:text-background")}>{email}</a>
             </div>
           </div>
         </section>
