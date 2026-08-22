@@ -29,9 +29,6 @@ export function Hero() {
               <span className={cn(pill, "text-muted-foreground max-sm:hidden")}>Iowa · Oct 2024</span>
             </div>
             <span className={cn(pill, "absolute top-4 right-4 text-muted-foreground max-md:hidden md:top-6 md:right-6")}>10 m/px · field boundaries</span>
-            <span className="absolute top-[36%] left-[14%] h-[32%] w-[24%] rounded-lg border-2 border-accent md:top-[26%]">
-              <span className="label absolute -top-2 left-0 -translate-y-full rounded-md bg-accent px-2 py-1 whitespace-nowrap text-accent-foreground">Field boundaries</span>
-            </span>
             <div aria-hidden className="animate-sweep absolute inset-x-0 top-0 h-[14%] bg-gradient-to-b from-transparent via-accent/25 to-transparent after:absolute after:inset-x-0 after:bottom-0 after:h-px after:bg-accent/70" />
             <div aria-hidden className="pointer-events-none absolute top-[22%] right-[8%] max-md:hidden">
               <div className="animate-roam">

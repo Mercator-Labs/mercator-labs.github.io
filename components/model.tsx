@@ -24,9 +24,6 @@ export function Model() {
         <div className="wrap mt-14 grid gap-6 lg:grid-cols-2">
           <Plate src="/img/ftw/2_orig.webp" alt="Sentinel-2 harvest composite of Iowa farmland used to illustrate the model reading many sensors at once" className="md:rounded-[2.5rem]">
             <div aria-hidden className="absolute inset-0 bg-foreground/25" />
-            <svg aria-hidden className="absolute inset-0 size-full" preserveAspectRatio="none"><path d="M 38% 44% L 58% 44% L 58% 62%" fill="none" stroke="currentColor" strokeOpacity=".7" strokeWidth="1.5" strokeDasharray="4 5" /></svg>
-            <div className="absolute top-[24%] left-[8%] flex h-[38%] w-[30%] items-center justify-center rounded-2xl border border-current/25 bg-current/10 text-4xl font-medium tracking-tight backdrop-blur-md md:text-6xl">API</div>
-            <div className="absolute top-[42%] right-[8%] flex h-[40%] w-[34%] items-center justify-center rounded-2xl border border-current/25 bg-current/10 text-4xl font-medium tracking-tight backdrop-blur-md md:text-6xl">SDK</div>
             <div className="absolute bottom-4 left-4 max-w-xs rounded-3xl bg-accent p-5 text-accent-foreground shadow-2xl md:bottom-6 md:left-6">
               <p className="text-lg leading-tight font-medium tracking-tight md:text-xl">One model reads them together.</p>
               <p className="mt-3 text-sm leading-relaxed text-accent-foreground/85">Plain words: where to look, what changed, and what to do about it.</p>
