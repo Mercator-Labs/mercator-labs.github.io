@@ -6,7 +6,7 @@ export const links = [["Capabilities", "#capabilities"], ["The model", "#model"]
 
 export function Wordmark() {
   return (
-    <a href="#" className="flex items-center gap-2.5 text-[0.9375rem] font-semibold tracking-tight">
+    <a href="#" className="flex items-center gap-2.5 text-base font-semibold tracking-tight">
       <span aria-hidden className="relative flex size-6 items-center justify-center rounded-sm bg-primary before:absolute before:inset-x-0 before:top-1/2 before:h-px before:bg-primary-foreground/35 after:absolute after:inset-y-0 after:left-1/2 after:w-px after:bg-primary-foreground/35">
         <span className="size-1.5 rounded-full bg-accent" />
       </span>
@@ -16,7 +16,7 @@ export function Wordmark() {
 }
 
 export function Eyebrow({ className, ...props }: React.ComponentProps<"p">) {
-  return <p className={cn("inline-flex w-fit items-center gap-2 rounded-full border bg-card px-3.5 py-1.5 text-sm font-medium", className)} {...props} />
+  return <p className={cn("inline-flex w-fit items-center gap-2 rounded-full border bg-card px-3.5 py-1.5 text-base font-medium", className)} {...props} />
 }
 
 export function Intro({ kicker, title, children, dark }: { kicker: string; title: React.ReactNode; children?: React.ReactNode; dark?: boolean }) {

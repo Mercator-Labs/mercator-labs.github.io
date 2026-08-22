@@ -20,21 +20,21 @@ export function Capabilities() {
           return (
             <article key={j.verb} className="wrap grid items-center gap-12 py-12 lg:grid-cols-2 lg:gap-20 lg:py-16">
               <div className={cn(flip && "lg:order-2")}>
-                <Eyebrow><span className="font-mono text-xs text-accent">{String(i + 1).padStart(2, "0")}</span>{j.verb}</Eyebrow>
+                <Eyebrow><span className="font-mono text-sm text-accent">{String(i + 1).padStart(2, "0")}</span>{j.verb}</Eyebrow>
                 <h3 className="display-band mt-6">{j.q}</h3>
                 <p className="mt-5 max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg">{j.body}</p>
                 <ul className="mt-7 flex flex-wrap gap-2">
-                  {j.sensors.map((s) => <li key={s} className="rounded-full border bg-card px-3 py-1 text-sm font-medium text-foreground/70">{s}</li>)}
+                  {j.sensors.map((s) => <li key={s} className="rounded-full border bg-card px-3 py-1 text-base font-medium text-foreground/70">{s}</li>)}
                 </ul>
               </div>
               <div className="group relative">
                 <Plate src={`/img/job_${j.img}.webp`} alt={j.alt} className="md:rounded-[2.5rem]" />
-                <div className={cn("animate-float absolute -bottom-6 flex min-h-44 w-52 flex-col rounded-3xl p-5 shadow-2xl", flip ? "left-4 bg-accent text-accent-foreground md:-left-6" : "right-4 bg-card md:-right-6")}>
+                <div className={cn("animate-float absolute -bottom-6 flex min-h-44 w-56 flex-col rounded-3xl p-5 shadow-2xl", flip ? "left-4 bg-accent text-accent-foreground md:-left-6" : "right-4 bg-card md:-right-6")}>
                   <div className="flex items-start justify-between gap-3">
                     <p className="text-lg leading-tight font-medium tracking-tight">{j.verb}</p>
                     <span className={cn("flex size-8 shrink-0 items-center justify-center rounded-xl", flip ? "bg-accent-foreground/15" : "bg-accent text-accent-foreground")}><j.icon className="size-4" /></span>
                   </div>
-                  <p className={cn("mt-auto pt-6 text-sm leading-relaxed", flip ? "text-accent-foreground/85" : "text-muted-foreground")}>{j.scope}</p>
+                  <p className={cn("mt-auto pt-6 text-base leading-relaxed", flip ? "text-accent-foreground/85" : "text-muted-foreground")}>{j.scope}</p>
                 </div>
               </div>
             </article>

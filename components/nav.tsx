@@ -7,7 +7,7 @@ export function Nav() {
     <header className="sticky top-0 z-50 border-b bg-background/80 backdrop-blur-md">
       <div className="wrap flex h-16 items-center justify-between gap-6">
         <Wordmark />
-        <nav className="hidden items-center gap-8 text-sm font-medium text-muted-foreground md:flex [&_a:hover]:text-foreground">
+        <nav className="hidden items-center gap-8 text-base font-medium text-muted-foreground md:flex [&_a:hover]:text-foreground">
           {links.map(([label, href]) => <a key={href} href={href}>{label}</a>)}
         </nav>
         <div className="flex items-center gap-2">

@@ -33,10 +33,10 @@ export function Model() {
             {inputs.map(([name, detail], i) => (
               <li key={name} className="flex flex-1 flex-col justify-center gap-1 py-5 sm:flex-row sm:items-center sm:justify-between sm:gap-6">
                 <span className="flex items-baseline gap-4">
-                  <span className="label text-current/40">{String(i + 1).padStart(2, "0")}</span>
+                  <span className="label text-current/50">{String(i + 1).padStart(2, "0")}</span>
                   <span className="text-xl font-medium tracking-tight">{name}</span>
                 </span>
-                <span className="text-sm leading-relaxed text-current/60 sm:text-right">{detail}</span>
+                <span className="text-base leading-relaxed text-current/60 sm:text-right">{detail}</span>
               </li>
             ))}
           </ul>
@@ -45,7 +45,7 @@ export function Model() {
           {notes.map(([title, body]) => (
             <div key={title}>
               <h3 className="text-lg leading-snug font-medium tracking-tight">{title}</h3>
-              <p className="mt-3 text-sm leading-relaxed text-current/60">{body}</p>
+              <p className="mt-3 text-base leading-relaxed text-current/60">{body}</p>
             </div>
           ))}
         </div>

@@ -8,7 +8,7 @@ const groups: [string, string[][]][] = [
 
 export function Footer() {
   return (
-    <footer className="wrap flex flex-col gap-12 border-t py-14 text-sm">
+    <footer className="wrap flex flex-col gap-12 border-t py-14 text-base">
       <div className="grid gap-10 md:grid-cols-4">
         <div className="flex flex-col gap-4">
           <Wordmark />
@@ -23,7 +23,7 @@ export function Footer() {
           </nav>
         ))}
       </div>
-      <p className="text-xs leading-relaxed text-muted-foreground [&_a]:underline [&_a]:underline-offset-2">
+      <p className="text-sm leading-relaxed text-muted-foreground [&_a]:underline [&_a]:underline-offset-2">
         Contains modified Copernicus Sentinel data 2015–2024. Tiles and labels from <a href="https://open-earth-map.org" target="_blank" rel="noopener noreferrer">OpenEarthMap</a> (<a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer">CC BY 4.0</a>) and the <a href="https://ieee-dataport.org/open-access/oscd-onera-satellite-change-detection" target="_blank" rel="noopener noreferrer">Onera Satellite Change Detection dataset</a>, source imagery by FAZO Institute, AIGEO Center (CC BY 4.0) and GeoNRW, Land NRW (<a href="https://www.govdata.de/dl-de/by-2-0" target="_blank" rel="noopener noreferrer">dl-de/by-2-0</a>), shown cropped and recolored.
       </p>
       <div className="label flex flex-col gap-2 border-t pt-6 text-muted-foreground sm:flex-row sm:justify-between">

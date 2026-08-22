@@ -33,9 +33,9 @@ export function Hero() {
             <div aria-hidden className="pointer-events-none absolute top-[22%] right-[8%] max-md:hidden">
               <div className="animate-roam">
                 <div className="w-max max-w-xs rounded-2xl bg-card/95 p-3 shadow-xl backdrop-blur-sm">
-                  <p className="mb-2 text-sm font-medium tracking-tight">Has this field been harvested?</p>
+                  <p className="mb-2 text-base font-medium tracking-tight">Has this field been harvested?</p>
                   <div className="flex gap-1.5">
-                    {choices.map(([label, dot]) => <span key={label} className="flex items-center gap-1.5 rounded-lg bg-secondary px-2.5 py-1.5 text-xs font-medium"><i className={cn("size-2 rounded-sm", dot)} />{label}</span>)}
+                    {choices.map(([label, dot]) => <span key={label} className="flex items-center gap-1.5 rounded-lg bg-secondary px-2.5 py-1.5 text-sm font-medium"><i className={cn("size-2 rounded-sm", dot)} />{label}</span>)}
                   </div>
                 </div>
                 <MousePointer2Icon className="mt-1 ml-16 size-6 fill-accent text-accent drop-shadow-md" />
@@ -47,7 +47,7 @@ export function Hero() {
               <span aria-hidden className="flex size-6 shrink-0 items-center justify-center rounded-lg bg-accent"><i className="size-2 rounded-sm bg-accent-foreground" /></span>
               Where does each field end?
             </p>
-            <p className="mt-3 text-sm leading-relaxed text-muted-foreground">Every parcel in the scene is outlined from a single October pass, harvested and standing fields alike. The boundaries follow the real edge of each field, not the survey grid, and carry over to the next revisit.</p>
+            <p className="mt-3 text-base leading-relaxed text-muted-foreground">Every parcel in the scene is outlined from a single October pass, harvested and standing fields alike. The boundaries follow the real edge of each field, not the survey grid, and carry over to the next revisit.</p>
           </figcaption>
         </figure>
       </div>
